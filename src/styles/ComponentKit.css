@@ -1,0 +1,36 @@
+.section--button__kind {
+  display: flex;
+  flex-direction: row;
+  grid-column-gap: 2rem;
+}
+.section--button__kind__group1 {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  grid-row-gap: 1rem;
+  padding: 2rem;
+  background-color: #333333;
+}
+.section--button__kind__group2 {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  grid-row-gap: 1rem;
+  padding: 2rem;
+  background-color: #65E898;
+}
+.section--button__size {
+  display: flex;
+  flex-direction: row;
+  grid-column-gap: 2rem;
+}
+.section--button__content {
+  display: flex;
+  flex-direction: column;
+  grid-row-gap: 4rem;
+  padding-top: 8rem;
+  padding-bottom: 2rem;
+}
+.section--button__header {
+  font-size: 40pt;
+}/*# sourceMappingURL=ComponentKit.css.map */

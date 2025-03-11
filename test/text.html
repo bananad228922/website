@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>可收納區塊</title>
+    <style>
+        /* 整個可收納區塊 */
+        .accordion {
+            max-width: 400px;
+            margin: 20px auto;
+            font-family: Arial, sans-serif;
+        }
+
+        /* 摺疊標題樣式 */
+        details {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* 點擊展開的標題 */
+        summary {
+            background: #f5f5f5;
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            outline: none;
+            list-style: none; /* 移除原生三角形圖示 */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* 自訂三角形 icon */
+        summary::after {
+            content: "▶";
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        /* 當 details 展開時旋轉三角形 */
+        details[open] summary::after {
+            transform: rotate(90deg);
+        }
+
+        /* 摺疊內容樣式 */
+        .content {
+            padding: 10px;
+            background: white;
+            border-top: 1px solid #ddd;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: opacity 0.3s ease, max-height 0.3s ease-in-out;
+        }
+
+        /* 當 details 展開時，讓內容顯示 */
+        details[open] .content {
+            opacity: 1;
+            max-height: 100px; /* 可根據需要調整 */
+        }
+    </style>
+</head>
+<body>
+    <div class="accordion">
+        <details>
+            <summary>點擊展開 / 收合</summary>
+            <div class="content">
+                <p>這是一個可收納的區塊！你可以放任何內容在這裡。</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>另一個區塊</summary>
+            <div class="content">
+                <p>這裡可以放更多內容，例如列表、圖片等。</p>
+            </div>
+        </details>
+    </div>
+</body>
+</html>
