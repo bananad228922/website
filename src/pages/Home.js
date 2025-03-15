@@ -36,7 +36,18 @@ function Home() {
 
 
             {/* Video */}
-            <section class="section--video"></section>
+            <section class="section--video">
+                <div style={{ position: "relative", paddingTop: "56.25%", width: "100%", height: 0 }}>
+                    <iframe 
+                        src="https://player.vimeo.com/video/1066106873?badge=0&autopause=0&player_id=0&app_id=58479"
+                        style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
+                        frameBorder="0"
+                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                        allowFullScreen
+                        title="飄忽不定工作室 Erratic Studio｜Logo 形象動畫短片"
+                    ></iframe>
+                </div>
+            </section>
 
 
             {/* About */}
@@ -48,6 +59,15 @@ function Home() {
 
                 <div class="container">
                     <div class="section--about__content">
+                        <h1 className='heading-1 white--primary'>
+                            <span>我們一直</span>
+                            <span className='orange'>相信</span>
+                            <br/>
+                            給您最好
+                            <br/>
+                            不怕困難
+                        </h1>
+
                         <FadeInSection>
                             <FoldableCard 
                                 title="發揮創意"
@@ -165,8 +185,10 @@ function Home() {
                 <div class="container">
 
                     <div class="section--portfolio__content">
+                        {/* tabs labels */}
                         <FadeInSection>
                             <div class="portfolio__tags">
+                                <div className='tag tag--no-style'> ALL TAGS</div>
                                 <div class="tag tag--outLine tag--outLine--black">WEBSITE DESIGN</div>
                                 <div class="tag tag--outLine tag--outLine--black">GRAPHIC DESIGN</div>
                                 <div class="tag tag--outLine tag--outLine--black">MOTION GRAPHIC</div>
@@ -174,27 +196,33 @@ function Home() {
                             </div>
                         </FadeInSection>
 
-                        
+                        {/* tabs content */}
                         <FadeInSection>
                             <Card_protfolio 
-                                cardHeader="作品集名稱"
-                                cardContent="作品集內容"
+                                cardHeader="日曆設計｜手的形式原理"
+                                cardContent="使用「手」，並藉由美的形式原理所打造而成的雙日曆設計"
+                                link="/portfolio_handCalender"
+                                bgImage="https://res.cloudinary.com/dtoefi3cs/image/upload/v1742031089/%E6%89%8B_%E4%B8%89%E9%83%A8%E6%9B%B2_abvx63.png"
+                            />
+                        </FadeInSection>
+
+
+                        <FadeInSection>
+                            <Card_protfolio 
+                                cardHeader="印刷刊物設計｜怪核"
+                                cardContent="怪核，是由純粹的空間所營造出來的恐懼、寂靜，這本書將會為你介紹何謂怪核，以及怪核的起源"
+                                link="/portfolio_weirdcore"
+                                bgImage="https://res.cloudinary.com/dtoefi3cs/image/upload/v1742032515/Free_Book_Mockup_8_jy7wbm.png"
                             />                            
                         </FadeInSection>
 
 
                         <FadeInSection>
                             <Card_protfolio 
-                                cardHeader="作品集名稱"
-                                cardContent="作品集內容"
-                            />                            
-                        </FadeInSection>
-
-
-                        <FadeInSection>
-                            <Card_protfolio 
-                                cardHeader="作品集名稱"
-                                cardContent="作品集內容"
+                                cardHeader="品牌識別設計｜飄忽不定工作室"
+                                cardContent="飄忽不定工作室，是一間主打「資源至上主義、內容變現和質大於量」的設計工作室，我們為他製作了一系列的設計系統、形象短片以及網站設計"
+                                link="/portfolio_erratic"
+                                bgImage="https://res.cloudinary.com/dtoefi3cs/image/upload/v1742032926/Logo_Mockup_aagbng.png"
                             />                            
                         </FadeInSection>
 
@@ -215,7 +243,10 @@ function Home() {
                     <div class="section--contact__content">
                         <form class="section--contact__form">
                             <FadeInSection>
-                                <h6 class="section--contact__header">請填上這些資訊，聯絡我們</h6>                                
+                                <h6 class="section--contact__header">
+                                    <span>請填上這些資訊，</span>
+                                    <span className='orange'>聯絡我們</span>
+                                </h6>
                             </FadeInSection>
 
                             <FadeInSection>
@@ -225,16 +256,12 @@ function Home() {
                                 </div>
                             </FadeInSection>
 
-
-
                             <FadeInSection>
                                 <div>
                                     <label class="section--contact__label" for="input-gmail">電子郵件</label>
                                     <input class="input input--outLine input--outLine--white" type="text" id="input-gmail"></input>
                                 </div>                                
                             </FadeInSection>
-
-
 
                             <FadeInSection>
                                 <div>
@@ -243,8 +270,6 @@ function Home() {
                                 </div>                                
                             </FadeInSection>
 
-
-
                             <FadeInSection>
                                 <div>
                                     <label class="section--contact__label" for="input-class">需求項目</label>
@@ -252,16 +277,12 @@ function Home() {
                                 </div>                                
                             </FadeInSection>
 
-
-
                             <FadeInSection>
                                 <div>
                                     <label class="section--contact__label" for="input-money">預算</label>
                                     <input class="input input--outLine input--outLine--white" type="text" id="input-money"></input>
                                 </div>                                
                             </FadeInSection>
-
-
 
                             <FadeInSection>
                                 <div>

@@ -1,0 +1,56 @@
+@import './variables.scss';
+
+// variables
+$portfolio-content-width: 90%;
+$portfolio-item-spacing: $spacing-m;
+
+
+.portfolio-item {
+    &__content {
+        // appearance
+        width: $portfolio-content-width;
+
+        // layout
+        display: flex;
+        flex-direction: column;
+        grid-row-gap: $portfolio-item-spacing;
+    }
+
+    &__textBlock {
+
+    }
+
+    &__grid_1 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+
+        img:nth-child(1) {
+            grid-column: span 2;  // 讓它橫跨 2 列
+        }
+    }
+
+    &__grid_2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+
+        img:nth-child(3) {
+            grid-column: span 2;  // 讓它橫跨 2 列
+        }
+    }
+
+    &__grid_3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+}
+
+h1 {
+    font-size: 32pt;
+}
+
+p {
+    font-size: 16pt;
+}

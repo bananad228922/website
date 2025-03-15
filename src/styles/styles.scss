@@ -1,24 +1,10 @@
-// 1. 把utility 包裝成可復用的元素
-// 2. 使用巢狀結構那個 
-// 3. 整理變數
-
-/* 變數 */
-$color-green: #65E898;
-$color-green-hover: #54cf83;
-$color-black: #333333;
-$color-yellow: #d5cfa4;
-$root-font-size: 12pt;
-
-$spacing-xxs: 0.25rem;
-$spacing-xs: 0.5rem;
-$spacing-s: 1rem;
-$spacing-m: 2rem;
-$spacing-l: 4rem;
-$spacing-xl: 8rem;
-$spacing-xxl: 16rem;
+@import './variables.scss';
 
 /* ------------------------------ Normalize ------------------------------ */
 
+html {
+    background-color: $color-green;
+}
 body {
     margin: 0;
     padding: 0;
@@ -47,16 +33,16 @@ a {
     color: inherit;
 }
 
+ol, ul {
+    padding: 0;
+}
 
 /* ------------------------------ Utility ------------------------------ */
 
+// layout
 .flex-row {
     display: flex;
     flex-direction: row;
-}
-
-.between {
-    justify-content: space-between;
 }
 
 .align-item-center {
@@ -67,6 +53,24 @@ a {
     justify-content: center;
 }
 
+.between {
+    justify-content: space-between;
+}
+
+.gap-s {
+    grid-row-gap: $spacing-s;
+    grid-column-gap: $spacing-s;
+}
+
+.gap-m {
+    grid-row-gap: $spacing-m;
+    grid-column-gap: $spacing-m;
+}
+
+.gap-l {
+    grid-row-gap: $spacing-l;
+    grid-column-gap: $spacing-l;
+}
 
 .container {
     width: 100%;
@@ -98,6 +102,47 @@ a {
     }
 }
 
+.heading-3 {
+    font-size: 30pt;
+
+    &--white {
+        color: white;
+    }
+}
+
+.paragraph-s {
+    font-size: 10pt;
+
+    &--white {
+        color: white;
+    }
+}
+
+.paragraph-m {
+    font-size: 12pt;
+
+    &--white {
+        color: white;
+    }
+}
+
+// color
+.white--primary {
+    color: white;
+}
+
+.white--secondary {
+
+}
+
+.white--tertiary {
+
+}
+
+.orange {
+    color: orange;
+}
+
 .about__img {
     height: 500px;
     width: 500px;
@@ -112,7 +157,7 @@ a {
     font-size: 100pt;
     writing-mode: vertical-rl;
     position: sticky;
-    top: 0px;
+    top: 20vh;
     color: rgba(0, 0, 0, 0.7);
 
     &--white {
@@ -121,16 +166,6 @@ a {
 
     &--black {
 
-    }
-}
-
-
-
-.param-m {
-    font-size: 12pt;
-
-    &--white {
-        color: white;
     }
 }
 
@@ -155,6 +190,11 @@ a {
     width: 70px;
 }
 
+.img-cover {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
 
 /* ------------------------------ Component ------------------------------ */
 
@@ -170,27 +210,59 @@ a {
             height: 50vh;
             background-color: beige;
             position: relative;
+
+            //box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 10px 10px;
+            
+            // Motion
+            transform: scale(1);
+            transition: transform 0.2s ease-in-out;
         }
     
         &__content {
-            position: absolute;
-            left: 0;
-            top: 0;
+            // appearance
             background-color: $color-black;
             height: 100%;
             width: 40%;
 
+            padding: 0 10px;
+            position: absolute;
+            left: 0;
+            top: 0;
+
+            // layout
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            grid-row-gap: $spacing-s;
 
-            visibility: hidden;
+            // motion
+            clip-path: inset(0 100% 0 0);
+            transition: clip-path 0.2s ease-in-out;
+        }
+
+        &__overlap {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: rgba(0, 0, 0, 0.3);
+            // motion
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
         }
 
         &:has(&__BG:hover) {
             .card--portfolio__content {
-                visibility: visible;
+                clip-path: inset(0 0 0 0%);
+            }
+            .card--portfolio__BG {
+                transform: scale(0.98);
+            }
+            .card--portfolio__overlap {
+                opacity: 1;
             }
         }
     }
@@ -201,10 +273,6 @@ a {
         flex-direction: row;
         justify-content: space-between;
         grid-column-gap: $spacing-m;
-
-        &__accordion-toggle {
-            visibility: hidden;
-        }
 
         &__header {
             font-size: 50pt;
@@ -220,25 +288,39 @@ a {
             grid-column-gap: $spacing-m;
         }
 
-        &__content {
-            color: white;
+        &__accordion-toggle {
             visibility: hidden;
         }
 
+        &__content {
+            color: white;
+
+            // motion
+            clip-path: inset(0 0 100% 0);
+            opacity: 0;
+            transition: clip-path 0.2s ease-in-out, opacity 0.5s ease-in-out;
+        }
+
         &__img {
-            height: 500px;
+            height: 0;
             width: 500px;
             background-color: black;
-            visibility: hidden;
+
+            // motion
+            clip-path: inset(0 100% 0 0);
+            transition: clip-path 0.2s ease-in-out, height 0.2s ease-in-out;
+
         }
 
         &:has(&__accordion-toggle:checked) {
             .card--about__content {
-                visibility: visible;
+                clip-path: inset(0 0 0 0);
+                opacity: 1;
             }
 
             .card--about__img {
-                visibility: visible;
+                clip-path: inset(0 0 0 0);
+                height: 500px;
             }
 
         }
@@ -254,43 +336,51 @@ a {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            align-items: flex-start;
         }
 
         &__header {
             font-size: 50pt;
         }
 
-        &__param {
-            font-size: 12pt;
-            visibility: hidden;
-        }
-
         &__accordion-toggle {
             display: none;
         }
 
+        &__list {
+            font-size: 12pt;
+            display: flex;
+            flex-direction: column;
+            grid-row-gap: $spacing-m;
+
+            // motion
+            clip-path: inset(0 100% 0 0);
+            transition: clip-path 0.2s ease-in-out;
+        }
+
         &__img {
-            height: 500px;
+            height: 0;
             width: 500px;
             background-color: black;
-            visibility: hidden;
+
+            // motion
+            clip-path: inset(0 100% 0 0);
+            transition: clip-path 0.2s ease-in-out, height 0.2s ease-in-out;
         }
 
         &__btn {
+            // motion
             visibility: hidden;
         }
 
         &:has(&__accordion-toggle:checked) {
-            .card--services__param {
-                visibility: visible;
-            }
-
             .card--services__img {
-                visibility: visible;
+                clip-path: inset(0 0 0 0);
+                height: 500px;
             }
 
-            .card--services__param {
-                visibility: visible;
+            .card--services__list {
+                clip-path: inset(0 0 0 0);
             }
 
             .card--services__btn {
@@ -302,8 +392,11 @@ a {
 
 /* button */
 .button {
+    // appearance
     border-style: none;
     border-radius: 10px;
+
+    // layout
     display: flex;
     align-items: center;
     justify-content: center;
@@ -311,6 +404,9 @@ a {
     &--primary {
         background-color: $color-green;
         color: $color-black;
+
+        // motion
+        transition: background-color 0.2s ease-in-out;
 
         &:hover {
             background-color: $color-green-hover;
@@ -320,6 +416,9 @@ a {
     &--secondary {
         background-color: black;
         color: white;
+
+        // motion
+        transition: background-color 0.2s ease-in-out;
 
         &:hover {
             background-color: rgba(0, 0, 0, 0.8);
@@ -331,6 +430,9 @@ a {
         border-color: $color-green;
         color: $color-green;
 
+        // motion
+        transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+
         &:hover {
             background-color: $color-green;
             color: $color-black;
@@ -341,6 +443,9 @@ a {
         border: 2px solid;
         border-color: $color-black;
         color: black;
+
+        // motion
+        transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 
         &:hover {
             background-color: $color-black;
@@ -385,12 +490,21 @@ a {
     justify-content: center;
     padding: 0 20px;
 
+    &--no-style {
+        text-decoration: underline;
+    }
+
     &--white {
         background-color: white;
     }
 
     &--green {
-        background-color: green;
+        background-color: $color-green;
+        transition: background-color 0.2s ease-in-out;
+
+        &:hover {
+            background-color: $color-green-hover;
+        }
     }
 
     &--black {
@@ -410,6 +524,7 @@ a {
 
         &--black {
             border-color: black;
+            transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 
             &:hover {
                 background-color: black;
@@ -462,21 +577,32 @@ a {
 }
 
 .navBar {
-    position: fixed;
     width: 100%;
     height: 50px;
+
+    position: fixed;
     z-index: 1;
+    backdrop-filter: blur(20px);
 
     // Appearance
     border-top-style: none;
     border-right-style: none;
     border-left-style: none;
     border-bottom-style: solid;
+    border-width: 1px;
 
     // layout
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    // motion
+    transition: transform 0.2s ease-in-out;
+
+
+    &--hidden {
+        transform: translateY(-100%); /* 隱藏nav */
+    }
 
     &__logo {
         height: 30px;
@@ -518,21 +644,11 @@ a {
         display: none;
     }
 
-    &:has(&__checkbox:checked) {
-        .navBar__sideBar__overlap {
-            visibility: visible;
-        }
-
-        .navBar__sideBar {
-            visibility: visible;
-        }
-
-    }
-
     &__sideBar {
         background-color: $color-yellow;
         width: 40vw;
         height: 100vh;
+
 
         // layout
         display: flex;
@@ -548,12 +664,15 @@ a {
         color: black;
         font-size: 24pt;
 
-        visibility: hidden;
+        // motion
+        clip-path: inset(0 0 0 100%);
+        transition: clip-path 0.2s ease-in-out;
 
         &__list {
             display: flex;
             flex-direction: column;
             grid-row-gap: $spacing-s;
+            padding-left: 40px;
         }
 
         &__header {
@@ -591,8 +710,48 @@ a {
             top: 0;
             left: 0;
 
-            visibility: hidden;
+            // motion
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+            pointer-events: none;
         }
+    }
+
+    &:has(&__checkbox:checked) {
+        .navBar__sideBar__overlap {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .navBar__sideBar {
+            clip-path: inset(0 0 0 0);
+        }
+
+    }
+}
+
+.footer {
+    background-color: $color-black;
+
+    &__content {
+        // appearance
+        width: 80%;
+
+        // layout
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        grid-row-gap: $spacing-m;
+        
+    }
+
+    &__link-icons {
+        // layout
+        display: flex;
+        flex-direction: row;
+
+        grid-column-gap: $spacing-m;
+
     }
 }
 
@@ -601,6 +760,8 @@ a {
     display: flex;
     flex-direction: row;
     grid-column-gap: $spacing-s;
+
+    margin-bottom: $spacing-l;
 }
 
 // portfolio page

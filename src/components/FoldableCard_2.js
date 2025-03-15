@@ -1,3 +1,5 @@
+import Button from "./button/Button";
+
 function FoldableCard_2({title, title_EN, content_1, content_2, content_3, content_4, content_5, id, imgScr}) {
     return (
         <div class="card--services">
@@ -5,7 +7,7 @@ function FoldableCard_2({title, title_EN, content_1, content_2, content_3, conte
 
             <div class="card--services__content">
                 {/* header */}
-                <div class="flex-row align-item-center">
+                <div class="flex-row align-item-center gap-s">
                     <img src="/icon-add-black.svg" class="icon-l" />
 
                     <label class="card--services__header-wrapper" for={id}>
@@ -19,21 +21,36 @@ function FoldableCard_2({title, title_EN, content_1, content_2, content_3, conte
                     </label>
                 </div>
 
-                {/* param */}
-                <p class="card--services__param">
+                {/* list */}
+                <ul className="card--services__list">
+                    <li>
                     {content_1}
-                    <br />
+                    </li>
+
+                    <li>
                     {content_2}
-                    <br />
+                    </li>
+
+                    <li>
                     {content_3}
-                    <br />
+                    </li>
+
+                    <li>
                     {content_4}
-                    <br />
+                    </li>
+
+                    <li>
                     {content_5}
-                </p>
+                    </li>
+                </ul>
 
                 {/* button */}
-                <div class="button button--outLine button--outLine--black card--services__btn"></div>
+                <Button
+                    kind="outLine-secondary"
+                    extraClass="card--services__btn"
+                >
+                        contact me
+                </Button>
             </div>
 
             <img class="card--services__img" src={imgScr} loading="lazy" />  

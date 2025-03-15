@@ -1,15 +1,4 @@
-$color-green: #65E898;
-$color-black: #333333;
-$color-yellow: #d5cfa4;
-$root-font-size: 12pt;
-
-$spacing-xxs: 0.25rem;
-$spacing-xs: 0.5rem;
-$spacing-s: 1rem;
-$spacing-m: 2rem;
-$spacing-l: 4rem;
-$spacing-xl: 8rem;
-$spacing-xxl: 16rem;
+@import './variables.scss';
 
 html {
 }

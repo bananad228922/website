@@ -1,15 +1,57 @@
 import scrollToSection from '../script/index.js';
 import MenuIcon from './icon-menu.js';
 import { Link } from "react-router-dom";
+import {useState, useEffect, useRef} from "react";
 
 
 function Navigation() {
     // function scrollToSection(targetId) {
     //     document.getElementById(targetId).scrollIntoView({ behavior: "smooth" });
     // }
-
+    const [visible, setVisible] = useState(true);
+    const prevScrollPos = useRef(window.scrollY);
+    const accumulatedScroll = useRef(0);
+    const scrollTimeout = useRef(null);
+  
+    const MIN_SCROLL_DISTANCE = 100; // 向上滑動最小距離（可調整）
+    const STOP_DELAY = 100; // 停止滾動多久後重置誤差 (毫秒)
+  
+    useEffect(() => {
+      const handleScroll = () => {
+        const currentScrollPos = window.scrollY;
+        const delta = currentScrollPos - prevScrollPos.current;
+  
+        accumulatedScroll.current += delta;
+  
+        clearTimeout(scrollTimeout.current);
+        scrollTimeout.current = setTimeout(() => {
+          // 停頓後，重置累積距離
+          accumulatedScroll.current = 0;
+        }, STOP_DELAY);
+  
+        if (currentScrollPos < 50) {
+          setVisible(true); // 頂部強制顯示
+        } else if (accumulatedScroll.current > MIN_SCROLL_DISTANCE) {
+          setVisible(false); // 向下滾動超過指定距離，隱藏
+          accumulatedScroll.current = 0;
+        } else if (accumulatedScroll.current < -MIN_SCROLL_DISTANCE) {
+          setVisible(true); // 向上滾動超過指定距離，顯示
+          accumulatedScroll.current = 0;
+        }
+  
+        prevScrollPos.current = currentScrollPos;
+      };
+  
+      window.addEventListener("scroll", handleScroll);
+  
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+        clearTimeout(scrollTimeout.current);
+      };
+    }, []);
+    
     return (
-        <navigation class="navBar">
+        <nav className={`navBar ${visible ? '' : 'navBar--hidden'}`}>
             <div class="flex-row align-item-center">
                 <img class="navBar__logo" src="/Logo.svg" />
                 <p>飄忽不定工作室</p>
@@ -32,7 +74,7 @@ function Navigation() {
             </div>
             
             {/* SideBar */}
-            <div class="navBar__sideBar__overlap"></div>
+            <label class="navBar__sideBar__overlap" for='navBar__checkbox'></label>
             <div class="navBar__sideBar">
                 
                 <div class="navBar__sideBar__header">
@@ -64,7 +106,6 @@ function Navigation() {
                                 <p class="navBar__sideBar__listItem-CN">部落格</p>
                                 <p class="navBar__sideBar__listItem-EN">Blog</p>
                             </Link>
-
                         </li>
 
                         <li>
@@ -72,9 +113,7 @@ function Navigation() {
                                 <p class="navBar__sideBar__listItem-CN">設計系統</p>
                                 <p class="navBar__sideBar__listItem-EN">Design System</p>
                             </Link>
-
                         </li>
-
                     </ul>
                 </div>
 
@@ -90,7 +129,7 @@ function Navigation() {
                 <div class="navBar__menuBtn-line"></div>
                 <div class="navBar__menuBtn-line"></div>
             </label>
-        </navigation>
+        </nav>
     )
 }
 
