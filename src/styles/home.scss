@@ -1,15 +1,5 @@
 @import './variables.scss';
 
-%flex-col {
-    display: flex;
-    flex-direction: column;
-}
-
-%flex-row {
-    display: flex;
-    flex-direction: row;
-}
-
 %section-black {
     @extend %flex-row;
     background-color: $color-black;

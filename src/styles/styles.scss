@@ -482,63 +482,159 @@ ol, ul {
     }
 }
 
-.tag {
-    height: 50px;
-    border-radius: 999px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 20px;
 
-    &--no-style {
-        text-decoration: underline;
+
+
+
+
+
+
+
+.tabs {
+    // tabs labels
+    &__labels {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        grid-column-gap: $spacing-s;
+    
+        margin-bottom: $spacing-l;
     }
 
-    &--white {
-        background-color: white;
-    }
+    &__label {
+        height: 50px;
+        border-radius: 999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 20px;
 
-    &--green {
-        background-color: $color-green;
-        transition: background-color 0.2s ease-in-out;
-
-        &:hover {
-            background-color: $color-green-hover;
-        }
-    }
-
-    &--black {
-        background-color: black;
-    }
-
-    &--outLine {
-        border: 2px solid;
-
-        &--white {
-            border-color: white;
+        &--no-style {
+            text-decoration: underline;
         }
 
-        &--green {
-            border-color: green;
+        &--primary {
+            background-color: $color-green;
+            border-style: none;
+            transition: background-color 0.2s ease-in-out;
+
+            &:hover {
+                background-color: $color-green-hover;
+            }
         }
 
-        &--black {
+        &--secondary {
+            background-color: black;
+            border-style: none;
+            transition: background-color 0.2s ease-in-out;
+
+            &:hover {
+                background-color: $color-black-hover;
+            }
+        }
+
+        &--tertiary {
+            background-color: white;
+            border-style: none;
+            transition: background-color 0.2s ease-in-out;
+
+            &:hover {
+                background-color: $color-white-hover;
+            }
+        }
+
+        // outline
+        &--outLine-primary {
+            border: 2px solid;
+            border-color: $color-green;
+
+            transition: border-color 0.2s ease-in-out;
+
+            &:hover {
+                border-color: $color-green-hover;
+            }
+        }
+
+        &--outLine-secondary {
+            border: 2px solid;
             border-color: black;
-            transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+
+            transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 
             &:hover {
                 background-color: black;
+                border-color: $color-black-hover;
                 color: white;
             }
         }
-    }
 
-    &__content {
-        &--white {
-            color: white;
+        &--outLine-tertiary {
+            border: 2px solid;
+            border-color: white;
+
+            transition: border-color 0.2s ease-in-out;
+
+            &:hover {
+                border-color: $color-white-hover;
+            }
+        }
+
+        &--small {
+            padding: 0 30px;
+            height: 20px;
+        }
+
+        &--medium {
+            padding: 0 50px;
+            height: 30px;
+        }
+
+        &--large {
+            padding: 0 70px;
+            height: 40px;
         }
     }
+
+    &__input {
+        display: none;
+    }
+
+    // tabs content
+    &__content {
+        width: 100%;
+    }
+
+    &__item {
+        @extend %flex-col;
+        align-items: center;
+        grid-row-gap: $spacing-l;
+        display: none;
+    }
+
+
+
 }
+
+#tab-input-1:checked ~ .tabs__content #tabItem_1,
+#tab-input-2:checked ~ .tabs__content #tabItem_2,
+#tab-input-3:checked ~ .tabs__content #tabItem_3,
+#tab-input-4:checked ~ .tabs__content #tabItem_4,
+#tab-input-5:checked ~ .tabs__content #tabItem_5 {
+    display: flex;
+}
+
+#tab-input-1:checked ~ .tabs__labels #tab-1,
+#tab-input-2:checked ~ .tabs__labels #tab-2,
+#tab-input-3:checked ~ .tabs__labels #tab-3,
+#tab-input-4:checked ~ .tabs__labels #tab-4,
+#tab-input-5:checked ~ .tabs__labels #tab-5 {
+    background-color: black;
+    color: white;
+}
+
+
+
 
 .input {
     height: 50px;
@@ -753,15 +849,6 @@ ol, ul {
         grid-column-gap: $spacing-m;
 
     }
-}
-
-
-.portfolio__tags {
-    display: flex;
-    flex-direction: row;
-    grid-column-gap: $spacing-s;
-
-    margin-bottom: $spacing-l;
 }
 
 // portfolio page

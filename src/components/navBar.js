@@ -114,6 +114,13 @@ function Navigation() {
                                 <p class="navBar__sideBar__listItem-EN">Design System</p>
                             </Link>
                         </li>
+
+                        <li>
+                            <Link to='/testUse'>
+                                <p class="navBar__sideBar__listItem-CN">測試用</p>
+                                <p class="navBar__sideBar__listItem-EN">Test Use</p>
+                            </Link>
+                        </li>
                     </ul>
                 </div>
 
