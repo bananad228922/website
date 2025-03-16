@@ -1,10 +1,6 @@
 @import './variables.scss';
 
 /* ------------------------------ Normalize ------------------------------ */
-
-html {
-    background-color: $color-green;
-}
 body {
     margin: 0;
     padding: 0;
@@ -23,12 +19,9 @@ html {
     font-size: $root-font-size;
 }
 
-button, input {
-    background-color: transparent
-    ;
-}
-
-a {
+button, input, a {
+    background-color: transparent;
+    border-style: none;
     text-decoration: none;
     color: inherit;
 }
@@ -143,6 +136,14 @@ ol, ul {
     color: orange;
 }
 
+.bg-black {
+    background-color: $color-black;
+}
+
+.bg-green {
+    background-color: $color-green;
+}
+
 .about__img {
     height: 500px;
     width: 500px;
@@ -196,9 +197,50 @@ ol, ul {
     object-fit: cover;
 }
 
+.spacer-s {
+    height: $spacing-s;
+}
+
+.spacer-m {
+    height: $spacing-m;
+}
+.spacer-l {
+    height: $spacing-l;
+}
+.spacer-xl {
+    height: $spacing-xl;
+}
+.spacer-xxl {
+    height: $spacing-xxl;
+}
 /* ------------------------------ Component ------------------------------ */
 
 .card {
+    &--base {
+        @extend %flex-col;
+        grid-row-gap: $spacing-s;
+
+        &__header {
+            @extend %flex-row;
+            align-items: center;
+
+            grid-column-gap: $spacing-m;
+        }
+
+        &__toggle {
+            display: none;
+
+            &:checked ~ .card--base__content {
+                display: block;
+            }
+        }
+
+        &__content {
+            display: none;
+            margin-left: $spacing-xl;
+        }
+    }
+
     &--portfolio {
         width: 100%;
         display: flex;
@@ -273,12 +315,7 @@ ol, ul {
         flex-direction: row;
         justify-content: space-between;
         grid-column-gap: $spacing-m;
-
-        &__header {
-            font-size: 50pt;
-            color: white;
-            font-weight: 700;
-        }
+        color: white;
 
         &__header-wrapper {
             display: flex;
@@ -288,18 +325,25 @@ ol, ul {
             grid-column-gap: $spacing-m;
         }
 
-        &__accordion-toggle {
-            visibility: hidden;
+
+        &__header {
+            font-size: 50pt;
+            font-weight: 700;
         }
 
         &__content {
-            color: white;
-
             // motion
             clip-path: inset(0 0 100% 0);
             opacity: 0;
             transition: clip-path 0.2s ease-in-out, opacity 0.5s ease-in-out;
         }
+
+
+        &__accordion-toggle {
+            display: none;
+        }
+
+
 
         &__img {
             height: 0;
@@ -491,6 +535,8 @@ ol, ul {
 
 
 .tabs {
+    width: 100%;
+
     // tabs labels
     &__labels {
         display: flex;
@@ -509,15 +555,18 @@ ol, ul {
         align-items: center;
         justify-content: center;
         padding: 0 20px;
+        font-weight: 600;
 
         &--no-style {
             text-decoration: underline;
+            border-style: none;
         }
 
         &--primary {
             background-color: $color-green;
             border-style: none;
             transition: background-color 0.2s ease-in-out;
+            color: $color-black;
 
             &:hover {
                 background-color: $color-green-hover;
@@ -528,6 +577,7 @@ ol, ul {
             background-color: black;
             border-style: none;
             transition: background-color 0.2s ease-in-out;
+            color: white;
 
             &:hover {
                 background-color: $color-black-hover;
@@ -548,6 +598,7 @@ ol, ul {
         &--outLine-primary {
             border: 2px solid;
             border-color: $color-green;
+            color: $color-green;
 
             transition: border-color 0.2s ease-in-out;
 
@@ -558,13 +609,13 @@ ol, ul {
 
         &--outLine-secondary {
             border: 2px solid;
-            border-color: black;
+            border-color: $color-black;
+            color: $color-black;
 
-            transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+            transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 
             &:hover {
-                background-color: black;
-                border-color: $color-black-hover;
+                background-color: $color-black;
                 color: white;
             }
         }
@@ -580,19 +631,44 @@ ol, ul {
             }
         }
 
+        &--ghost-primary {
+            color: $color-green;
+
+            transition: background-color 0.2s ease-in-out;
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.05);
+            }
+        }
+
+        &--ghost-secondary {
+            color: $color-black;
+            transition: background-color 0.2s ease-in-out;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.05);
+            }
+        }
+
         &--small {
-            padding: 0 30px;
-            height: 20px;
+            padding: 0 15px;
+            height: 32px;
+
+            font-size: 10pt;
         }
 
         &--medium {
-            padding: 0 50px;
-            height: 30px;
+            padding: 0 30px;
+            height: 40px;
+
+            font-size: 12pt;
         }
 
         &--large {
-            padding: 0 70px;
-            height: 40px;
+            padding: 0 50px;
+            height: 60px;
+
+            font-size: 16pt;
         }
     }
 
@@ -603,17 +679,10 @@ ol, ul {
     // tabs content
     &__content {
         width: 100%;
-    }
 
-    &__item {
         @extend %flex-col;
-        align-items: center;
         grid-row-gap: $spacing-l;
-        display: none;
     }
-
-
-
 }
 
 #tab-input-1:checked ~ .tabs__content #tabItem_1,

@@ -16,6 +16,15 @@
 
 }
 
+%content-layout {
+    width: 80%;
+    @extend %flex-col;
+    grid-row-gap: $spacing-m;
+
+    margin-top: $spacing-xxl;
+    margin-bottom: $spacing-xxl;
+}
+
 /* ------------------------------ Section ------------------------------ */
 
 .home {
@@ -73,12 +82,7 @@
         }
 
         &__content {
-            width: 80%;
-            @extend %flex-col;
-            grid-row-gap: $spacing-xl;
-
-            margin-top: 100vh;
-            margin-bottom: $spacing-m;
+            @extend %content-layout;
         }
     }
 
@@ -86,12 +90,7 @@
         @extend %section-green;
 
         &__content {
-            width: 80%;
-            @extend %flex-col;
-            grid-row-gap: $spacing-xxl;
-
-            margin-top: $spacing-xxl;
-            margin-bottom: $spacing-m
+            @extend %content-layout;
         }
 
         &__block {
@@ -110,16 +109,7 @@
         @extend %section-green;
         
         &__content {
-            // appearance
-            width: 80%;
-
-            // layout
-            @extend %flex-col;
-            align-items: center;
-            grid-row-gap: $spacing-xl;
-
-            margin-top: $spacing-xxl;
-            margin-bottom:$spacing-m
+            @extend %content-layout;
         }
     }
 
@@ -127,11 +117,7 @@
         @extend %section-black;
 
         &__content {
-            @extend %flex-col;
-            width: 80%;
-            
-            margin-top: $spacing-m;
-            margin-bottom: $spacing-m;
+            @extend %content-layout;
         }
 
         &__label {

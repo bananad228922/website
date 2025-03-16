@@ -6,6 +6,7 @@ import scrollToSection from '../script/index.js';
 import Button from '../components/button/Button.js';
 import '../styles/home.css'
 import FadeInSection from '../components/FadeInSection.js';
+import Tab_portfolio from '../components/tab/tab-portfolio.js';
 
 function Home() {
     const navigate = useNavigate();
@@ -50,6 +51,7 @@ function Home() {
 
             {/* About */}
             <section class="home home--about" id="about">
+                
                 <div class="verticalText-container">
                     <h1 class="vertical-text vertical-text--white">About us</h1>
                 </div>
@@ -57,6 +59,8 @@ function Home() {
 
                 <div class="container">
                     <div class="home--about__content">
+                        <div className='spacer-l'></div>
+
                         <h1 className='heading-1 white--primary'>
                             <span>我們一直</span>
                             <span className='orange'>相信</span>
@@ -183,213 +187,7 @@ function Home() {
                 <div class="container">
 
                     <div class="home--portfolio__content">
-                        {/*------------------------------ tabs ------------------------------*/}
-                        <input className='tabs__input' type='radio' id='tab-input-1' name='tab' defaultChecked/>
-                        <input className='tabs__input' type='radio' id='tab-input-2' name='tab' />
-                        <input className='tabs__input' type='radio' id='tab-input-3' name='tab' />
-                        <input className='tabs__input' type='radio' id='tab-input-4' name='tab' />
-                        <input className='tabs__input' type='radio' id='tab-input-5' name='tab' />
-
-                        {/* tabs labels */}
-                        <div class="tabs__labels">
-                            <label className='tabs__label tabs__label--no-style' htmlFor='tab-input-1' id='tab-1'> ALL TAGS</label>
-                            <label class="tabs__label tabs__label--outLine tabs__label--outLine--black" htmlFor="tab-input-2" id='tab-2'>WEBSITE DESIGN</label>
-                            <label class="tabs__label tabs__label--outLine tabs__label--outLine--black" htmlFor="tab-input-3" id='tab-3'>GRAPHIC DESIGN</label>
-                            <label class="tabs__label tabs__label--outLine tabs__label--outLine--black" htmlFor="tab-input-4" id='tab-4'>MOTION GRAPHIC</label>
-                            <label class="tabs__label tabs__label--outLine tabs__label--outLine--black" htmlFor="tab-input-5" id='tab-5'>3D MODEL</label>
-                        </div>
- 
-
-
-
-                        {/* tabs content */}
-                        <div className='tabs__content'>
-                            <div className='tabs__item' id='tabItem_1'>                                
-                                <FadeInSection>
-                                    <Card_protfolio 
-                                        cardHeader="日曆設計｜手的形式原理"
-                                        cardContent="使用「手」，並藉由美的形式原理所打造而成的雙日曆設計"
-                                        link="/portfolio_handCalender"
-                                        bgImage="https://res.cloudinary.com/dtoefi3cs/image/upload/v1742031089/%E6%89%8B_%E4%B8%89%E9%83%A8%E6%9B%B2_abvx63.png"
-                                    />
-                                </FadeInSection>
-
-
-                                <FadeInSection>
-                                    <Card_protfolio 
-                                        cardHeader="印刷刊物設計｜怪核"
-                                        cardContent="怪核，是由純粹的空間所營造出來的恐懼、寂靜，這本書將會為你介紹何謂怪核，以及怪核的起源"
-                                        link="/portfolio_weirdcore"
-                                        bgImage="https://res.cloudinary.com/dtoefi3cs/image/upload/v1742032515/Free_Book_Mockup_8_jy7wbm.png"
-                                    />                            
-                                </FadeInSection>
-
-
-                                <FadeInSection>
-                                    <Card_protfolio 
-                                        cardHeader="品牌識別設計｜飄忽不定工作室"
-                                        cardContent="飄忽不定工作室，是一間主打「資源至上主義、內容變現和質大於量」的設計工作室，我們為他製作了一系列的設計系統、形象短片以及網站設計"
-                                        link="/portfolio_erratic"
-                                        bgImage="https://res.cloudinary.com/dtoefi3cs/image/upload/v1742032926/Logo_Mockup_aagbng.png"
-                                    />                            
-                                </FadeInSection>
-
-
-                                <Button kind='outLine-secondary' onClick={() => navigate("/portfolio")}>看更多</Button>
-                            </div>
-
-
-
-                            <div className='tabs__item' id='tabItem_2'>
-                                <h1>Web Design</h1>
-
-                                <FadeInSection>
-                                    <Card_protfolio 
-                                        cardHeader="日曆設計｜手的形式原理"
-                                        cardContent="使用「手」，並藉由美的形式原理所打造而成的雙日曆設計"
-                                        link="/portfolio_handCalender"
-                                        bgImage="https://res.cloudinary.com/dtoefi3cs/image/upload/v1742031089/%E6%89%8B_%E4%B8%89%E9%83%A8%E6%9B%B2_abvx63.png"
-                                    />
-                                </FadeInSection>
-
-
-                                <FadeInSection>
-                                    <Card_protfolio 
-                                        cardHeader="印刷刊物設計｜怪核"
-                                        cardContent="怪核，是由純粹的空間所營造出來的恐懼、寂靜，這本書將會為你介紹何謂怪核，以及怪核的起源"
-                                        link="/portfolio_weirdcore"
-                                        bgImage="https://res.cloudinary.com/dtoefi3cs/image/upload/v1742032515/Free_Book_Mockup_8_jy7wbm.png"
-                                    />                            
-                                </FadeInSection>
-
-
-                                <FadeInSection>
-                                    <Card_protfolio 
-                                        cardHeader="品牌識別設計｜飄忽不定工作室"
-                                        cardContent="飄忽不定工作室，是一間主打「資源至上主義、內容變現和質大於量」的設計工作室，我們為他製作了一系列的設計系統、形象短片以及網站設計"
-                                        link="/portfolio_erratic"
-                                        bgImage="https://res.cloudinary.com/dtoefi3cs/image/upload/v1742032926/Logo_Mockup_aagbng.png"
-                                    />                            
-                                </FadeInSection>
-
-
-                                <Button kind='outLine-secondary' onClick={() => navigate("/portfolio")}>看更多</Button>
-                            </div>
-
-
-
-                            <div className='tabs__item' id='tabItem_3'>
-                                <h1>Graphic Design</h1>
-
-                                <FadeInSection>
-                                    <Card_protfolio 
-                                        cardHeader="日曆設計｜手的形式原理"
-                                        cardContent="使用「手」，並藉由美的形式原理所打造而成的雙日曆設計"
-                                        link="/portfolio_handCalender"
-                                        bgImage="https://res.cloudinary.com/dtoefi3cs/image/upload/v1742031089/%E6%89%8B_%E4%B8%89%E9%83%A8%E6%9B%B2_abvx63.png"
-                                    />
-                                </FadeInSection>
-
-
-                                <FadeInSection>
-                                    <Card_protfolio 
-                                        cardHeader="印刷刊物設計｜怪核"
-                                        cardContent="怪核，是由純粹的空間所營造出來的恐懼、寂靜，這本書將會為你介紹何謂怪核，以及怪核的起源"
-                                        link="/portfolio_weirdcore"
-                                        bgImage="https://res.cloudinary.com/dtoefi3cs/image/upload/v1742032515/Free_Book_Mockup_8_jy7wbm.png"
-                                    />                            
-                                </FadeInSection>
-
-
-                                <FadeInSection>
-                                    <Card_protfolio 
-                                        cardHeader="品牌識別設計｜飄忽不定工作室"
-                                        cardContent="飄忽不定工作室，是一間主打「資源至上主義、內容變現和質大於量」的設計工作室，我們為他製作了一系列的設計系統、形象短片以及網站設計"
-                                        link="/portfolio_erratic"
-                                        bgImage="https://res.cloudinary.com/dtoefi3cs/image/upload/v1742032926/Logo_Mockup_aagbng.png"
-                                    />                            
-                                </FadeInSection>
-
-
-                                <Button kind='outLine-secondary' onClick={() => navigate("/portfolio")}>看更多</Button>
-                            </div>
-
-
-
-                            <div className='tabs__item' id='tabItem_4'>
-                                <h1>Motion Graphic</h1>
-
-                                <FadeInSection>
-                                    <Card_protfolio 
-                                        cardHeader="日曆設計｜手的形式原理"
-                                        cardContent="使用「手」，並藉由美的形式原理所打造而成的雙日曆設計"
-                                        link="/portfolio_handCalender"
-                                        bgImage="https://res.cloudinary.com/dtoefi3cs/image/upload/v1742031089/%E6%89%8B_%E4%B8%89%E9%83%A8%E6%9B%B2_abvx63.png"
-                                    />
-                                </FadeInSection>
-
-
-                                <FadeInSection>
-                                    <Card_protfolio 
-                                        cardHeader="印刷刊物設計｜怪核"
-                                        cardContent="怪核，是由純粹的空間所營造出來的恐懼、寂靜，這本書將會為你介紹何謂怪核，以及怪核的起源"
-                                        link="/portfolio_weirdcore"
-                                        bgImage="https://res.cloudinary.com/dtoefi3cs/image/upload/v1742032515/Free_Book_Mockup_8_jy7wbm.png"
-                                    />                            
-                                </FadeInSection>
-
-
-                                <FadeInSection>
-                                    <Card_protfolio 
-                                        cardHeader="品牌識別設計｜飄忽不定工作室"
-                                        cardContent="飄忽不定工作室，是一間主打「資源至上主義、內容變現和質大於量」的設計工作室，我們為他製作了一系列的設計系統、形象短片以及網站設計"
-                                        link="/portfolio_erratic"
-                                        bgImage="https://res.cloudinary.com/dtoefi3cs/image/upload/v1742032926/Logo_Mockup_aagbng.png"
-                                    />                            
-                                </FadeInSection>
-
-
-                                <Button kind='outLine-secondary' onClick={() => navigate("/portfolio")}>看更多</Button>
-                            </div>
-
-
-
-                            <div className='tabs__item' id='tabItem_5'>
-                                <h1>3D Model</h1>
-
-                                <FadeInSection>
-                                    <Card_protfolio 
-                                        cardHeader="日曆設計｜手的形式原理"
-                                        cardContent="使用「手」，並藉由美的形式原理所打造而成的雙日曆設計"
-                                        link="/portfolio_handCalender"
-                                        bgImage="https://res.cloudinary.com/dtoefi3cs/image/upload/v1742031089/%E6%89%8B_%E4%B8%89%E9%83%A8%E6%9B%B2_abvx63.png"
-                                    />
-                                </FadeInSection>
-
-
-                                <FadeInSection>
-                                    <Card_protfolio 
-                                        cardHeader="印刷刊物設計｜怪核"
-                                        cardContent="怪核，是由純粹的空間所營造出來的恐懼、寂靜，這本書將會為你介紹何謂怪核，以及怪核的起源"
-                                        link="/portfolio_weirdcore"
-                                        bgImage="https://res.cloudinary.com/dtoefi3cs/image/upload/v1742032515/Free_Book_Mockup_8_jy7wbm.png"
-                                    />                            
-                                </FadeInSection>
-
-
-                                <FadeInSection>
-                                    <Card_protfolio 
-                                        cardHeader="品牌識別設計｜飄忽不定工作室"
-                                        cardContent="飄忽不定工作室，是一間主打「資源至上主義、內容變現和質大於量」的設計工作室，我們為他製作了一系列的設計系統、形象短片以及網站設計"
-                                        link="/portfolio_erratic"
-                                        bgImage="https://res.cloudinary.com/dtoefi3cs/image/upload/v1742032926/Logo_Mockup_aagbng.png"
-                                    />                            
-                                </FadeInSection>
-
-
-                                <Button kind='outLine-secondary' onClick={() => navigate("/portfolio")}>看更多</Button>
-                            </div>
-                        </div>
+                        <Tab_portfolio />
                     </div>
                 </div>
             </section>

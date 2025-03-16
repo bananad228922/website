@@ -1,7 +1,5 @@
-import Tab from "../components/tab/tab";
-import Card_protfolio from "../components/card/Card-portfolio";
-
-
+import Tab from "./tab";
+import Card_protfolio from "../card/Card-portfolio";
 
 const handCalender = <Card_protfolio 
     cardHeader="日曆設計｜手的形式原理"
@@ -32,19 +30,17 @@ const portfolios_motionGraphic = [weirdcore]
 const portfolios_3DModel = [erratic, weirdcore]
 
 
-function TestUse() {
+
+function Tab_portfolio() {
     return (
-        <div>
-            <div className="navBar-spacer"></div>
-            <Tab tabList={
-                [{label: 'all tag', content: portfolio_alltag, labelKind: "no-style", labelSize: "medium"},
-                {label: 'web design', content: portfolios_webDesign,  labelKind: "outLine-secondary", labelSize: "medium"},
-                {label: 'graphic design', content: portfolios_graphicDesign, labelKind: "outLine-secondary", labelSize: "medium"},
-                {label: 'motion graphic', content: portfolios_motionGraphic, labelKind: "outLine-secondary", labelSize: "medium"},
-                {label: '3d model', content: portfolios_3DModel, labelKind: "outLine-secondary", labelSize: "medium"}]
-            }/>
-        </div>
+        <Tab tabList={
+            [{label: 'all tag', content: portfolio_alltag, labelKind: "no-style", labelSize: "medium"},
+            {label: 'web design', content: portfolios_webDesign,  labelKind: "outLine-secondary", labelSize: "medium"},
+            {label: 'graphic design', content: portfolios_graphicDesign, labelKind: "outLine-secondary", labelSize: "medium"},
+            {label: 'motion graphic', content: portfolios_motionGraphic, labelKind: "outLine-secondary", labelSize: "medium"},
+            {label: '3d model', content: portfolios_3DModel, labelKind: "outLine-secondary", labelSize: "medium"}]
+        }/>
     )
 }
 
-export default TestUse;
+export default Tab_portfolio;

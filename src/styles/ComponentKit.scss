@@ -1,55 +1,62 @@
 @import './variables.scss';
 
-html {
+%section-black {
+    @extend %flex-row;
+    background-color: $color-black;
+    padding: 10px 0;
+    justify-content: space-between;
+
 }
 
-.section {
+%section-green {
+    @extend %flex-row;
+    background-color: $color-green;
+    padding: 10px 0;
+    justify-content: space-between;
+
+}
+
+%content-layout {
+    width: 80%;
+    @extend %flex-col;
+    grid-row-gap: $spacing-m;
+
+    margin-top: $spacing-l;
+    margin-bottom: $spacing-l;
+}
+
+.kit {
     &--button {
-        // background-color: rgb(248, 248, 209);
+        @extend %section-black;
+        &__content {
+            @extend %content-layout;
 
-
-        
-        &__kind {
-            display: flex;
-            flex-direction: row;
-            grid-column-gap: $spacing-m;
-
-            &__group1 {
-                border-radius: 10px;
-                display: flex;
-                flex-direction: column;
-                grid-row-gap: $spacing-s;
-                padding: $spacing-m;
-                background-color: $color-black;
-            }
-
-            &__group2 {
-                border-radius: 10px;
-                display: flex;
-                flex-direction: column;
-                grid-row-gap: $spacing-s;
-                padding: $spacing-m;
-                background-color: $color-green;
-            }
         }
+    }
 
-        &__size {
-            display: flex;
-            flex-direction: row;
-            grid-column-gap: $spacing-m
+    &--tabs {
+        @extend %section-black;
+
+        &--green {
+            @extend %section-green;
         }
 
         &__content {
-            display: flex;
-            flex-direction: column;
-            grid-row-gap: $spacing-l;
-
-            padding-top: $spacing-xl;
-            padding-bottom: $spacing-m;
+            @extend %content-layout;
         }
+    }
 
-        &__header {
-            font-size: 40pt;
+    &--text {
+        @extend %section-black;
+        &__content {
+            @extend %content-layout;
+        }
+    }
+
+    &--card {
+        @extend %section-black;
+        &__content {
+            @extend %content-layout;
         }
     }
 }

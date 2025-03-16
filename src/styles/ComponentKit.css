@@ -1,36 +1,28 @@
-.section--button__kind {
-  display: flex;
-  flex-direction: row;
-  grid-column-gap: 2rem;
-}
-.section--button__kind__group1 {
-  border-radius: 10px;
+.kit--card__content, .kit--text__content, .kit--tabs__content, .kit--button__content {
   display: flex;
   flex-direction: column;
-  grid-row-gap: 1rem;
-  padding: 2rem;
+}
+
+.kit--tabs--green, .kit--card, .kit--text, .kit--tabs, .kit--button {
+  display: flex;
+  flex-direction: row;
+}
+
+.kit--card, .kit--text, .kit--tabs, .kit--button {
   background-color: #333333;
+  padding: 10px 0;
+  justify-content: space-between;
 }
-.section--button__kind__group2 {
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  grid-row-gap: 1rem;
-  padding: 2rem;
+
+.kit--tabs--green {
   background-color: #65E898;
+  padding: 10px 0;
+  justify-content: space-between;
 }
-.section--button__size {
-  display: flex;
-  flex-direction: row;
-  grid-column-gap: 2rem;
-}
-.section--button__content {
-  display: flex;
-  flex-direction: column;
-  grid-row-gap: 4rem;
-  padding-top: 8rem;
-  padding-bottom: 2rem;
-}
-.section--button__header {
-  font-size: 40pt;
+
+.kit--card__content, .kit--text__content, .kit--tabs__content, .kit--button__content {
+  width: 80%;
+  grid-row-gap: 2rem;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
 }/*# sourceMappingURL=ComponentKit.css.map */
