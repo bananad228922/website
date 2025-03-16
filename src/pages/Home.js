@@ -13,21 +13,19 @@ function Home() {
     return(
         <div>
             {/* Hero */}
-            <section className="section section--hero">
+            <section className="home home--hero">
                 <FadeInSection>
                     <div className="navBar-spacer"></div>
 
                     <div className="container">
-                        <div className="section--hero__contents">
+                        <div className="home--hero__contents">
                             <h1 className="heading-1">你也同樣飄忽不定嗎？<br />給同樣飄忽不定<br />的你.</h1>
 
-                            <div className="section--hero__buttons">
+                            <div className="home--hero__buttons">
                                 <Button kind='secondary' size='large' onClick={() => scrollToSection("contact")}>聯絡我們</Button>
                                 <Button kind='outLine-secondary' size='large' onClick={() => navigate("/portfolio")}>作品集</Button>
                             </div>
                         </div>
-
-                        <div className="line"></div>
                     </div>                    
                 </FadeInSection>
 
@@ -36,7 +34,7 @@ function Home() {
 
 
             {/* Video */}
-            <section class="section--video">
+            <section class="home--video">
                 <div style={{ position: "relative", paddingTop: "56.25%", width: "100%", height: 0 }}>
                     <iframe 
                         src="https://player.vimeo.com/video/1066106873?badge=0&autopause=0&player_id=0&app_id=58479"
@@ -51,14 +49,14 @@ function Home() {
 
 
             {/* About */}
-            <section class="section section--about" id="about">
+            <section class="home home--about" id="about">
                 <div class="verticalText-container">
                     <h1 class="vertical-text vertical-text--white">About us</h1>
                 </div>
 
 
                 <div class="container">
-                    <div class="section--about__content">
+                    <div class="home--about__content">
                         <h1 className='heading-1 white--primary'>
                             <span>我們一直</span>
                             <span className='orange'>相信</span>
@@ -101,13 +99,13 @@ function Home() {
             </section>
 
             {/* Services */}
-            <section class="section section--services">
+            <section class="home home--services">
                 <div class="verticalText-container">
                     <h1 class="vertical-text">Services</h1>
                 </div>
 
                 <div class="container">
-                    <div class="section--services__content">
+                    <div class="home--services__content">
                         <FadeInSection>
                             <FoldableCard_2 
                                 title="網站設計"
@@ -177,14 +175,14 @@ function Home() {
             </section>
 
             {/* Portfolio */}
-            <section class="section section--portfolio" id="portfolio">
+            <section class="home home--portfolio" id="portfolio">
                 <div class="verticalText-container">
                     <h1 class="vertical-text">Protfolio</h1>
                 </div>
 
                 <div class="container">
 
-                    <div class="section--portfolio__content">
+                    <div class="home--portfolio__content">
                         {/* tabs labels */}
                         <FadeInSection>
                             <div class="portfolio__tags">
@@ -233,17 +231,17 @@ function Home() {
             </section>
 
             {/* Contact */}
-            <section class="section section--contact" id="contact">
+            <section class="home home--contact" id="contact">
                 <div class="verticalText-container">
                     <h1 class="vertical-text vertical-text--white">Contact</h1>
                 </div>
 
 
                 <div class="container">
-                    <div class="section--contact__content">
-                        <form class="section--contact__form">
+                    <div class="home--contact__content">
+                        <form class="home--contact__form">
                             <FadeInSection>
-                                <h6 class="section--contact__header">
+                                <h6 class="home--contact__header">
                                     <span>請填上這些資訊，</span>
                                     <span className='orange'>聯絡我們</span>
                                 </h6>
@@ -251,35 +249,35 @@ function Home() {
 
                             <FadeInSection>
                                 <div>
-                                    <label class="section--contact__label" for="input-name">姓名</label>
+                                    <label class="home--contact__label" for="input-name">姓名</label>
                                     <input class="input input--outLine input--outLine--white" type="text" id="input-name"></input>
                                 </div>
                             </FadeInSection>
 
                             <FadeInSection>
                                 <div>
-                                    <label class="section--contact__label" for="input-gmail">電子郵件</label>
+                                    <label class="home--contact__label" for="input-gmail">電子郵件</label>
                                     <input class="input input--outLine input--outLine--white" type="text" id="input-gmail"></input>
                                 </div>                                
                             </FadeInSection>
 
                             <FadeInSection>
                                 <div>
-                                    <label class="section--contact__label" for="input-company">公司名稱</label>
+                                    <label class="home--contact__label" for="input-company">公司名稱</label>
                                     <input class="input input--outLine input--outLine--white" type="text" id="input-company"></input>
                                 </div>                                
                             </FadeInSection>
 
                             <FadeInSection>
                                 <div>
-                                    <label class="section--contact__label" for="input-class">需求項目</label>
+                                    <label class="home--contact__label" for="input-class">需求項目</label>
                                     <input class="input input--outLine input--outLine--white" type="text" id="input-class"></input>
                                 </div>                                
                             </FadeInSection>
 
                             <FadeInSection>
                                 <div>
-                                    <label class="section--contact__label" for="input-money">預算</label>
+                                    <label class="home--contact__label" for="input-money">預算</label>
                                     <input class="input input--outLine input--outLine--white" type="text" id="input-money"></input>
                                 </div>                                
                             </FadeInSection>

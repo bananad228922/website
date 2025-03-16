@@ -1,25 +1,51 @@
 @import './variables.scss';
 
-/* ------------------------------ Section ------------------------------ */
-
-.section {
-    width: 100%;
+%flex-col {
     display: flex;
     flex-direction: column;
+}
+
+%flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+%section-black {
+    @extend %flex-row;
+    background-color: $color-black;
+    padding: 10px 0;
+    justify-content: space-between;
+
+}
+
+%section-green {
+    @extend %flex-row;
+    background-color: $color-green;
+    padding: 10px 0;
+    justify-content: space-between;
+
+}
+
+/* ------------------------------ Section ------------------------------ */
+
+.home {
+    width: 100%;
+
+    @extend %flex-col;
 
     &--hero {
         background-color: $color-green;
         height: 1000px;
 
         &__buttons {
-            display: flex;
-            flex-direction: row;
+            @extend %flex-row;
+
             grid-column-gap: $spacing-s;
         }
 
         &__contents {
-            display: flex;
-            flex-direction: row;
+            @extend %flex-row;
+
             justify-content: space-between;
             align-items: end;
             width: 80%;
@@ -46,21 +72,19 @@
         background-color: $color-black;
 
         // layout
-        display: flex;
-        flex-direction: row;
+        @extend %flex-row;
+
         justify-content: space-between;
 
         &__wrapper {
-            display: flex;
-            flex-direction: row;
+            @extend %flex-row;
             justify-content: space-between;
             width: 100%;
         }
 
         &__content {
             width: 80%;
-            display: flex;
-            flex-direction: column;
+            @extend %flex-col;
             grid-row-gap: $spacing-xl;
 
             margin-top: 100vh;
@@ -69,15 +93,11 @@
     }
 
     &--services {
-        background-color: $color-green;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        @extend %section-green;
 
         &__content {
             width: 80%;
-            display: flex;
-            flex-direction: column;
+            @extend %flex-col;
             grid-row-gap: $spacing-xxl;
 
             margin-top: $spacing-xxl;
@@ -85,31 +105,26 @@
         }
 
         &__block {
-            display: flex;
-            flex-direction: row;
+            @extend %flex-row;
+
             justify-content: space-between;
 
             &__content {
-                display: flex;
-                flex-direction: column;
+                @extend %flex-col;
                 justify-content: space-between;
             }
         }
     }
 
     &--portfolio {
-        background-color: $color-green;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        @extend %section-green;
         
         &__content {
             // appearance
             width: 80%;
 
             // layout
-            display: flex;
-            flex-direction: column;
+            @extend %flex-col;
             align-items: center;
             grid-row-gap: $spacing-xl;
 
@@ -119,14 +134,10 @@
     }
 
     &--contact {
-        background-color: $color-black;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        @extend %section-black;
 
         &__content {
-            display: flex;
-            flex-direction: column;
+            @extend %flex-col;
             width: 80%;
             
             margin-top: $spacing-m;
@@ -139,8 +150,8 @@
         }
 
         &__form {
-            display: flex;
-            flex-direction: column;
+            @extend %flex-col;
+
             grid-row-gap: $spacing-m;
         }
 
