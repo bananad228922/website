@@ -19,7 +19,7 @@ import './styles/styles.css';
 import './App.css';
 
 // hooks
-import ScrollToTop from './script/scrollToTop.js';
+import ScrollToTop from './hook/scrollToTop.js';
 
 function App() {
 

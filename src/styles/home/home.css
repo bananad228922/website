@@ -1,24 +1,41 @@
-/* ------------------------------ Section ------------------------------ */
-.section {
-  width: 100%;
+.section--services__block, .section--about__wrapper, .section--about, .section--hero__contents, .section--hero__buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.section--contact__form, .section--contact__content, .section--portfolio__content, .section--blank__content, .section--services__content, .section--about__content, .section, .section--portfolio, .section--services, .section--contact, .section--blank {
   display: flex;
   flex-direction: column;
 }
+
+.section--contact, .section--blank {
+  background-color: #333333;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.section--portfolio, .section--services {
+  background-color: #65E898;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+/* ------------------------------ Section ------------------------------ */
+.section {
+  width: 100%;
+}
 .section--hero {
   background-color: #65E898;
-  height: 1000px;
+  height: 1200px;
 }
 .section--hero__buttons {
-  display: flex;
-  flex-direction: row;
   grid-column-gap: 1rem;
 }
 .section--hero__contents {
-  display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: end;
   width: 80%;
+  margin-top: 8rem;
 }
 .section--video {
   width: 80vw;
@@ -29,47 +46,31 @@
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 60vh;
+  top: 100vh;
 }
 .section--about {
   width: 100vw;
   min-height: 100vh;
   background-color: #333333;
-  display: flex;
-  flex-direction: row;
   justify-content: space-between;
 }
 .section--about__wrapper {
-  display: flex;
-  flex-direction: row;
   justify-content: space-between;
   width: 100%;
 }
 .section--about__content {
   width: 80%;
-  display: flex;
-  flex-direction: column;
   grid-row-gap: 8rem;
   margin-top: 100vh;
   margin-bottom: 2rem;
 }
-.section--services {
-  background-color: #65E898;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
 .section--services__content {
   width: 80%;
-  display: flex;
-  flex-direction: column;
   grid-row-gap: 16rem;
   margin-top: 16rem;
   margin-bottom: 2rem;
 }
 .section--services__block {
-  display: flex;
-  flex-direction: row;
   justify-content: space-between;
 }
 .section--services__block__content {
@@ -77,30 +78,19 @@
   flex-direction: column;
   justify-content: space-between;
 }
-.section--portfolio {
-  background-color: #65E898;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.section--blank__content {
+  padding: 16rem 0;
+  color: white;
+  align-items: center;
 }
 .section--portfolio__content {
   width: 80%;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   grid-row-gap: 8rem;
   margin-top: 16rem;
   margin-bottom: 2rem;
 }
-.section--contact {
-  background-color: #333333;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
 .section--contact__content {
-  display: flex;
-  flex-direction: column;
   width: 80%;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -110,8 +100,6 @@
   color: white;
 }
 .section--contact__form {
-  display: flex;
-  flex-direction: column;
   grid-row-gap: 2rem;
 }
 .section--contact__header {

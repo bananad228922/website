@@ -40,6 +40,14 @@ ol, ul {
 /* ------------------------------ Utility ------------------------------ */
 
 // layout
+.line {
+    height: 2px;
+    width: 80%;
+    background-color: black;
+    margin-top: $spacing-l;
+    margin-bottom: $spacing-m;
+
+}
 .flex-row {
     display: flex;
     flex-direction: row;
@@ -137,6 +145,18 @@ ol, ul {
 
 .white--tertiary {
 
+}
+
+.black--primary {
+    color: black;
+}
+
+.black--secondary {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.black--tertiary {
+    color: rgba(0, 0, 0, 0.3);
 }
 
 .orange {
@@ -303,7 +323,7 @@ ol, ul {
 
         &__img {
             height: 0;
-            width: 500px;
+            width: 1000px;
             background-color: black;
 
             // motion
@@ -320,7 +340,7 @@ ol, ul {
 
             .card--about__img {
                 clip-path: inset(0 0 0 0);
-                height: 500px;
+                height: 200px;
             }
 
         }

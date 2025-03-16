@@ -36,6 +36,14 @@ ol, ul {
 }
 
 /* ------------------------------ Utility ------------------------------ */
+.line {
+  height: 2px;
+  width: 80%;
+  background-color: black;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
+
 .flex-row {
   display: flex;
   flex-direction: row;
@@ -119,6 +127,18 @@ ol, ul {
 
 .white--primary {
   color: white;
+}
+
+.black--primary {
+  color: black;
+}
+
+.black--secondary {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.black--tertiary {
+  color: rgba(0, 0, 0, 0.3);
 }
 
 .orange {
@@ -258,7 +278,7 @@ ol, ul {
 }
 .card--about__img {
   height: 0;
-  width: 500px;
+  width: 1000px;
   background-color: black;
   -webkit-clip-path: inset(0 100% 0 0);
           clip-path: inset(0 100% 0 0);
@@ -274,7 +294,7 @@ ol, ul {
 .card--about:has(.card--about__accordion-toggle:checked) .card--about__img {
   -webkit-clip-path: inset(0 0 0 0);
           clip-path: inset(0 0 0 0);
-  height: 500px;
+  height: 200px;
 }
 .card--services {
   background-color: #65E898;

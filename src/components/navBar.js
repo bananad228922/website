@@ -1,4 +1,4 @@
-import scrollToSection from '../script/index.js';
+import scrollToSection from '../hook/index.js';
 import MenuIcon from './icon-menu.js';
 import { Link } from "react-router-dom";
 import {useState, useEffect, useRef} from "react";
