@@ -127,41 +127,100 @@
   gap: 12px;
   align-items: center;
   justify-content: center;
+  border: 1px solid;
+  overflow: hidden;
   position: relative;
+  transition: transform 0.2s ease-in-out;
+}
+.button-with-icon:hover {
+  transform: scale(1.05);
 }
 .button-with-icon:hover .button-with-icon__BG {
   -webkit-clip-path: inset(0 0 0 100%);
           clip-path: inset(0 0 0 100%);
 }
-.button-with-icon:hover .button-with-icon__label, .button-with-icon:hover .button-with-icon__icon-pointer {
-  color: black;
-}
 .button-with-icon:hover .button-with-icon__BG--outline {
   -webkit-clip-path: inset(0 0 0 0);
           clip-path: inset(0 0 0 0);
 }
+.button-with-icon:hover .button-with-icon__label, .button-with-icon:hover .button-with-icon__icon-pointer {
+  color: black;
+}
 .button-with-icon:hover .button-with-icon__label--outline, .button-with-icon:hover .button-with-icon__icon-pointer--outline {
   color: white;
+}
+.button-with-icon:hover .button-with-icon__label {
+  transform: translate(30px, 0);
+}
+.button-with-icon:hover .button-with-icon__label--outline {
+  transform: translate(30px, 0);
+}
+.button-with-icon:hover .button-with-icon__label svg:nth-child(2) {
+  transform: translate(60px, -50%);
+}
+.button-with-icon:hover .button-with-icon__label--outline svg:nth-child(2) {
+  transform: translate(60px, -50%);
+}
+.button-with-icon:hover .button-with-icon__label svg:nth-child(3) {
+  transform: translate(-55px, -50%);
+}
+.button-with-icon:hover .button-with-icon__label--outline svg:nth-child(3) {
+  transform: translate(-55px, -50%);
+}
+.button-with-icon__overflow-wrapper {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+.button-with-icon__icon-placeholder {
+  height: 20px;
+  width: 20px;
 }
 .button-with-icon__icon-pointer {
   color: white;
   height: 20px;
   width: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   transition: color 0.2s ease-in-out;
 }
 .button-with-icon__icon-pointer--outline {
   color: black;
   height: 20px;
   width: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   transition: color 0.2s ease-in-out;
 }
 .button-with-icon__label {
   color: white;
-  transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+  position: relative;
+}
+.button-with-icon__label svg:nth-child(2) {
+  transform: translate(30px, -50%);
+  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+.button-with-icon__label svg:nth-child(3) {
+  transform: translate(-85px, -50%);
+  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 .button-with-icon__label--outline {
   color: black;
-  transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+  position: relative;
+}
+.button-with-icon__label--outline svg:nth-child(2) {
+  transform: translate(30px, -50%);
+  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+.button-with-icon__label--outline svg:nth-child(3) {
+  transform: translate(-85px, -50%);
+  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 .button-with-icon__BG {
   height: 100%;
@@ -188,12 +247,4 @@
   transition: -webkit-clip-path 0.2s ease-in-out;
   transition: clip-path 0.2s ease-in-out;
   transition: clip-path 0.2s ease-in-out, -webkit-clip-path 0.2s ease-in-out;
-}
-.button-with-icon__border {
-  height: 100%;
-  width: 100%;
-  border-radius: 10px;
-  border: 1px solid black;
-  position: absolute;
-  z-index: -1;
 }/*# sourceMappingURL=motionButtonTest.module.css.map */
