@@ -5,6 +5,7 @@
     background-color: $color-black;
     padding: 10px 0;
     justify-content: space-between;
+    color: white;
 
 }
 
@@ -26,6 +27,14 @@
 }
 
 .kit {
+    &--hero {
+        @extend %section-green;
+
+        &__content {
+            @extend %content-layout;
+        }
+    }
+
     &--button {
         @extend %section-black;
         &__content {

@@ -5,6 +5,7 @@
     background-color: $color-black;
     padding: 10px 0;
     justify-content: space-between;
+    color: white;
 
 }
 
@@ -13,6 +14,7 @@
     background-color: $color-green;
     padding: 10px 0;
     justify-content: space-between;
+    color: black;
 
 }
 
@@ -48,11 +50,14 @@
             justify-content: space-between;
             align-items: end;
             width: 80%;
+
+            // spacing
+            margin-top: $spacing-xl;
         }
     }
 
     &--video {
-        width: 80vw;
+        width: 85vw;
         height: 40vw;
         background-color: rgb(0, 0, 0);
         position: absolute;
@@ -61,19 +66,11 @@
         margin-right: auto;
         left: 0;
         right: 0;
-        top: 60vh;
+        top: 70vh;
     }
 
     &--about {
-        // appearance
-        width: 100vw;
-        min-height: 100vh;
-        background-color: $color-black;
-
-        // layout
-        @extend %flex-row;
-
-        justify-content: space-between;
+        @extend %section-black;
 
         &__wrapper {
             @extend %flex-row;

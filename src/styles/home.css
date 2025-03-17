@@ -3,21 +3,23 @@
   flex-direction: column;
 }
 
-.home--services__block, .home--about__wrapper, .home--about, .home--hero__contents, .home--hero__buttons, .home--portfolio, .home--services, .home--contact {
+.home--services__block, .home--about__wrapper, .home--hero__contents, .home--hero__buttons, .home--portfolio, .home--services, .home--contact, .home--about {
   display: flex;
   flex-direction: row;
 }
 
-.home--contact {
+.home--contact, .home--about {
   background-color: #333333;
   padding: 10px 0;
   justify-content: space-between;
+  color: white;
 }
 
 .home--portfolio, .home--services {
   background-color: #65E898;
   padding: 10px 0;
   justify-content: space-between;
+  color: black;
 }
 
 .home--contact__content, .home--portfolio__content, .home--services__content, .home--about__content {
@@ -42,9 +44,10 @@
   justify-content: space-between;
   align-items: end;
   width: 80%;
+  margin-top: 8rem;
 }
 .home--video {
-  width: 80vw;
+  width: 85vw;
   height: 40vw;
   background-color: rgb(0, 0, 0);
   position: absolute;
@@ -52,13 +55,7 @@
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 60vh;
-}
-.home--about {
-  width: 100vw;
-  min-height: 100vh;
-  background-color: #333333;
-  justify-content: space-between;
+  top: 70vh;
 }
 .home--about__wrapper {
   justify-content: space-between;

@@ -8,13 +8,26 @@ import '../styles/ComponentKit.css'
 
 function ComponentKit() {
     return (
-        <div className="bg-black white--primary">
+        <div>
+            {/* hero */}
+            <section className="kit--hero">
+                <div className="container">
+                    <div className="kit--hero__content">
+                        <div className="navBar-spacer"></div>
+                        <h1 className="display-1">這裡存放著我們的設計系統</h1>
+                    </div>
+                </div>
+
+            </section>
+
 
             {/* button */}
             <section className="kit--button">
                 <div className="container">
                     <div className="kit--button__content">
                         <h1 className="heading-1">button</h1>
+
+                        <div className="line--white"></div>
 
                         {/* primary */}
                         <div className="flex-row between align-item-center">
@@ -83,10 +96,13 @@ function ComponentKit() {
                 <div className="container">
                     <div className="kit--tabs__content">
                         <h1 className="heading-2">text</h1>
+
+                        <h1 className="display-1">display 1</h1>
                         <h1 className="heading-1">heading 1</h1>
                         <h1 className="heading-2">heading 2</h1>
                         <h1 className="heading-3">heading 3</h1>
-                        <h1 className="paragraph-m">paragraph</h1>
+                        <p className="paragraph-m">paragraph</p>
+                        <p className="paragraph-s">Caption</p>
                     </div>
                 </div>
             </section>

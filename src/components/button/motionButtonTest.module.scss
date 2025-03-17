@@ -1,0 +1,286 @@
+@import '../../styles/variables.scss';
+
+$radius: 10px;
+
+
+/* button */
+.button {
+    // appearance
+    border-style: none;
+    border-radius: $radius;
+
+    // layout
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+
+    &:hover .BG {
+        clip-path: inset(0 0 0 100%);
+    }
+
+    &:hover .label {
+        color: black;
+    }
+
+    &:hover .BG--outline {
+        clip-path: inset(0 0 0 0);
+    }
+
+    &:hover .label--outline {
+        color: white;
+    }
+
+    &--medium {
+        padding-left: 20px;
+        padding-right: 20px;
+        height: 40px;
+        
+        // font
+        font-weight:600;
+        font-size: 14pt;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.BG {
+    position: absolute;
+    background-color: black;
+
+    border-radius: $radius;
+
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+
+    clip-path: inset(0 0 0 0);
+
+    transition: clip-path 0.2s ease-in-out;
+}
+
+.BG--outline {
+    position: absolute;
+    background-color: black;
+
+    border-radius: $radius;
+
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+
+    clip-path: inset(0 100% 0 0);
+
+    transition: clip-path 0.2s ease-in-out;
+}
+
+
+
+
+
+
+.border {
+    position: absolute;
+    border: 1px solid;
+
+    border-radius: $radius;
+
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
+
+.label {
+    color: white;
+
+    transition: color 0.2s ease-in-out;
+}
+
+.label--outline {
+    color: black;
+
+    transition: color 0.2s ease-in-out;
+}
+
+.icon-button {
+    // appearance
+    border-style: none;
+    border-radius: $radius;
+
+    // layout
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid;
+    position: relative;
+
+    overflow: hidden;
+
+    transition: transform 0.2s ease-in-out;
+
+
+    &:hover .icon-pointer {
+        transform: translate(500%, -50%);
+    }
+
+    &:hover .icon-pointer-back {
+        transform: translate(-50%, -50%);
+    }
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+.icon-pointer {
+    color: rgb(0, 0, 0);
+    height: 20px;
+    width: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    transition: transform 0.2s ease-in-out;
+
+    position: absolute;
+}
+
+.icon-pointer-back {
+    color: rgb(0, 0, 0);
+    height: 20px;
+    width: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-500%, -50%);
+
+    transition: transform 0.2s ease-in-out;
+
+
+
+    position: absolute;
+}
+
+.button-with-icon {
+    border-radius: $radius;
+
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+
+
+    position: relative;
+
+    &:hover .button-with-icon__BG{
+        clip-path: inset(0 0 0 100%);
+
+    }
+
+    &:hover .button-with-icon__label,
+    &:hover .button-with-icon__icon-pointer {
+        color: black;
+    }
+
+
+
+
+
+
+
+    &:hover .button-with-icon__BG--outline {
+        clip-path: inset(0 0 0 0);
+    }
+
+
+
+    &:hover .button-with-icon__label--outline,
+    &:hover .button-with-icon__icon-pointer--outline {
+        color: white;
+    }
+
+
+    &__icon-pointer {
+        color: white;
+        height: 20px;
+        width: 20px;
+
+        transition: color 0.2s ease-in-out;
+    }
+
+    &__icon-pointer--outline {
+        color: black;
+        height: 20px;
+        width: 20px;
+
+        transition: color 0.2s ease-in-out;
+    }
+
+    &__label {
+        color: white;
+
+        transition: color 0.2s ease-in-out;
+    }
+
+    &__label--outline {
+        color: black;
+
+        transition: color 0.2s ease-in-out;
+    }
+
+    &__BG {
+        height: 100%;
+        width: 100%;
+        border-radius: $radius;
+
+        position: absolute;
+
+        background-color: black;
+        z-index: -1;
+
+        clip-path: inset(0 0 0 0);
+
+        transition: clip-path 0.2s ease-in-out;
+    }
+
+    &__BG--outline {
+        height: 100%;
+        width: 100%;
+        border-radius: $radius;
+
+        position: absolute;
+
+        background-color: black;
+        z-index: -1;
+
+        clip-path: inset(0 100% 0 0);
+
+        transition: clip-path 0.2s ease-in-out;
+    }
+
+    &__border {
+        height: 100%;
+        width: 100%;
+        border-radius: $radius;
+        border: 1px solid black;
+
+        position: absolute;
+
+        z-index: -1;
+    }
+}

@@ -1,0 +1,199 @@
+/* button */
+.button {
+  border-style: none;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.button:hover .BG {
+  -webkit-clip-path: inset(0 0 0 100%);
+          clip-path: inset(0 0 0 100%);
+}
+.button:hover .label {
+  color: black;
+}
+.button:hover .BG--outline {
+  -webkit-clip-path: inset(0 0 0 0);
+          clip-path: inset(0 0 0 0);
+}
+.button:hover .label--outline {
+  color: white;
+}
+.button--medium {
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 40px;
+  font-weight: 600;
+  font-size: 14pt;
+}
+
+.BG {
+  position: absolute;
+  background-color: black;
+  border-radius: 10px;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  -webkit-clip-path: inset(0 0 0 0);
+          clip-path: inset(0 0 0 0);
+  transition: -webkit-clip-path 0.2s ease-in-out;
+  transition: clip-path 0.2s ease-in-out;
+  transition: clip-path 0.2s ease-in-out, -webkit-clip-path 0.2s ease-in-out;
+}
+
+.BG--outline {
+  position: absolute;
+  background-color: black;
+  border-radius: 10px;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  -webkit-clip-path: inset(0 100% 0 0);
+          clip-path: inset(0 100% 0 0);
+  transition: -webkit-clip-path 0.2s ease-in-out;
+  transition: clip-path 0.2s ease-in-out;
+  transition: clip-path 0.2s ease-in-out, -webkit-clip-path 0.2s ease-in-out;
+}
+
+.border {
+  position: absolute;
+  border: 1px solid;
+  border-radius: 10px;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
+
+.label {
+  color: white;
+  transition: color 0.2s ease-in-out;
+}
+
+.label--outline {
+  color: black;
+  transition: color 0.2s ease-in-out;
+}
+
+.icon-button {
+  border-style: none;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+}
+.icon-button:hover .icon-pointer {
+  transform: translate(500%, -50%);
+}
+.icon-button:hover .icon-pointer-back {
+  transform: translate(-50%, -50%);
+}
+.icon-button:hover {
+  transform: scale(1.1);
+}
+
+.icon-pointer {
+  color: rgb(0, 0, 0);
+  height: 20px;
+  width: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease-in-out;
+  position: absolute;
+}
+
+.icon-pointer-back {
+  color: rgb(0, 0, 0);
+  height: 20px;
+  width: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-500%, -50%);
+  transition: transform 0.2s ease-in-out;
+  position: absolute;
+}
+
+.button-with-icon {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.button-with-icon:hover .button-with-icon__BG {
+  -webkit-clip-path: inset(0 0 0 100%);
+          clip-path: inset(0 0 0 100%);
+}
+.button-with-icon:hover .button-with-icon__label, .button-with-icon:hover .button-with-icon__icon-pointer {
+  color: black;
+}
+.button-with-icon:hover .button-with-icon__BG--outline {
+  -webkit-clip-path: inset(0 0 0 0);
+          clip-path: inset(0 0 0 0);
+}
+.button-with-icon:hover .button-with-icon__label--outline, .button-with-icon:hover .button-with-icon__icon-pointer--outline {
+  color: white;
+}
+.button-with-icon__icon-pointer {
+  color: white;
+  height: 20px;
+  width: 20px;
+  transition: color 0.2s ease-in-out;
+}
+.button-with-icon__icon-pointer--outline {
+  color: black;
+  height: 20px;
+  width: 20px;
+  transition: color 0.2s ease-in-out;
+}
+.button-with-icon__label {
+  color: white;
+  transition: color 0.2s ease-in-out;
+}
+.button-with-icon__label--outline {
+  color: black;
+  transition: color 0.2s ease-in-out;
+}
+.button-with-icon__BG {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  position: absolute;
+  background-color: black;
+  z-index: -1;
+  -webkit-clip-path: inset(0 0 0 0);
+          clip-path: inset(0 0 0 0);
+  transition: -webkit-clip-path 0.2s ease-in-out;
+  transition: clip-path 0.2s ease-in-out;
+  transition: clip-path 0.2s ease-in-out, -webkit-clip-path 0.2s ease-in-out;
+}
+.button-with-icon__BG--outline {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  position: absolute;
+  background-color: black;
+  z-index: -1;
+  -webkit-clip-path: inset(0 100% 0 0);
+          clip-path: inset(0 100% 0 0);
+  transition: -webkit-clip-path 0.2s ease-in-out;
+  transition: clip-path 0.2s ease-in-out;
+  transition: clip-path 0.2s ease-in-out, -webkit-clip-path 0.2s ease-in-out;
+}
+.button-with-icon__border {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid black;
+  position: absolute;
+  z-index: -1;
+}/*# sourceMappingURL=motionButtonTest.module.css.map */

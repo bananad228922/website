@@ -89,36 +89,33 @@ ol, ul {
   visibility: hidden;
 }
 
+.display-1 {
+  font-size: 96px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
 .heading-1 {
-  font-size: 70pt;
+  font-size: 64px;
+  font-weight: 700;
 }
 
 .heading-2 {
-  font-size: 50pt;
-}
-.heading-2--white {
-  color: white;
+  font-size: 40px;
+  font-weight: 700;
 }
 
 .heading-3 {
-  font-size: 30pt;
-}
-.heading-3--white {
-  color: white;
+  font-size: 32px;
+  font-weight: 700;
 }
 
 .paragraph-s {
-  font-size: 10pt;
-}
-.paragraph-s--white {
-  color: white;
+  font-size: 12px;
 }
 
 .paragraph-m {
-  font-size: 12pt;
-}
-.paragraph-m--white {
-  color: white;
+  font-size: 16px;
 }
 
 .white--primary {
@@ -157,6 +154,12 @@ ol, ul {
 .vertical-text--white {
   color: rgba(255, 255, 255, 0.5);
 }
+.video-spacer {
+  width: 100%;
+  height: 500px;
+  background-color: #333333;
+}
+
 .navBar-spacer {
   width: 100%;
   height: 50px;
@@ -204,19 +207,93 @@ ol, ul {
   height: 16rem;
 }
 
+.line--white {
+  height: 1px;
+  width: 100%;
+  background-color: rgb(200, 200, 200);
+}
+.line--black {
+  height: 1px;
+  width: 100%;
+  background-color: black;
+}
+
+.mt-s {
+  margin-top: 1rem;
+}
+
+.mt-m {
+  margin-top: 2rem;
+}
+
+.mt-l {
+  margin-top: 4rem;
+}
+
+.mb-s {
+  margin-bottom: 1rem;
+}
+
+.mb-m {
+  margin-bottom: 2rem;
+}
+
+.mb-l {
+  margin-bottom: 4rem;
+}
+
+.ml-s {
+  margin-left: 1rem;
+}
+
+.ml-m {
+  margin-left: 2rem;
+}
+
+.ml-l {
+  margin-left: 4rem;
+}
+
+.mr-s {
+  margin-right: 1rem;
+}
+
+.mr-m {
+  margin-right: 2rem;
+}
+
+.mr-l {
+  margin-right: 4rem;
+}
+
 /* ------------------------------ Component ------------------------------ */
 .card--base {
   grid-row-gap: 1rem;
+  width: 100%;
+  align-items: start;
 }
 .card--base__header {
   align-items: center;
   grid-column-gap: 2rem;
+  transition: transform 0.2s ease-in-out;
+}
+.card--base__header:hover {
+  transform: scale(1.1);
+}
+.card--base__icon-add {
+  position: absolute;
+}
+.card--base__icon-sub {
+  position: absolute;
 }
 .card--base__toggle {
   display: none;
 }
 .card--base__toggle:checked ~ .card--base__content {
   display: block;
+}
+.card--base__toggle:checked ~ .card--base__header .card--base__icon-add {
+  display: none;
 }
 .card--base__content {
   display: none;
@@ -288,10 +365,6 @@ ol, ul {
   flex-direction: row;
   align-items: center;
   grid-column-gap: 2rem;
-}
-.card--about__header {
-  font-size: 50pt;
-  font-weight: 700;
 }
 .card--about__content {
   -webkit-clip-path: inset(0 0 100% 0);

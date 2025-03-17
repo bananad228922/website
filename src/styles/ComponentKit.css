@@ -1,9 +1,9 @@
-.kit--card__content, .kit--text__content, .kit--tabs__content, .kit--button__content {
+.kit--card__content, .kit--text__content, .kit--tabs__content, .kit--button__content, .kit--hero__content {
   display: flex;
   flex-direction: column;
 }
 
-.kit--tabs--green, .kit--card, .kit--text, .kit--tabs, .kit--button {
+.kit--tabs--green, .kit--hero, .kit--card, .kit--text, .kit--tabs, .kit--button {
   display: flex;
   flex-direction: row;
 }
@@ -12,15 +12,16 @@
   background-color: #333333;
   padding: 10px 0;
   justify-content: space-between;
+  color: white;
 }
 
-.kit--tabs--green {
+.kit--tabs--green, .kit--hero {
   background-color: #65E898;
   padding: 10px 0;
   justify-content: space-between;
 }
 
-.kit--card__content, .kit--text__content, .kit--tabs__content, .kit--button__content {
+.kit--card__content, .kit--text__content, .kit--tabs__content, .kit--button__content, .kit--hero__content {
   width: 80%;
   grid-row-gap: 2rem;
   margin-top: 4rem;

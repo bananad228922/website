@@ -83,40 +83,33 @@ ol, ul {
 }
 
 // text
+.display-1 {
+    font-size: 96px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
 .heading-1 {
-    font-size: 70pt;
+    font-size: 64px;
+    font-weight: 700;
 }
 
 .heading-2 {
-    font-size: 50pt;
-
-    &--white {
-        color: white;
-    }
+    font-size: 40px;
+    font-weight: 700;
 }
 
 .heading-3 {
-    font-size: 30pt;
-
-    &--white {
-        color: white;
-    }
+    font-size: 32px;
+    font-weight: 700;
 }
 
 .paragraph-s {
-    font-size: 10pt;
-
-    &--white {
-        color: white;
-    }
+    font-size: 12px;
 }
 
 .paragraph-m {
-    font-size: 12pt;
-
-    &--white {
-        color: white;
-    }
+    font-size: 16px;
 }
 
 // color
@@ -170,6 +163,13 @@ ol, ul {
     }
 }
 
+.video-spacer {
+    width: 100%;
+    height: 500px;
+    background-color: $color-black;
+}
+
+
 .navBar-spacer {
     width: 100%;
     height: 50px;
@@ -213,18 +213,98 @@ ol, ul {
 .spacer-xxl {
     height: $spacing-xxl;
 }
+
+.line {
+    &--white {
+        height: 1px;
+        width: 100%;
+        background-color: $color-white--secondary;
+    }
+
+    &--black {
+        height: 1px;
+        width: 100%;
+        background-color: black
+    }
+}
+
+.mt-s {
+    margin-top: $spacing-s;
+}
+
+.mt-m {
+    margin-top: $spacing-m;
+}
+
+.mt-l {
+    margin-top: $spacing-l;
+}
+
+.mb-s {
+    margin-bottom: $spacing-s;
+}
+
+.mb-m {
+    margin-bottom: $spacing-m;
+}
+
+.mb-l {
+    margin-bottom: $spacing-l;
+}
+
+.ml-s {
+    margin-left: $spacing-s;
+}
+
+.ml-m {
+    margin-left: $spacing-m;
+}
+
+.ml-l {
+    margin-left: $spacing-l;
+}
+
+.mr-s {
+    margin-right: $spacing-s;
+}
+
+.mr-m {
+    margin-right: $spacing-m;
+}
+
+.mr-l {
+    margin-right: $spacing-l;
+}
+
+
+
 /* ------------------------------ Component ------------------------------ */
 
 .card {
     &--base {
         @extend %flex-col;
         grid-row-gap: $spacing-s;
+        width: 100%;
+        align-items: start;
 
         &__header {
             @extend %flex-row;
             align-items: center;
 
             grid-column-gap: $spacing-m;
+            transition: transform 0.2s ease-in-out;
+
+            &:hover {
+                transform: scale(1.1)
+            }
+        }
+
+        &__icon-add {
+            position: absolute;
+        }
+
+        &__icon-sub {
+            position: absolute;
         }
 
         &__toggle {
@@ -232,6 +312,10 @@ ol, ul {
 
             &:checked ~ .card--base__content {
                 display: block;
+            }
+
+            &:checked ~ .card--base__header .card--base__icon-add {
+                display: none;
             }
         }
 
@@ -323,12 +407,6 @@ ol, ul {
             align-items: center;
 
             grid-column-gap: $spacing-m;
-        }
-
-
-        &__header {
-            font-size: 50pt;
-            font-weight: 700;
         }
 
         &__content {

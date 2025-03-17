@@ -19,8 +19,13 @@ function Home() {
                     <div className="navBar-spacer"></div>
 
                     <div className="container">
+                        <img style={{position: "absolute", transform: "scale(0.5) translate(-200px, 500px)"}} src='/pointer-white.svg'/>
                         <div className="home--hero__contents">
-                            <h1 className="heading-1">你也同樣飄忽不定嗎？<br />給同樣飄忽不定<br />的你.</h1>
+                            <h1 className="display-1">
+                                <span>你也同樣</span>
+                                <span className='orange'>飄忽不定</span>
+                                <span>嗎？</span>
+                                <br />給同樣飄忽不定<br />的你.</h1>
 
                             <div className="home--hero__buttons">
                                 <Button kind='secondary' size='large' onClick={() => scrollToSection("contact")}>聯絡我們</Button>
@@ -50,6 +55,7 @@ function Home() {
 
 
             {/* About */}
+            <div className='video-spacer'></div>
             <section class="home home--about" id="about">
                 
                 <div class="verticalText-container">
@@ -61,7 +67,7 @@ function Home() {
                     <div class="home--about__content">
                         <div className='spacer-l'></div>
 
-                        <h1 className='heading-1 white--primary'>
+                        <h1 className='display-1'>
                             <span>我們一直</span>
                             <span className='orange'>相信</span>
                             <br/>

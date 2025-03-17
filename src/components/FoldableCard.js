@@ -6,12 +6,12 @@ function FoldableCard({title, content, id, imgSrc}) {
             <div>
                 <div class="card--about__header-wrapper">
                     <img src="/icon-add.svg" class="icon-l" />
-                    <label for={id} class="card--about__header">
+                    <label for={id} class="heading-1">
                         {title}
                         </label>
                 </div>
 
-                <p class="card--about__content">
+                <p class="card--about__content heading-3">
                     {content}
                 </p>
             </div>
