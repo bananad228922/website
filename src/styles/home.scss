@@ -38,6 +38,14 @@
         background-color: $color-green;
         height: 1000px;
 
+        &__three-scene {
+            position: absolute;
+            left: 5vw;
+            top: -30vh;
+            transform: scale(1.1);
+            z-index: 0;
+        }
+
         &__buttons {
             @extend %flex-row;
 
@@ -53,6 +61,8 @@
 
             // spacing
             margin-top: $spacing-xl;
+
+            position: relative;
         }
     }
 

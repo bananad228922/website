@@ -7,39 +7,54 @@ import Button from '../components/button/Button.js';
 import '../styles/home.css'
 import FadeInSection from '../components/FadeInSection.js';
 import Tab_portfolio from '../components/tab/tab-portfolio.js';
+import ThreeScene from '../components/ThreeScene.js';
+import SmoothScroll from '../components/smoothScroll.js';
+import { useRef } from 'react';
+import Parallax from '../components/parallax.js';
+
 
 function Home() {
     const navigate = useNavigate();
 
     return(
-        <div>
-            {/* Hero */}
-            <section className="home home--hero">
+        <SmoothScroll>
+            {/*------------------------------ Hero ------------------------------*/}
+            <section className="home--hero">
                 <FadeInSection>
                     <div className="navBar-spacer"></div>
 
                     <div className="container">
-                        <img style={{position: "absolute", transform: "scale(0.5) translate(-200px, 500px)"}} src='/pointer-white.svg'/>
                         <div className="home--hero__contents">
                             <h1 className="display-1">
                                 <span>你也同樣</span>
                                 <span className='orange'>飄忽不定</span>
                                 <span>嗎？</span>
-                                <br />給同樣飄忽不定<br />的你.</h1>
+                                <br />給同樣飄忽不定<br />的你.
+                            </h1>
 
                             <div className="home--hero__buttons">
                                 <Button kind='secondary' size='large' onClick={() => scrollToSection("contact")}>聯絡我們</Button>
                                 <Button kind='outLine-secondary' size='large' onClick={() => navigate("/portfolio")}>作品集</Button>
                             </div>
+
+                            {/* pointer */}
+                            <img style={{position: "absolute", transform: "scale(0.5) translate(0, 230px)"}} src='/pointer-white.svg'/>
+
+                            {/* 3d model */}
+                            <Parallax speed = {-1} classStyle = 'home--hero__three-scene bg-object'>
+                                <ThreeScene />
+                            </Parallax>
                         </div>
-                    </div>                    
+                        
+
+                    </div>
                 </FadeInSection>
 
             </section>
 
 
 
-            {/* Video */}
+            {/*------------------------------ Video ------------------------------*/}
             <section class="home--video">
                 <div style={{ position: "relative", paddingTop: "56.25%", width: "100%", height: 0 }}>
                     <iframe 
@@ -54,7 +69,7 @@ function Home() {
             </section>
 
 
-            {/* About */}
+            {/*------------------------------ About ------------------------------*/}
             <div className='video-spacer'></div>
             <section class="home home--about" id="about">
                 
@@ -108,7 +123,7 @@ function Home() {
                 </div>
             </section>
 
-            {/* Services */}
+            {/*------------------------------ Services ------------------------------*/}
             <section class="home home--services">
                 <div class="verticalText-container">
                     <h1 class="vertical-text">Services</h1>
@@ -184,7 +199,7 @@ function Home() {
                 </div>
             </section>
 
-            {/* Portfolio */}
+            {/*------------------------------ Portfolio ------------------------------*/}
             <section class="home home--portfolio" id="portfolio">
                 <div class="verticalText-container">
                     <h1 class="vertical-text">Protfolio</h1>
@@ -198,7 +213,7 @@ function Home() {
                 </div>
             </section>
 
-            {/* Contact */}
+            {/*------------------------------ Contact ------------------------------*/}
             <section class="home home--contact" id="contact">
                 <div class="verticalText-container">
                     <h1 class="vertical-text vertical-text--white">Contact</h1>
@@ -261,7 +276,7 @@ function Home() {
                     </div>
                 </div>
             </section>
-        </div>
+        </SmoothScroll>
     );
 }
 
