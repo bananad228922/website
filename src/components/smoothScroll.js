@@ -6,21 +6,30 @@ export default function SmoothScroll({ children }) {
   const scrollContainer = useRef(null);
 
   useEffect(() => {
-    if (!scrollContainer.current) return; // ✅ 確保 scrollContainer 存在再執行
+    if (!scrollContainer.current) return; // ✅ 確保 scrollContainer 存在
 
-    const locoScroll = new LocomotiveScroll({
+    // ✅ 初始化 LocomotiveScroll
+    window.locoScroll = new LocomotiveScroll({
       el: scrollContainer.current,
       smooth: true,
-      lerp: 0.1, // 控制滾動過渡（數值越小越慢）
-      multiplier: 1, // 控制滾動速度
+      lerp: 0.1,
+      multiplier: 1,
     });
 
-    setTimeout(() => {
-        locoScroll.update();
+    // ✅ 確保所有 data-scroll 元素都被偵測到
+    const updateTimeout = setTimeout(() => {
+      if (window.locoScroll) {
+        console.log("🔄 LocomotiveScroll 更新");
+        window.locoScroll.update();
+      }
     }, 500);
 
     return () => {
-      if (locoScroll) locoScroll.destroy(); // 清除滾動事件，防止記憶體洩漏
+      clearTimeout(updateTimeout);
+      if (window.locoScroll) {
+        window.locoScroll.destroy();
+        console.log("🗑️ LocomotiveScroll 已清除");
+      }
     };
   }, []);
 

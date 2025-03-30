@@ -22,10 +22,7 @@ import './App.css';
 // hooks
 import ScrollToTop from './script/scrollToTop.js';
 
-
 function App() {
-
-
   return (
     <Router>
       <Navigation />

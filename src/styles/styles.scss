@@ -843,6 +843,10 @@ ol, ul {
     transition: transform 0.2s ease-in-out;
 
 
+    &--darkMode {
+        color: white;
+    }
+
     &--hidden {
         transform: translateY(-100%); /* 隱藏nav */
     }

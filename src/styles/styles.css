@@ -691,6 +691,9 @@ ol, ul {
   justify-content: space-between;
   transition: transform 0.2s ease-in-out;
 }
+.navBar--darkMode {
+  color: white;
+}
 .navBar--hidden {
   transform: translateY(-100%); /* 隱藏nav */
 }

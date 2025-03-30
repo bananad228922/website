@@ -5,53 +5,39 @@ import {useState, useEffect, useRef} from "react";
 
 
 function Navigation() {
-    // function scrollToSection(targetId) {
-    //     document.getElementById(targetId).scrollIntoView({ behavior: "smooth" });
-    // }
-    const [visible, setVisible] = useState(true);
-    const prevScrollPos = useRef(window.scrollY);
-    const accumulatedScroll = useRef(0);
-    const scrollTimeout = useRef(null);
-  
-    const MIN_SCROLL_DISTANCE = 100; // 向上滑動最小距離（可調整）
-    const STOP_DELAY = 100; // 停止滾動多久後重置誤差 (毫秒)
-  
+    const nav = useRef(null)
+
     useEffect(() => {
-      const handleScroll = () => {
-        const currentScrollPos = window.scrollY;
-        const delta = currentScrollPos - prevScrollPos.current;
-  
-        accumulatedScroll.current += delta;
-  
-        clearTimeout(scrollTimeout.current);
-        scrollTimeout.current = setTimeout(() => {
-          // 停頓後，重置累積距離
-          accumulatedScroll.current = 0;
-        }, STOP_DELAY);
-  
-        if (currentScrollPos < 50) {
-          setVisible(true); // 頂部強制顯示
-        } else if (accumulatedScroll.current > MIN_SCROLL_DISTANCE) {
-          setVisible(false); // 向下滾動超過指定距離，隱藏
-          accumulatedScroll.current = 0;
-        } else if (accumulatedScroll.current < -MIN_SCROLL_DISTANCE) {
-          setVisible(true); // 向上滾動超過指定距離，顯示
-          accumulatedScroll.current = 0;
-        }
-  
-        prevScrollPos.current = currentScrollPos;
-      };
-  
-      window.addEventListener("scroll", handleScroll);
-  
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-        clearTimeout(scrollTimeout.current);
-      };
+        if (nav.current === null) return;
+
+        setTimeout(
+            () => {
+                const locoScroll = window.locoScroll; // 假設 Locomotive Scroll 已經初始化
+                if (!locoScroll) return;
+            
+                let prevScrollPos = 0;
+            
+                const handleScroll = ({ scroll }) => {
+                    // console.log(scroll.y);
+                    const currentScrollPos = scroll.y;
+            
+                    if (currentScrollPos < 50 || currentScrollPos < prevScrollPos) {
+                        nav.current.classList.remove('navBar--hidden'); // 向上滾動，顯示
+                    } else {
+                        nav.current.classList.add('navBar--hidden'); // 向下滾動，隱藏
+                    }
+            
+                    prevScrollPos = currentScrollPos;
+                };
+            
+                locoScroll.on("scroll", handleScroll);
+                return () => locoScroll.off("scroll", handleScroll);                
+            }, 1000
+        )
     }, []);
     
     return (
-        <nav className={`navBar ${visible ? '' : 'navBar--hidden'}`}>
+        <nav className='navBar' ref={nav}>
             <div class="flex-row align-item-center">
                 <img class="navBar__logo" src="/Logo.svg" />
                 <p>飄忽不定工作室</p>

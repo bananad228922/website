@@ -19,7 +19,7 @@ function Home() {
     return(
         <SmoothScroll>
             {/*------------------------------ Hero ------------------------------*/}
-            <section className="home--hero">
+            <section className="home--hero" data-scroll-section>
                 <FadeInSection>
                     <div className="navBar-spacer"></div>
 
@@ -55,7 +55,7 @@ function Home() {
 
 
             {/*------------------------------ Video ------------------------------*/}
-            <section class="home--video">
+            <section class="home--video" data-scroll-section>
                 <div style={{ position: "relative", paddingTop: "56.25%", width: "100%", height: 0 }}>
                     <iframe 
                         src="https://player.vimeo.com/video/1066106873?badge=0&autopause=0&player_id=0&app_id=58479"
@@ -70,8 +70,8 @@ function Home() {
 
 
             {/*------------------------------ About ------------------------------*/}
-            <div className='video-spacer'></div>
-            <section class="home home--about" id="about">
+            <div className='video-spacer' data-scroll-section></div>
+            <section class="home home--about" id="about" data-scroll-section>
                 
                 <div class="verticalText-container">
                     <h1 class="vertical-text vertical-text--white">About us</h1>
@@ -124,7 +124,7 @@ function Home() {
             </section>
 
             {/*------------------------------ Services ------------------------------*/}
-            <section class="home home--services">
+            <section class="home home--services" data-scroll-section>
                 <div class="verticalText-container">
                     <h1 class="vertical-text">Services</h1>
                 </div>
@@ -200,7 +200,7 @@ function Home() {
             </section>
 
             {/*------------------------------ Portfolio ------------------------------*/}
-            <section class="home home--portfolio" id="portfolio">
+            <section class="home home--portfolio" id="portfolio" data-scroll-section>
                 <div class="verticalText-container">
                     <h1 class="vertical-text">Protfolio</h1>
                 </div>
@@ -214,7 +214,7 @@ function Home() {
             </section>
 
             {/*------------------------------ Contact ------------------------------*/}
-            <section class="home home--contact" id="contact">
+            <section class="home home--contact" id="contact" data-scroll-section>
                 <div class="verticalText-container">
                     <h1 class="vertical-text vertical-text--white">Contact</h1>
                 </div>
