@@ -1,8 +1,6 @@
 import Button from "../components/button/Button";
 import Card_protfolio from "../components/card/Card-portfolio";
-import FoldableCard from "../components/FoldableCard";
-import FoldableCard_2 from "../components/FoldableCard_2";
-import ToggleCard from "../components/card/toggleCard-base";
+import CardCollapseBase from "../components/card/CardCollapseBase";
 import '../styles/ComponentKit.css'
 
 
@@ -120,12 +118,38 @@ function ComponentKit() {
                         <h1 className="heading-2">card</h1>
 
                         <Card_protfolio/>
-                        <ToggleCard
-                            title="title"
-                            content="This is a foldable card"
-                            id="id"
-                            textblack={true}
-                        />
+                        <CardCollapseBase
+                            title="網站設計｜Web design"
+                        >
+                            <p>
+                                This is a foldable card. <br/>
+                                This is a foldable card. <br/>
+                                This is a foldable card. <br/>
+                                This is a foldable card. <br/>
+                            </p>
+                        </CardCollapseBase>  
+
+                        <CardCollapseBase
+                            title="網站設計｜Web design"
+                        >
+                            <p>
+                                This is a foldable card. <br/>
+                                This is a foldable card. <br/>
+                                This is a foldable card. <br/>
+                                This is a foldable card. <br/>
+                            </p>
+                        </CardCollapseBase>  
+
+                        <CardCollapseBase
+                            title="網站設計｜Web design"
+                        >
+                            <p>
+                                This is a foldable card. <br/>
+                                This is a foldable card. <br/>
+                                This is a foldable card. <br/>
+                                This is a foldable card. <br/>
+                            </p>
+                        </CardCollapseBase>  
                     </div>
                 </div>
             </section>

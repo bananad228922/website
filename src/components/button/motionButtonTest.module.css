@@ -1,7 +1,7 @@
 /* button */
 .button {
-  border-style: none;
   border-radius: 10px;
+  border: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,15 +55,6 @@
   transition: -webkit-clip-path 0.2s ease-in-out;
   transition: clip-path 0.2s ease-in-out;
   transition: clip-path 0.2s ease-in-out, -webkit-clip-path 0.2s ease-in-out;
-}
-
-.border {
-  position: absolute;
-  border: 1px solid;
-  border-radius: 10px;
-  height: 100%;
-  width: 100%;
-  z-index: -1;
 }
 
 .label {

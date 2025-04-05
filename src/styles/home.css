@@ -3,23 +3,16 @@
   flex-direction: column;
 }
 
-.home--services__block, .home--about__wrapper, .home--hero__contents, .home--hero__buttons, .home--portfolio, .home--services, .home--contact, .home--about {
+.home--services__block, .home--about__wrapper, .home--hero__contents, .home--hero__buttons, .home--contact, .home--portfolio, .home--services, .home--scroll-banner, .home--about {
   display: flex;
   flex-direction: row;
 }
 
-.home--contact, .home--about {
-  background-color: #333333;
+.home--contact, .home--portfolio, .home--services, .home--scroll-banner, .home--about {
+  background-color: #232323;
   padding: 10px 0;
   justify-content: space-between;
   color: white;
-}
-
-.home--portfolio, .home--services {
-  background-color: #65E898;
-  padding: 10px 0;
-  justify-content: space-between;
-  color: black;
 }
 
 .home--contact__content, .home--portfolio__content, .home--services__content, .home--about__content {
@@ -32,6 +25,13 @@
 /* ------------------------------ Section ------------------------------ */
 .home {
   width: 100%;
+  /* ------------------------------ Hero ------------------------------ */
+  /* ------------------------------ Video ------------------------------ */
+  /* ------------------------------ About ------------------------------ */
+  /* ------------------------------ Scroll Banner ------------------------------ */
+  /* ------------------------------ Servieces ------------------------------ */
+  /* ------------------------------ Portfolio------------------------------ */
+  /* ------------------------------ Contact ------------------------------ */
 }
 .home--hero {
   background-color: #65E898;
@@ -42,7 +42,7 @@
   left: 5vw;
   top: -30vh;
   transform: scale(1.1);
-  z-index: 0;
+  z-index: -1;
 }
 .home--hero__buttons {
   grid-column-gap: 1rem;
@@ -53,21 +53,27 @@
   width: 80%;
   margin-top: 8rem;
   position: relative;
+  z-index: 1;
 }
 .home--video {
-  width: 85vw;
-  height: 40vw;
+  width: 70vw;
   background-color: rgb(0, 0, 0);
   position: absolute;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 70vh;
+  top: 75vh;
+  z-index: 1;
 }
 .home--about__wrapper {
   justify-content: space-between;
   width: 100%;
+}
+.home--scroll-banner__para {
+  font-size: 128px;
+  color: #232323;
+  text-shadow: 1px 1px 0 white, -1px 1px 0 white, 1px -1px 0 white, -1px -1px 0 white;
 }
 .home--services__block {
   justify-content: space-between;

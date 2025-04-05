@@ -6,8 +6,8 @@ $radius: 10px;
 /* button */
 .button {
     // appearance
-    border-style: none;
     border-radius: $radius;
+    border: 1px solid black;
 
     // layout
     display: flex;
@@ -86,21 +86,6 @@ $radius: 10px;
     transition: clip-path 0.2s ease-in-out;
 }
 
-
-
-
-
-
-.border {
-    position: absolute;
-    border: 1px solid;
-
-    border-radius: $radius;
-
-    height: 100%;
-    width: 100%;
-    z-index: -1;
-}
 
 .label {
     color: white;

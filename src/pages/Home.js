@@ -1,5 +1,4 @@
-import FoldableCard from '../components/FoldableCard.js';
-import FoldableCard_2 from '../components/FoldableCard_2.js';
+
 import Card_protfolio from '../components/card/Card-portfolio.js';
 import { useNavigate } from "react-router-dom";
 import scrollToSection from '../script/index.js';
@@ -10,7 +9,17 @@ import Tab_portfolio from '../components/tab/tab-portfolio.js';
 import ThreeScene from '../components/ThreeScene.js';
 import SmoothScroll from '../components/smoothScroll.js';
 import { useRef } from 'react';
-import Parallax from '../components/parallax.js';
+import MotionButtonTest from '../components/button/motionButtonTest.js';
+import ButtonWithIcon from '../components/button/buttonWithIcon.js';
+import IconButton from '../components/button/IconButton.js';
+import CardCollapseBase from '../components/card/CardCollapseBase.js';
+import ScrollBanner from '../components/text-animation/ScrollBanner.js';
+
+
+const aboutPara_1 = "創意不只是美學，而是解決問題的獨特方式，例如打造沉浸式的個人作品集網站，透過微互動、動畫、動態履歷讓訪客留下深刻印象，或開發一個 AI 生成 UI 設計工具，讓設計流程更自動化且高效。"
+const aboutPara_2 = "在設計專案時，別只是執行，更要主動提供解決方案，如建議使用 AB 測試來優化 UI，分析競品 UX 並提出改進方向，或開發針對特定產業的設計系統，提高設計決策的價值。"
+const aboutPara_3 = "與其做十個普通的設計，不如專注於一個高品質的作品，確保每個專案都有明確的設計目標、用戶數據支持，以及可驗證的成效，讓你的作品不只是好看，而是真正提升使用者體驗與商業價值。"
+
 
 
 function Home() {
@@ -33,20 +42,18 @@ function Home() {
                             </h1>
 
                             <div className="home--hero__buttons">
-                                <Button kind='secondary' size='large' onClick={() => scrollToSection("contact")}>聯絡我們</Button>
-                                <Button kind='outLine-secondary' size='large' onClick={() => navigate("/portfolio")}>作品集</Button>
+                                <ButtonWithIcon>聯絡我們</ButtonWithIcon>
+                                <MotionButtonTest>作品集</MotionButtonTest>
                             </div>
 
                             {/* pointer */}
                             <img style={{position: "absolute", transform: "scale(0.5) translate(0, 230px)"}} src='/pointer-white.svg'/>
 
                             {/* 3d model */}
-                            <Parallax speed = {-1} classStyle = 'home--hero__three-scene bg-object'>
+                            <div data-scroll data-scroll-speed className='home--hero__three-scene'>
                                 <ThreeScene />
-                            </Parallax>
+                            </div>
                         </div>
-                        
-
                     </div>
                 </FadeInSection>
 
@@ -80,121 +87,132 @@ function Home() {
 
                 <div class="container">
                     <div class="home--about__content">
-                        <div className='spacer-l'></div>
-
-                        <h1 className='display-1'>
-                            <span>我們一直</span>
-                            <span className='orange'>相信</span>
-                            <br/>
-                            給您最好
-                            <br/>
-                            不怕困難
-                        </h1>
-
                         <FadeInSection>
-                            <FoldableCard 
-                                title="發揮創意"
-                                content="創意不只是美學，而是解決問題的獨特方式，例如打造沉浸式的個人作品集網站，透過微互動、動畫、動態履歷讓訪客留下深刻印象，或開發一個 AI 生成 UI 設計工具，讓設計流程更自動化且高效。"
-                                id="toggle1"
-                                imgSrc="real-image.jpg"
-                            />                            
+                            <h1 className='display-1 m-b-xl'>
+                                <span>我們一直</span>
+                                <span className='orange'>相信.</span>
+                                <br/>
+                                給您最好
+                                <br/>
+                                不怕困難
+                            </h1>
+                        </FadeInSection>
+
+                        <div className='p-l-xl p-r-xl flex-col gap-m'>
+                        <FadeInSection>
+                            <CardCollapseBase title="發揮創意">
+                                <div className='flex-row gap-l'>
+                                    <p className='paragraph-l white--secondary'>{aboutPara_1}</p>
+                                    <img className="image-s" src='real-image.jpg'/>
+                                </div>
+                            </CardCollapseBase>                            
                         </FadeInSection>
 
                         <FadeInSection>
-                            <FoldableCard 
-                                title="提供想法"
-                                content="在設計專案時，別只是執行，更要主動提供解決方案，如建議使用 AB 測試來優化 UI，分析競品 UX 並提出改進方向，或開發針對特定產業的設計系統，提高設計決策的價值。"
-                                id="toggle2"
-                                imgSrc="real-image.jpg"
-                            />
+                            <CardCollapseBase title="提供想法">
+                                <div className='flex-row gap-l'>
+                                    <p className='paragraph-l white--secondary'>{aboutPara_2}</p>
+                                    <img className='image-s' src='real-image.jpg'/>
+                                </div>
+                            </CardCollapseBase>                            
                         </FadeInSection>
 
-            
                         <FadeInSection>
-                            <FoldableCard 
-                                title="以質勝量"
-                                content="與其做十個普通的設計，不如專注於一個高品質的作品，確保每個專案都有明確的設計目標、用戶數據支持，以及可驗證的成效，讓你的作品不只是好看，而是真正提升使用者體驗與商業價值。"
-                                id="toggle3"
-                                imgSrc="real-image.jpg"
-                            />
+                            <CardCollapseBase title="以質勝量">
+                                <div className='flex-row gap-l'>
+                                    <p className='paragraph-l white--secondary'>{aboutPara_3}</p>
+                                    <img className="image-s" src='real-image.jpg'/>
+                                </div>
+                            </CardCollapseBase>                            
                         </FadeInSection>
-
+                        </div>
                     </div>
                 </div>
             </section>
+            {/* ------------------------------ scroll banner ------------------------------ */}
 
+            <div className='home--scroll-banner p-b-xxl p-t-xxl' data-scroll-section>
+                <ScrollBanner>
+                    <p className='home--scroll-banner__para'>
+                        我們相信設計就是一切
+                    </p>
+                </ScrollBanner>
+            </div>
             {/*------------------------------ Services ------------------------------*/}
             <section class="home home--services" data-scroll-section>
                 <div class="verticalText-container">
-                    <h1 class="vertical-text">Services</h1>
+                    <h1 class="vertical-text vertical-text--white">Services</h1>
                 </div>
 
                 <div class="container">
                     <div class="home--services__content">
                         <FadeInSection>
-                            <FoldableCard_2 
-                                title="網站設計"
-                                title_EN="Web Design"
-
-                                content_1="E-commerce"
-                                content_2="Landing"
-                                content_3="Promo-site"
-                                content_4="Corporate website"
-
-                                id="card2-toggle1"
-                                imgSrc="real-image.jpg"
-                            />
+                            <h1 className='display-1 m-b-xl'>
+                                <span>我們一直</span>
+                                <span className='orange'>相信.</span>
+                                <br/>
+                                給您最好
+                                <br/>
+                                不怕困難
+                            </h1>
                         </FadeInSection>
 
 
                         <FadeInSection>
-                            <FoldableCard_2 
-                                title="平面設計"
-                                title_EN="Graphic design"
-
-                                content_1="E-commerce"
-                                content_2="Landing"
-                                content_3="Promo-site"
-                                content_4="Corporate website"
-                                
-                                id="card2-toggle2"
-                                imgSrc="real-image.jpg"
-                            />
+                            <CardCollapseBase title="網站設計">
+                                <div className='flex-row'>
+                                    <ul>
+                                        <li>E-commerc</li>
+                                        <li>ELanding</li>
+                                        <li>EPromo-site</li>
+                                        <li>Corporate website</li>
+                                    </ul>
+                                    <img src='real-image.jpg'/>
+                                </div>
+                            </CardCollapseBase>                            
                         </FadeInSection>
-
-
 
                         <FadeInSection>
-                            <FoldableCard_2 
-                                title="動態設計"
-                                title_EN="Motion Graphic"
-
-                                content_1="E-commerce"
-                                content_2="Landing"
-                                content_3="Promo-site"
-                                content_4="Corporate website"
-                                
-                                id="card2-toggle3"
-                                imgSrc="real-image.jpg"
-                            />
+                            <CardCollapseBase title="平面設計">
+                                <div className='flex-row'>
+                                    <ul>
+                                        <li>E-commerc</li>
+                                        <li>ELanding</li>
+                                        <li>EPromo-site</li>
+                                        <li>Corporate website</li>
+                                    </ul>
+                                    <img src='real-image.jpg'/>
+                                </div>
+                            </CardCollapseBase>                            
                         </FadeInSection>
-
 
                         <FadeInSection>
-                            <FoldableCard_2 
-                                title="3D 建模"
-                                title_EN="3D Model"
-
-                                content_1="E-commerce"
-                                content_2="Landing"
-                                content_3="Promo-site"
-                                content_4="Corporate website"
-                                
-                                id="card2-toggle4"
-                                imgSrc="real-image.jpg"
-                            />
+                            <CardCollapseBase title="動態設計">
+                                <div className='flex-row'>
+                                    <ul>
+                                        <li>E-commerc</li>
+                                        <li>ELanding</li>
+                                        <li>EPromo-site</li>
+                                        <li>Corporate website</li>
+                                    </ul>
+                                    <img src='real-image.jpg'/>
+                                </div>
+                            </CardCollapseBase>                            
                         </FadeInSection>
 
+                        <FadeInSection>
+                            <CardCollapseBase title="3D建模">
+                                <div className='flex-row'>
+                                    <ul>
+                                        <li>E-commerc</li>
+                                        <li>ELanding</li>
+                                        <li>EPromo-site</li>
+                                        <li>Corporate website</li>
+                                    </ul>
+                                    <img src='real-image.jpg'/>
+                                </div>
+                            </CardCollapseBase>                            
+                        </FadeInSection>
                     </div>
                 </div>
             </section>
@@ -202,12 +220,23 @@ function Home() {
             {/*------------------------------ Portfolio ------------------------------*/}
             <section class="home home--portfolio" id="portfolio" data-scroll-section>
                 <div class="verticalText-container">
-                    <h1 class="vertical-text">Protfolio</h1>
+                    <h1 class="vertical-text vertical-text--white">Protfolio</h1>
                 </div>
 
                 <div class="container">
-
                     <div class="home--portfolio__content">
+                        <FadeInSection>
+                            <h1 className='display-1 m-b-xl'>
+                                <span>我們一直</span>
+                                <span className='orange'>相信.</span>
+                                <br/>
+                                給您最好
+                                <br/>
+                                不怕困難
+                            </h1>
+                        </FadeInSection>
+
+
                         <Tab_portfolio />
                     </div>
                 </div>
@@ -276,7 +305,19 @@ function Home() {
                     </div>
                 </div>
             </section>
+
+            <div className='TOC'>
+                <div className='TOC__dot'></div>
+                <div className='TOC__line'></div>
+                <div className='TOC__dot'></div>
+                <div className='TOC__line'></div>
+                <div className='TOC__dot'></div>
+                <div className='TOC__line'></div>
+                <div className='TOC__dot'></div>
+            </div>
         </SmoothScroll>
+
+
     );
 }
 

@@ -6,7 +6,6 @@ import ButtonWithIcon from "../components/button/buttonWithIcon";
 import IconButton from "../components/button/IconButton";
 import ThreeScene from "../components/ThreeScene";
 import SmoothScroll from "../components/smoothScroll";
-import Parallax from "../components/parallax";
 
 
 // locomotive
@@ -16,8 +15,6 @@ import { useEffect, useState } from "react";
 
 
 
-import FoldableCard from '../components/FoldableCard.js';
-import FoldableCard_2 from '../components/FoldableCard_2.js';
 import { useNavigate } from "react-router-dom";
 import scrollToSection from '../script/index.js';
 import Button from '../components/button/Button.js';
@@ -25,6 +22,8 @@ import '../styles/home.css'
 import FadeInSection from '../components/FadeInSection.js';
 import Tab_portfolio from '../components/tab/tab-portfolio.js';
 import { useRef } from 'react';
+import FlipTextHover from "../components/text-animation/FlipTextHover.js";
+import ScrollBanner from "../components/text-animation/ScrollBanner.js";
 
 
 
@@ -70,24 +69,29 @@ export default function TestUse() {
         {/* ------------------ 區塊 (無需觸發 call，就不加 data-scroll) ------------------ */}
         <section data-scroll-section>
           <div className="navBar-spacer"></div>
-  
           <AddIcon />
-  
-          <div className="mt-m ml-l mb-l">
-            <MotionButtonTest>label</MotionButtonTest>
-          </div>
-          <div className="mt-m ml-l mb-l">
-            <MotionButtonTest outline={true}>label</MotionButtonTest>
-          </div>
-          <div className="mt-m ml-l mb-l">
-            <ButtonWithIcon>label</ButtonWithIcon>
-          </div>
-          <div className="mt-m ml-l mb-l">
-            <ButtonWithIcon outline={true}>label</ButtonWithIcon>
-          </div>
-          <div className="mt-m ml-l mb-l">
-            <IconButton />
-          </div>
+            <div className="m-t-m m-l-l m-b-l">
+                <MotionButtonTest>label</MotionButtonTest>
+            </div>
+
+            <div className="m-t-m m-l-l m-b-l">
+                <MotionButtonTest outline={true}>label</MotionButtonTest>
+            </div>
+
+            <div className="m-t-m m-l-l m-b-l">
+                <ButtonWithIcon>label</ButtonWithIcon>
+            </div>
+
+            <ScrollBanner>We belive design is anything.</ScrollBanner>
+
+
+            <div className="m-t-m m-l-l m-b-l">
+                <ButtonWithIcon outline={true}>label</ButtonWithIcon>
+            </div>
+
+            <div className="m-t-m m-l-l m-b-l">
+                <IconButton />
+            </div>
         </section>
   
         {/* ------------------ 範例 1：dark 區塊 ------------------ */}

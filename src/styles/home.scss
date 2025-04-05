@@ -28,12 +28,12 @@
 }
 
 /* ------------------------------ Section ------------------------------ */
-
 .home {
     width: 100%;
 
     @extend %flex-col;
 
+    /* ------------------------------ Hero ------------------------------ */
     &--hero {
         background-color: $color-green;
         height: 1000px;
@@ -43,7 +43,7 @@
             left: 5vw;
             top: -30vh;
             transform: scale(1.1);
-            z-index: 0;
+            z-index: -1;
         }
 
         &__buttons {
@@ -63,12 +63,13 @@
             margin-top: $spacing-xl;
 
             position: relative;
+            z-index: 1;
         }
     }
 
+    /* ------------------------------ Video ------------------------------ */
     &--video {
-        width: 85vw;
-        height: 40vw;
+        width: 70vw;
         background-color: rgb(0, 0, 0);
         position: absolute;
 
@@ -76,9 +77,12 @@
         margin-right: auto;
         left: 0;
         right: 0;
-        top: 70vh;
+        top: 75vh;
+
+        z-index: 1;
     }
 
+    /* ------------------------------ About ------------------------------ */
     &--about {
         @extend %section-black;
 
@@ -93,8 +97,24 @@
         }
     }
 
+    /* ------------------------------ Scroll Banner ------------------------------ */
+    &--scroll-banner {
+        @extend %section-black;
+
+        &__para {
+            font-size: 128px;
+            color: $color-black;
+            text-shadow:
+              1px 1px 0 white,
+             -1px 1px 0 white,
+              1px -1px 0 white,
+             -1px -1px 0 white;
+        }
+    }
+
+    /* ------------------------------ Servieces ------------------------------ */
     &--services {
-        @extend %section-green;
+        @extend %section-black;
 
         &__content {
             @extend %content-layout;
@@ -112,14 +132,16 @@
         }
     }
 
+    /* ------------------------------ Portfolio------------------------------ */
     &--portfolio {
-        @extend %section-green;
+        @extend %section-black;
         
         &__content {
             @extend %content-layout;
         }
     }
 
+    /* ------------------------------ Contact ------------------------------ */
     &--contact {
         @extend %section-black;
 

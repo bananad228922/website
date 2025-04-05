@@ -1,0 +1,21 @@
+.scroll-banner-wrapper {
+    overflow: hidden;
+    width: 100%;
+}
+
+.scroll-banner-content {
+    white-space: nowrap;
+    font-size: 100px;
+    font-weight: 700;
+    animation: scroll-right 10s linear infinite;
+
+}
+
+@keyframes scroll-right {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}

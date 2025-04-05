@@ -1,0 +1,35 @@
+.flipTextContainer {
+    display: inline-flex;
+    gap: 0.05em;
+    perspective: 1000px;
+  }
+  
+  .flipLetterWrapper {
+    display: inline-block;
+  }
+  
+  .flipLetter {
+    display: inline-block;
+    transform-style: preserve-3d;
+    transition: transform 0.4s;
+    position: relative;
+  }
+  
+  .flipLetter:hover {
+    transform: rotateX(180deg);
+  }
+  
+  .front,
+  .back {
+    position: absolute;
+    backface-visibility: hidden;
+    display: inline-block;
+  }
+  
+  .front {
+    transform: rotateX(0deg);
+  }
+  
+  .back {
+    transform: rotateX(180deg);
+  }
