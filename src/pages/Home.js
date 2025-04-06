@@ -23,12 +23,19 @@ const aboutPara_3 = "與其做十個普通的設計，不如專注於一個高�
 
 
 function Home() {
-    const navigate = useNavigate();
 
     return(
         <SmoothScroll>
             {/*------------------------------ Hero ------------------------------*/}
-            <section className="home--hero" data-scroll-section>
+            <section 
+                className="home--hero" 
+                data-scroll-section
+                data-scroll
+                data-scroll-call="is-nav-darkmode"
+                data-scroll-repeat="true"
+                data-scroll-offset="100%"
+                data-color="light"
+            >
                 <FadeInSection>
                     <div className="navBar-spacer"></div>
 
@@ -50,7 +57,7 @@ function Home() {
                             <img style={{position: "absolute", transform: "scale(0.5) translate(0, 230px)"}} src='/pointer-white.svg'/>
 
                             {/* 3d model */}
-                            <div data-scroll data-scroll-speed className='home--hero__three-scene'>
+                            <div data-scroll data-scroll-speed="-2" className='home--hero__three-scene'>
                                 <ThreeScene />
                             </div>
                         </div>
@@ -63,13 +70,19 @@ function Home() {
 
             {/*------------------------------ Video ------------------------------*/}
             <section class="home--video" data-scroll-section>
-                <div style={{ position: "relative", paddingTop: "56.25%", width: "100%", height: 0 }}>
-                    <iframe 
+                <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
+                    <iframe
                         src="https://player.vimeo.com/video/1066106873?badge=0&autopause=0&player_id=0&app_id=58479"
-                        style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
                         frameBorder="0"
                         allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
                         allowFullScreen
+                        style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        }}
                         title="飄忽不定工作室 Erratic Studio｜Logo 形象動畫短片"
                     ></iframe>
                 </div>
@@ -77,11 +90,30 @@ function Home() {
 
 
             {/*------------------------------ About ------------------------------*/}
-            <div className='video-spacer' data-scroll-section></div>
-            <section class="home home--about" id="about" data-scroll-section>
-                
+            <div 
+                className='home--video__spacer' 
+                data-scroll-section
+                data-scroll
+                data-scroll-call="is-nav-darkmode"
+                data-scroll-repeat="true"
+                data-scroll-offset="100%"
+                data-color="dark"
+            >
+
+            </div>
+
+            <section 
+                class="home home--about"
+                id="about" 
+                data-scroll-section
+                data-scroll
+                data-scroll-call="is-nav-darkmode"
+                data-scroll-repeat="true"
+                data-scroll-offset="100%"
+                data-color="dark"
+            >
                 <div class="verticalText-container">
-                    <h1 class="vertical-text vertical-text--white">About us</h1>
+                    <h1 class="vertical-text vertical-text--white" data-scroll data-scroll-speed="-4">About us</h1>
                 </div>
 
 
@@ -129,19 +161,39 @@ function Home() {
                     </div>
                 </div>
             </section>
+
+
             {/* ------------------------------ scroll banner ------------------------------ */}
 
-            <div className='home--scroll-banner p-b-xxl p-t-xxl' data-scroll-section>
+            <div 
+                className='home--scroll-banner p-b-xxl p-t-xxl' 
+                data-scroll-section
+                data-scroll
+                data-scroll-call="is-nav-darkmode"
+                data-scroll-repeat="true"
+                data-scroll-offset="100%"
+                data-color="dark"
+            >
                 <ScrollBanner>
                     <p className='home--scroll-banner__para'>
                         我們相信設計就是一切
                     </p>
                 </ScrollBanner>
             </div>
+
+
             {/*------------------------------ Services ------------------------------*/}
-            <section class="home home--services" data-scroll-section>
+            <section 
+                class="home home--services" 
+                data-scroll-section
+                data-scroll
+                data-scroll-call="is-nav-darkmode"
+                data-scroll-repeat="true"
+                data-scroll-offset="100%"
+                data-color="dark"
+            >
                 <div class="verticalText-container">
-                    <h1 class="vertical-text vertical-text--white">Services</h1>
+                    <h1 class="vertical-text vertical-text--white" data-scroll data-scroll-speed="-4">Services</h1>
                 </div>
 
                 <div class="container">
@@ -217,10 +269,20 @@ function Home() {
                 </div>
             </section>
 
+
             {/*------------------------------ Portfolio ------------------------------*/}
-            <section class="home home--portfolio" id="portfolio" data-scroll-section>
+
+            <section 
+                class="home home--portfolio" id="portfolio" 
+                data-scroll-section
+                data-scroll
+                data-scroll-call="is-nav-darkmode"
+                data-scroll-repeat="true"
+                data-scroll-offset="100%"
+                data-color="dark"
+            >
                 <div class="verticalText-container">
-                    <h1 class="vertical-text vertical-text--white">Protfolio</h1>
+                    <h1 class="vertical-text vertical-text--white" data-scroll data-scroll-speed="-4">Protfolio</h1>
                 </div>
 
                 <div class="container">
@@ -243,9 +305,17 @@ function Home() {
             </section>
 
             {/*------------------------------ Contact ------------------------------*/}
-            <section class="home home--contact" id="contact" data-scroll-section>
+            <section 
+                class="home home--contact" id="contact" 
+                data-scroll-section
+                data-scroll
+                data-scroll-call="is-nav-darkmode"
+                data-scroll-repeat="true"
+                data-scroll-offset="100%"
+                data-color="dark"
+            >
                 <div class="verticalText-container">
-                    <h1 class="vertical-text vertical-text--white">Contact</h1>
+                    <h1 class="vertical-text vertical-text--white" data-scroll data-scroll-speed="-4">Contact</h1>
                 </div>
 
 

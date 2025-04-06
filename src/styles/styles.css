@@ -138,7 +138,7 @@ ol, ul {
 }
 
 .bg-green {
-  background-color: #65e89c;
+  background-color: #65E898;
 }
 
 .about__img {
@@ -149,6 +149,9 @@ ol, ul {
 
 .verticalText-container {
   padding: 4rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .vertical-text {
@@ -391,12 +394,6 @@ ol, ul {
   gap: 16rem;
 }
 
-.video-spacer {
-  width: 100%;
-  height: 500px;
-  background-color: #232323;
-}
-
 .navBar-spacer {
   width: 100%;
   height: 50px;
@@ -527,7 +524,7 @@ ol, ul {
   justify-content: center;
 }
 .button--primary {
-  background-color: #65e89c;
+  background-color: #65E898;
   color: #232323;
   transition: background-color 0.2s ease-in-out;
 }
@@ -544,12 +541,12 @@ ol, ul {
 }
 .button--outLine-primary {
   border: 2px solid;
-  border-color: #65e89c;
-  color: #65e89c;
+  border-color: #65E898;
+  color: #65E898;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 .button--outLine-primary:hover {
-  background-color: #65e89c;
+  background-color: #65E898;
   color: #232323;
 }
 .button--outLine-secondary {
@@ -608,7 +605,7 @@ ol, ul {
   border-style: none;
 }
 .tabs__label--primary {
-  background-color: #65e89c;
+  background-color: #65E898;
   border-style: none;
   transition: background-color 0.2s ease-in-out;
   color: #232323;
@@ -635,8 +632,8 @@ ol, ul {
 }
 .tabs__label--outLine-primary {
   border: 2px solid;
-  border-color: #65e89c;
-  color: #65e89c;
+  border-color: #65E898;
+  color: #65E898;
   transition: border-color 0.2s ease-in-out;
 }
 .tabs__label--outLine-primary:hover {
@@ -661,7 +658,7 @@ ol, ul {
   border-color: rgb(245, 245, 245);
 }
 .tabs__label--ghost-primary {
-  color: #65e89c;
+  color: #65E898;
   transition: background-color 0.2s ease-in-out;
 }
 .tabs__label--ghost-primary:hover {
@@ -744,17 +741,17 @@ ol, ul {
   height: 50px;
   position: fixed;
   z-index: 1;
-  -webkit-backdrop-filter: blur(20px);
-          backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(100px);
+          backdrop-filter: blur(100px);
   border-top-style: none;
   border-right-style: none;
   border-left-style: none;
-  border-bottom-style: solid;
+  border-bottom-style: dashed;
   border-width: 1px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 .navBar--darkMode {
   color: white;
@@ -871,7 +868,7 @@ ol, ul {
 }
 
 .portfolio {
-  background-color: #65e89c;
+  background-color: #65E898;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -903,7 +900,7 @@ ol, ul {
 .TOC__dot {
   height: 10px;
   width: 10px;
-  background-color: #65e89c;
+  background-color: #65E898;
   border-radius: 999px;
 }
 .TOC__line {

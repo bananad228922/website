@@ -2,38 +2,93 @@ import scrollToSection from '../script/index.js';
 import MenuIcon from './icon-menu.js';
 import { Link } from "react-router-dom";
 import {useState, useEffect, useRef} from "react";
+import useNavDarkmode from '../script/useNavDarkmode.js';
+import { time } from 'framer-motion/client';
 
 
 function Navigation() {
     const nav = useRef(null)
 
+
     useEffect(() => {
         if (nav.current === null) return;
 
-        setTimeout(
-            () => {
-                const locoScroll = window.locoScroll; // 假設 Locomotive Scroll 已經初始化
-                if (!locoScroll) return;
+        const timeoutId = setTimeout(() => {
+            const locoScroll = window.locoScroll; // 假設 Locomotive Scroll 已經初始化
+            if (!locoScroll) {
+                console.log("nav 沒有找到 locoScroll");
+                return
+            };
+        
+
+            // let prevScrollPos = 0;
+            // const handleScroll = ({scroll}) => {
+            //     // console.log(scroll.y);
+            //     const currentScrollPos = scroll.y;
+
+            //     if (currentScrollPos < 50 || currentScrollPos <= prevScrollPos) {
+            //         nav.current.classList.remove('navBar--hidden'); // 向上滾動，顯示
+            //     } else {
+            //         nav.current.classList.add('navBar--hidden'); // 向下滾動，隱藏
+            //     }
+        
+            //     prevScrollPos = currentScrollPos;
+            // }
+
+            let prevScrollPos = 0;
+            const SCROLL_HIDE_THRESHOLD = 1; // 👈 你想要的最小滑動距離
             
-                let prevScrollPos = 0;
+            const handleScroll = ({ scroll }) => {
+              const currentScrollPos = scroll.y;
+              const scrollDiff = currentScrollPos - prevScrollPos;
             
-                const handleScroll = ({ scroll }) => {
-                    // console.log(scroll.y);
-                    const currentScrollPos = scroll.y;
+              // 向上滾 or 靜止 or 回到頂部，顯示 navbar
+              if (currentScrollPos < 50 || scrollDiff <= 0) {
+                nav.current.classList.remove('navBar--hidden');
+              } 
+              // 向下滾動而且滑超過一定距離，才隱藏
+              else if (scrollDiff > SCROLL_HIDE_THRESHOLD) {
+                nav.current.classList.add('navBar--hidden');
+              }
             
-                    if (currentScrollPos < 50 || currentScrollPos < prevScrollPos) {
-                        nav.current.classList.remove('navBar--hidden'); // 向上滾動，顯示
-                    } else {
-                        nav.current.classList.add('navBar--hidden'); // 向下滾動，隱藏
+              prevScrollPos = currentScrollPos;
+            };
+
+
+            const handleCall = (value, way, obj) => {
+                // value = data-scroll-call 的值 (這裡是 "section-in")
+                // way = 'enter' | 'leave'
+                // obj.el = 觸發此事件的 DOM 元素
+                const el = obj.el;
+                const sectionColor = el.dataset.color;
+    
+                if (value === 'is-nav-darkmode') {
+                    if (way === 'enter') {
+                        console.log('✅ 進入區塊', el);
+                        if (sectionColor === 'dark') {
+                            nav.current.classList.add('navBar--darkMode');
+                        }
+                        if (sectionColor === 'light') {
+                            nav.current.classList.remove('navBar--darkMode');
+                        }
                     }
-            
-                    prevScrollPos = currentScrollPos;
-                };
-            
-                locoScroll.on("scroll", handleScroll);
-                return () => locoScroll.off("scroll", handleScroll);                
-            }, 1000
-        )
+                    if (way === 'exit') {
+                        console.log('❌ 離開區塊', el);
+                    }
+                }                    
+            }
+
+
+            locoScroll.on("scroll", handleScroll);
+            locoScroll.on('call', handleCall);
+
+            // 清除事件
+            return () => {
+                locoScroll.off("scroll", handleScroll);
+                locoScroll.off("call", handleCall);
+                clearTimeout(timeoutId);
+            }
+        }, 1000)
     }, []);
     
     return (
