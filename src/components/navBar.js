@@ -2,7 +2,6 @@ import scrollToSection from '../script/index.js';
 import MenuIcon from './icon-menu.js';
 import { Link } from "react-router-dom";
 import {useState, useEffect, useRef} from "react";
-import useNavDarkmode from '../script/useNavDarkmode.js';
 import { time } from 'framer-motion/client';
 
 

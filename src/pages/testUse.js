@@ -23,7 +23,6 @@ import Tab_portfolio from '../components/tab/tab-portfolio.js';
 import { useRef } from 'react';
 import FlipTextHover from "../components/text-animation/FlipTextHover.js";
 import ScrollBanner from "../components/text-animation/ScrollBanner.js";
-import useNavDarkmode from "../script/useNavDarkmode.js";
 
 
 
@@ -63,7 +62,7 @@ export default function TestUse() {
     //     scroll.destroy();
     //   };
     // }, []);
-    
+
     // useNavDarkmode();
   
     return (
