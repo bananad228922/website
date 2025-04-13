@@ -40,8 +40,6 @@ function App() {
           <Route path='/portfolio_erratic' element={<Portfolio_erratic />} />
           <Route path='/testUse' element={<TestUse />} />
       </Routes>
-      
-      <Footer />
     </Router>
   );
 }

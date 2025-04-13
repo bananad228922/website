@@ -1,11 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import LocomotiveScroll from "locomotive-scroll";
 import "locomotive-scroll/dist/locomotive-scroll.css";
 
 export default function SmoothScroll({ children }) {
   const scrollContainer = useRef(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!scrollContainer.current) return; // ✅ 確保 scrollContainer 存在
 
     // ✅ 初始化 LocomotiveScroll
@@ -15,6 +15,7 @@ export default function SmoothScroll({ children }) {
       lerp: 0.1,
       multiplier: 1,
     });
+    console.log("創建locomotive")
 
     // ✅ 確保所有 data-scroll 元素都被偵測到
     const updateTimeout = setTimeout(() => {
@@ -29,6 +30,7 @@ export default function SmoothScroll({ children }) {
       if (window.locoScroll) {
         window.locoScroll.destroy();
         console.log("🗑️ LocomotiveScroll 已清除");
+        window.locoScroll = null;
       }
     };
   }, []);

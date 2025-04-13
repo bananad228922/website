@@ -1,0 +1,78 @@
+@import '../../../styles/variables.scss';
+
+body {
+    margin: 0;
+}
+  
+.container {
+    width: fit-content;
+}
+
+.cardShowcase {
+    display: flex;
+    flex-direction: row;
+    gap: $spacing-m;
+    padding: 5vw;
+}
+
+.card {
+    height: 70vh;
+    width: 80vh;
+    will-change: transform;
+    pointer-events: auto;
+    border-radius: 30px;
+    overflow: hidden;
+    position: relative;
+
+    // transition: transform 0.2s ease-in-out, border-radius, 0.2s ease-in-out;
+    // transition: border-radius, 0.2s ease-in-out;
+
+    &:hover {
+        transform: scale(1.02) rotateY(-10deg) translate(0, -50px);
+        border-radius: 5px;
+    }
+
+    & img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    &__content {
+        position: absolute;
+        width: 101%;
+        height: 101%;
+        background-color: rgb(23, 23, 23);
+        top: 0;
+        left: 0;
+        clip-path: inset(100% 0 0 0);
+
+        transition: clip-path 0.2s ease-in-out;
+    }
+
+    &:hover .card__content {
+        clip-path: inset(60% 0 0 0);
+    }
+
+    &__overlay {
+        opacity: 0;
+        width: 101%;
+        height: 101%;
+        background-color: rgba(0, 0, 0);
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    &:hover .card__overlay {
+        opacity: 0.3;
+    }
+
+
+}
+
+.temp {
+    background-image: 'https://res.cloudinary.com/dtoefi3cs/image/upload/v1742032515/Free_Book_Mockup_8_jy7wbm.png';
+}

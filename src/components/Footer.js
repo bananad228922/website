@@ -1,6 +1,6 @@
 function Footer() {
     return (
-        <section className="footer">
+        <section className="footer" data-scroll-section>
             <div className="container">
                 <div className="footer__content">
                     <div className="footer__link-icons">

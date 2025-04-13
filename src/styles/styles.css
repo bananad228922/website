@@ -461,13 +461,23 @@ ol, ul {
   margin-left: 5.5rem;
   margin-bottom: 2rem;
 }
+.card--basess {
+  min-width: 100vw;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  background: #f2f2f2;
+  border-right: 1px solid #ccc;
+}
 .card--portfolio {
   width: 100%;
   display: flex;
   flex-direction: row;
 }
 .card--portfolio__BG {
-  width: 100%;
+  width: 50vw;
   height: 50vh;
   background-color: beige;
   position: relative;
@@ -852,7 +862,10 @@ ol, ul {
 }
 
 .footer {
-  background-color: #232323;
+  background-color: #d5cfa4;
+  height: 50vh;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
 }
 .footer__content {
   width: 80%;

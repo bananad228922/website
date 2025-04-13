@@ -22,7 +22,7 @@
   margin-bottom: 16rem;
 }
 
-/* ------------------------------ Section ------------------------------ */
+/* ------------------------------ page ------------------------------ */
 .home {
   width: 100%;
   /* ------------------------------ Hero ------------------------------ */
@@ -35,7 +35,7 @@
 }
 .home--hero {
   background-color: #65E898;
-  height: 1000px;
+  height: 100vh;
   border-bottom-right-radius: 50px;
   border-bottom-left-radius: 50px;
 }
@@ -99,4 +99,19 @@
   font-size: 30pt;
   color: white;
   margin-bottom: 4rem;
+}
+
+.testUse--BG {
+  height: 500vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+.testUse--BG__container {
+  position: absolute;
+  z-index: 100;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }/*# sourceMappingURL=home.css.map */

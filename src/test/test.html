@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GSAP ScrollTrigger Test</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    section {
+      height: 200vh;
+    }
+
+    .spacer {
+      height: 100px;
+    }
+
+    .box {
+      width: 100px;
+      height: 100px;
+    }
+
+    .box--blue {
+      background-color: blue;
+    }
+  </style>
+</head>
+<body>
+
+  <section>
+    <div class="spacer"></div>
+    <div class="box box--blue" id="box"></div>
+  </section>
+
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    const box = document.getElementById("box");
+
+    gsap.to(box, {
+      x: 100,
+      scrollTrigger: {
+        trigger: box,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+        pin: true
+      }
+    });
+  </script>
+
+</body>
+</html>

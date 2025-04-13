@@ -386,6 +386,17 @@ ol, ul {
         }
     }
 
+    &--basess {
+        min-width: 100vw;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3rem;
+        background: #f2f2f2;
+        border-right: 1px solid #ccc;
+    }
+
     &--portfolio {
         width: 100%;
         display: flex;
@@ -393,7 +404,7 @@ ol, ul {
         
 
         &__BG {
-            width: 100%;
+            width: 50vw;
             height: 50vh;
             background-color: beige;
             position: relative;
@@ -921,7 +932,10 @@ ol, ul {
 }
 
 .footer {
-    background-color: $color-black;
+    background-color: $color-yellow;
+    height: 50vh;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
 
     &__content {
         // appearance

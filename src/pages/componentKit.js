@@ -2,7 +2,9 @@ import Button from "../components/button/Button";
 import Card_protfolio from "../components/card/Card-portfolio";
 import CardCollapseBase from "../components/card/CardCollapseBase";
 import '../styles/ComponentKit.css'
-
+import MotionButtonTest from "../components/button/motionButtonTest";
+import ButtonWithIcon from "../components/button/buttonWithIcon";
+import IconButton from "../components/button/IconButton";
 
 function ComponentKit() {
     return (
@@ -44,6 +46,26 @@ function ComponentKit() {
                             <Button size="medium">medium</Button>
                             <Button size="large">large</Button>
                         </div>
+                    </div>
+
+                    <div className="m-t-m m-l-l m-b-l" data-scroll>
+                        <MotionButtonTest>label</MotionButtonTest>
+                    </div>
+
+                    <div className="m-t-m m-l-l m-b-l">
+                        <MotionButtonTest outline={true}>label</MotionButtonTest>
+                    </div>
+
+                    <div className="m-t-m m-l-l m-b-l">
+                        <ButtonWithIcon>label</ButtonWithIcon>
+                    </div>
+
+                    <div className="m-t-m m-l-l m-b-l">
+                        <ButtonWithIcon outline={true}>label</ButtonWithIcon>
+                    </div>
+
+                    <div className="m-t-m m-l-l m-b-l">
+                        <IconButton />
                     </div>
                 </div>
             </section>
@@ -153,10 +175,6 @@ function ComponentKit() {
                     </div>
                 </div>
             </section>
-
-
-
-
 
             {/* input */}
             <section className="kit--tabs">

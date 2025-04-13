@@ -14,6 +14,7 @@ import ButtonWithIcon from '../components/button/buttonWithIcon.js';
 import IconButton from '../components/button/IconButton.js';
 import CardCollapseBase from '../components/card/CardCollapseBase.js';
 import ScrollBanner from '../components/text-animation/ScrollBanner.js';
+import Footer from '../components/Footer.js';
 
 
 const aboutPara_1 = "創意不只是美學，而是解決問題的獨特方式，例如打造沉浸式的個人作品集網站，透過微互動、動畫、動態履歷讓訪客留下深刻印象，或開發一個 AI 生成 UI 設計工具，讓設計流程更自動化且高效。"
@@ -375,6 +376,8 @@ function Home() {
                     </div>
                 </div>
             </section>
+
+            <Footer />
 
             <div className='TOC'>
                 <div className='TOC__dot'></div>
