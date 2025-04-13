@@ -3,13 +3,13 @@ import styles from './HorizontalSrollingCard.module.css';
 import classNames from 'classnames';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useEffect, useLayoutEffect, useRef } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react';
 import { array } from 'three/tsl';
 
 
 gsap.registerPlugin(ScrollTrigger);
 
-export function HorizontalScrollingContainer({children}) {
+export function HScrollContainer({children, transformElRef}) {
     const containerRef = useRef(null);
 
     useEffect(() => {
@@ -45,10 +45,9 @@ export function HorizontalScrollingContainer({children}) {
 
         // GSAP 邏輯
         const scrollDistance = container.scrollWidth - window.innerWidth;
-        console.log(scrollDistance);
 
         const ctx = gsap.context(() => {
-            gsap.to(container, {
+            gsap.to(transformElRef.current, {
                 x: () => -scrollDistance,
                 scrollTrigger: {
                     trigger: container,
@@ -68,15 +67,25 @@ export function HorizontalScrollingContainer({children}) {
 
     return (
         <div className={styles['container']} ref={containerRef}>
-            <div className={styles['cardShowcase']}>
-                {children}
-            </div>
+            {children}
         </div>
     )
 };
 
-export function HorizontalScrollingCard({src}) {
+export const Showcase = forwardRef(function Showcase({children}, ref) {
+    return (
+        <div className={styles['cardShowcase']} ref={ref}>
+            {children}
+        </div>
+    )
+})
+
+
+export const HScrollCard = forwardRef(function HScrollCard({src}, ref) {
     const cardRef = useRef(null);
+
+    useImperativeHandle(ref, () => cardRef.current, []);
+    
     useEffect(() => {
         const loco = window.locoScroll;
         if(!loco || !cardRef.current) {
@@ -85,7 +94,7 @@ export function HorizontalScrollingCard({src}) {
         }
 
         const perspective = () => {
-            console.log("開始計算卡片透視");
+            // console.log("開始計算卡片透視");
 
             const offset = getCardOffset(cardRef.current);
 
@@ -118,86 +127,72 @@ export function HorizontalScrollingCard({src}) {
             <div className={styles['card__content']}></div>
         </div>
     )
-}
+})
 
 // useCardIndexTracker:
 // 1. 傳入卡片列表
 // 2. 回傳最近卡片索引
 export function useCardIndexTracker(cardRefs) {
-    const offsets = cardRefs.current.map((card, i) => {
-        return () => getCardOffset(card);
-    })
-
-
-    let nearestIndex;
-    let nearestOffset;
-
-    offsets.forEach((getOffset, i) => {
-        const offset = getOffset();
-        if(offset < nearestOffset) {
-            nearestOffset = offset;
-            nearestIndex = i;
+    const [nearestIndex, setNearestIndex] = useState(0);
+    useEffect(() => {
+        const loco = window.locoScroll;
+        if(!loco) {
+            console.log("cardIndexTracker can't find loco");
+            return;
         }
-    })
+
+        // main function
+        const getNearestCardIndex = () => {
+            const offsets = cardRefs.current.map((card, i) => Math.abs(getCardOffset(card)));
+
+            let nearestIndex;
+            let nearestOffset = 10000;
+            offsets.forEach((offset, i) => {
+                if(offset < nearestOffset) {
+                    nearestOffset = offset;
+                    nearestIndex = i;
+                }
+            })
+
+            setNearestIndex(nearestIndex);
+        }
+
+        loco.on('scroll', getNearestCardIndex);
+        return () => {
+            loco.off('scroll', getNearestCardIndex);
+        }
+    }, [])
 
     return nearestIndex;
 }
+
 // CardIndexHinter:
 // 需要兩個參數，點點的數量和目標索引
 // 回傳給定數量的點點DOM元素，並且標記目標索引點點
-function CardIndexHinter({cardAmount, targetIndex}) {
-    
+export function CardIndexHinter({cardRefs}) {
+    // const [cardAmount, setCardAmount] = useState(null);
+    // const [targetIndex, setTargetIndex] = useState(null);
+
+    // setCardAmount(cardRefs.current.length);
+    // setTargetIndex(useCardIndexTracker(cardRefs));
+
+    const cardAmount = cardRefs.current.length;
+    const targetIndex = useCardIndexTracker(cardRefs);
+
     return (
-        <>
+        <div className={styles.dots}>
             {Array.from({length: cardAmount}).map((_, i) => {
                 return (
                     <div
-                        className={classNames('dot', i === targetIndex ? 'active' : '')}
+                        className={classNames(styles.dot, styles[i === targetIndex ? 'active' : ''])}
                     >
                     </div>
                 )
             })}
-        </>
+        </div>
 
     )
 }
-
-// 如何使用：目的｜使用CardIndexHinter
-// 1. cardRefs變數：需要傳入cardRefs
-// 2. cards變數：cardRefs哪裡來？創建卡片時分配組件給 cardRefs
-// 3. cardIndexHinter：創建CardIndexHinter
-
-
-const cardRefs = useRef([]);
-
-
-// 創建卡片列表，之後看是要用children傳入還是要直接寫在hinter裡面
-const cards = imgSrcs.map((_, i) => (
-    <HorizontalScrollingCard
-        ref = {(el) => {
-            cardRefs.current[i] = el;
-        }}
-        key={i}
-    />
-))
-
-const targetIndex = useCardIndexTracker(cardRefs);
-const cardIndexHinter = (
-    <CardIndexHinter
-        cardAmount={cardRefs.current.length}
-        targetIndex={targetIndex}
-    >
-    </CardIndexHinter>
-)
-
-const imgSrcs = [
-    "https://res.cloudinary.com/dtoefi3cs/image/upload/v1742031089/%E6%89%8B_%E4%B8%89%E9%83%A8%E6%9B%B2_abvx63.png",
-    "https://res.cloudinary.com/dtoefi3cs/image/upload/v1742032926/Logo_Mockup_aagbng.png",
-    "https://res.cloudinary.com/dtoefi3cs/image/upload/v1742032515/Free_Book_Mockup_8_jy7wbm.png",
-];
-
-
-
 
 function getCardOffset(card) {
     const cardRect = card.getBoundingClientRect();
