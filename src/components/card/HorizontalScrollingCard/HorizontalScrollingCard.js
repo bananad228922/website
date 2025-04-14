@@ -1,4 +1,4 @@
-import { i, style } from 'framer-motion/client';
+import { i, style, text } from 'framer-motion/client';
 import styles from './HorizontalSrollingCard.module.css';
 import classNames from 'classnames';
 import gsap from 'gsap';
@@ -26,9 +26,15 @@ export function HScrollContainer({children, transformElRef}) {
         // 💡 設定 scrollerProxy
         ScrollTrigger.scrollerProxy(scrollEl, {
           scrollTop(value) {
-            return arguments.length
-              ? locoScroll.scrollTo(value, 0, 0)
-              : locoScroll.scroll.instance.scroll.y;
+            if(arguments.length) {
+                locoScroll.scrollTo(value, 0, 0);
+                // locoScroll.scroll.instance.scroll.y = value;
+                // locoScroll.scroll.instance.delta.y  = value;
+                // locoScroll.update();
+                // return value;
+            } else {
+                return locoScroll.scroll.instance.scroll.y;
+            }
           },
           getBoundingClientRect() {
             return {
@@ -55,6 +61,9 @@ export function HScrollContainer({children, transformElRef}) {
                     end: () => `+=${scrollDistance}`,
                     scrub: true, 
                     pin: true,
+                    // snap: {
+                    //     snapTo: 1 / 5,
+                    // },
                     scroller: scrollEl,
                 }
             })
@@ -129,15 +138,18 @@ export const HScrollCard = forwardRef(function HScrollCard({src}, ref) {
     )
 })
 
-// useCardIndexTracker:
-// 1. 傳入卡片列表
-// 2. 回傳最近卡片索引
+/**
+ * useCardIndexTracker:
+ * 1. 傳入卡片列表
+ * 2. 回傳最近卡片索引
+*/
 export function useCardIndexTracker(cardRefs) {
     const [nearestIndex, setNearestIndex] = useState(0);
+    
     useEffect(() => {
         const loco = window.locoScroll;
-        if(!loco) {
-            console.log("cardIndexTracker can't find loco");
+        if(!loco || !cardRefs) {
+            console.log("cardIndexTracker can't find loco or cardRefs");
             return;
         }
 
@@ -166,16 +178,11 @@ export function useCardIndexTracker(cardRefs) {
     return nearestIndex;
 }
 
-// CardIndexHinter:
-// 需要兩個參數，點點的數量和目標索引
-// 回傳給定數量的點點DOM元素，並且標記目標索引點點
+/**
+ * 1. 需要兩個參數，點點的數量和目標索引
+ * 2. 回傳給定數量的點點DOM元素，並且標記目標索引點點
+*/
 export function CardIndexHinter({cardRefs}) {
-    // const [cardAmount, setCardAmount] = useState(null);
-    // const [targetIndex, setTargetIndex] = useState(null);
-
-    // setCardAmount(cardRefs.current.length);
-    // setTargetIndex(useCardIndexTracker(cardRefs));
-
     const cardAmount = cardRefs.current.length;
     const targetIndex = useCardIndexTracker(cardRefs);
 
@@ -194,6 +201,20 @@ export function CardIndexHinter({cardRefs}) {
     )
 }
 
+
+export function CardInfoHinter({cardInfos, cardRefs}) {
+    const targetIndex = useCardIndexTracker(cardRefs);
+
+    return (
+        <div className={styles.cardInfoWrapper}>
+            <p className='paragraph-m white--secondary'>{cardInfos[targetIndex]}</p>
+        </div>
+    )
+}
+
+
+
+// utils
 function getCardOffset(card) {
     const cardRect = card.getBoundingClientRect();
 
@@ -204,64 +225,4 @@ function getCardOffset(card) {
     const offset = (viewportCenter - cardRectCenter) / viewportCenter;
 
     return offset;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-export function HorizontalSrollingSnappingManager({children}) {
-    useEffect(() => {
-        const loco = window.locoScroll;
-        if(!loco) return;
-
-        const findNearCard = () => {
-
-        }
-
-        loco.on('scroll', () => {
-            clearTimeout(timeoutId);
-            const timeoutId = setTimeout(() => {
-                // 1. 計算出snapto的位置
-                // 2. scrollto
-                const target = findNearCard();
-                loco.scrollTo(target, {
-                    duration: 1000,
-                })
-            }, 150)
-        })
-    }, [])
-
-    return (
-        <>
-            {children}
-        </>
-    )
 }

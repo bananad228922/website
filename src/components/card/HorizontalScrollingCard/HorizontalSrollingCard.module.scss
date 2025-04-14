@@ -95,3 +95,12 @@ body {
     background-color: white;
     transform: scale(1.4);
 }
+
+
+.cardInfoWrapper {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 100;
+}
