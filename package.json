@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@studio-freight/lenis": "^1.0.42",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
@@ -10,6 +11,7 @@
     "classnames": "^2.5.1",
     "framer-motion": "^12.5.0",
     "gsap": "^3.12.7",
+    "lenis": "^1.2.3",
     "locomotive-scroll": "^4.1.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

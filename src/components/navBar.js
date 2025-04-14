@@ -3,95 +3,76 @@ import MenuIcon from './icon-menu.js';
 import { Link } from "react-router-dom";
 import {useState, useEffect, useRef} from "react";
 import { time } from 'framer-motion/client';
+import ScrollTrigger from 'gsap/ScrollTrigger'
 
 
 function Navigation() {
-    const nav = useRef(null)
-
+    const navRef = useRef(null)
 
     useEffect(() => {
-        if (nav.current === null) return;
+        const lenis = window.lenis;
+        const nav = navRef.current;
 
-        const timeoutId = setTimeout(() => {
-            const locoScroll = window.locoScroll; // 假設 Locomotive Scroll 已經初始化
-            if (!locoScroll) {
-                console.log("nav 沒有找到 locoScroll");
-                return
-            };
+        if (!nav || !lenis) {
+            console.warn("Navigation 無法初始化")
+            return;
+        }
+
+        // collapse navbar
+        let prevScrollPos = 0;
+        const SCROLL_HIDE_THRESHOLD = 1; // 👈 你想要的最小滑動距離
         
+        const handleScroll = (lenis) => {
 
-            // let prevScrollPos = 0;
-            // const handleScroll = ({scroll}) => {
-            //     // console.log(scroll.y);
-            //     const currentScrollPos = scroll.y;
-
-            //     if (currentScrollPos < 50 || currentScrollPos <= prevScrollPos) {
-            //         nav.current.classList.remove('navBar--hidden'); // 向上滾動，顯示
-            //     } else {
-            //         nav.current.classList.add('navBar--hidden'); // 向下滾動，隱藏
-            //     }
+            const currentScrollPos = lenis.scroll;
+            const scrollDiff = currentScrollPos - prevScrollPos;
         
-            //     prevScrollPos = currentScrollPos;
-            // }
-
-            let prevScrollPos = 0;
-            const SCROLL_HIDE_THRESHOLD = 1; // 👈 你想要的最小滑動距離
-            
-            const handleScroll = ({ scroll }) => {
-              const currentScrollPos = scroll.y;
-              const scrollDiff = currentScrollPos - prevScrollPos;
-            
-              // 向上滾 or 靜止 or 回到頂部，顯示 navbar
-              if (currentScrollPos < 50 || scrollDiff <= 0) {
-                nav.current.classList.remove('navBar--hidden');
-              } 
-              // 向下滾動而且滑超過一定距離，才隱藏
-              else if (scrollDiff > SCROLL_HIDE_THRESHOLD) {
-                nav.current.classList.add('navBar--hidden');
-              }
-            
-              prevScrollPos = currentScrollPos;
-            };
-
-
-            const handleCall = (value, way, obj) => {
-                // value = data-scroll-call 的值 (這裡是 "section-in")
-                // way = 'enter' | 'leave'
-                // obj.el = 觸發此事件的 DOM 元素
-                const el = obj.el;
-                const sectionColor = el.dataset.color;
-    
-                if (value === 'is-nav-darkmode') {
-                    if (way === 'enter') {
-                        console.log('✅ 進入區塊', el);
-                        if (sectionColor === 'dark') {
-                            nav.current.classList.add('navBar--darkMode');
-                        }
-                        if (sectionColor === 'light') {
-                            nav.current.classList.remove('navBar--darkMode');
-                        }
-                    }
-                    if (way === 'exit') {
-                        console.log('❌ 離開區塊', el);
-                    }
-                }                    
+            // 向上滾 or 靜止 or 回到頂部，顯示 navbar
+            if (currentScrollPos < 50 || scrollDiff <= 0) {
+                nav.classList.remove('navBar--hidden');
+            } 
+            // 向下滾動而且滑超過一定距離，才隱藏
+            else if (scrollDiff > SCROLL_HIDE_THRESHOLD) {
+                nav.classList.add('navBar--hidden');
             }
+        
+            prevScrollPos = currentScrollPos;
+        };
 
 
-            locoScroll.on("scroll", handleScroll);
-            locoScroll.on('call', handleCall);
+        lenis.on("scroll", handleScroll);
 
-            // 清除事件
-            return () => {
-                locoScroll.off("scroll", handleScroll);
-                locoScroll.off("call", handleCall);
-                clearTimeout(timeoutId);
+        // change color
+        const toggleDarkmode = (scrollTrigger) => {
+            const El = scrollTrigger.trigger;
+
+            console.log(El, El.dataset.color);
+            if(El.dataset.color === "dark") {
+                nav.classList.add("navBar--darkmode");
+            } else if (El.dataset.color === "light") {
+                nav.classList.remove("navBar--darkmode");
             }
-        }, 1000)
+        }
+
+        document.querySelectorAll("section").forEach((sec) => {
+            ScrollTrigger.create({
+                trigger: sec,
+                start: "top top",
+                end: "bottom top",
+                onEnter: toggleDarkmode,
+                onEnterBack: toggleDarkmode,
+            });
+        });
+
+
+        // 清除事件
+        return () => {
+            lenis.off("scroll", handleScroll);
+        }
     }, []);
-    
+
     return (
-        <nav className='navBar' ref={nav}>
+        <nav className='navBar' ref={navRef}>
             <div class="flex-row align-item-center">
                 <img class="navBar__logo" src="/Logo.svg" />
                 <p>飄忽不定工作室</p>

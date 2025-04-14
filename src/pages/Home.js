@@ -7,7 +7,6 @@ import '../styles/home.css'
 import FadeInSection from '../components/FadeInSection.js';
 import Tab_portfolio from '../components/tab/tab-portfolio.js';
 import ThreeScene from '../components/ThreeScene.js';
-import SmoothScroll from '../components/smoothScroll.js';
 import { useRef } from 'react';
 import MotionButtonTest from '../components/button/motionButtonTest.js';
 import ButtonWithIcon from '../components/button/buttonWithIcon.js';
@@ -29,17 +28,9 @@ export default function Home() {
     const cardRefs = useRef([]);
 
     return(
-        <SmoothScroll>
+        <>
             {/*------------------------------ Hero ------------------------------*/}
-            <section 
-                className="home--hero" 
-                data-scroll-section
-                data-scroll
-                data-scroll-call="is-nav-darkmode"
-                data-scroll-repeat="true"
-                data-scroll-offset="100%"
-                data-color="light"
-            >
+            <section className="home--hero" data-color="light">
                 <FadeInSection>
                     <div className="navBar-spacer"></div>
 
@@ -61,7 +52,7 @@ export default function Home() {
                             <img style={{position: "absolute", transform: "scale(0.5) translate(0, 230px)"}} src='/pointer-white.svg'/>
 
                             {/* 3d model */}
-                            <div data-scroll data-scroll-speed="-2" className='home--hero__three-scene'>
+                            <div className='home--hero__three-scene'>
                                 <ThreeScene />
                             </div>
                         </div>
@@ -72,7 +63,7 @@ export default function Home() {
 
 
             {/*------------------------------ Video ------------------------------*/}
-            <section class="home--video" data-scroll-section>
+            <section class="home--video">
                 <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
                     <iframe
                         src="https://player.vimeo.com/video/1066106873?badge=0&autopause=0&player_id=0&app_id=58479"
@@ -93,30 +84,14 @@ export default function Home() {
 
 
             {/*------------------------------ About ------------------------------*/}
-            <div 
-                className='home--video__spacer' 
-                data-scroll-section
-                data-scroll
-                data-scroll-call="is-nav-darkmode"
-                data-scroll-repeat="true"
-                data-scroll-offset="100%"
-                data-color="dark"
-            >
-
-            </div>
+            <section className='home--video__spacer' data-color='dark'></section>
 
             <section 
                 class="home home--about"
                 id="about" 
-                data-scroll-section
-                data-scroll
-                data-scroll-call="is-nav-darkmode"
-                data-scroll-repeat="true"
-                data-scroll-offset="100%"
-                data-color="dark"
             >
                 <div class="verticalText-container">
-                    <h1 class="vertical-text vertical-text--white" data-scroll data-scroll-speed="-4">About us</h1>
+                    <h1 class="vertical-text vertical-text--white">About us</h1>
                 </div>
 
 
@@ -168,13 +143,8 @@ export default function Home() {
 
             {/* ------------------------------ scroll banner ------------------------------ */}
 
-            <div 
+            <section 
                 className='home--scroll-banner p-b-xxl p-t-xxl' 
-                data-scroll-section
-                data-scroll
-                data-scroll-call="is-nav-darkmode"
-                data-scroll-repeat="true"
-                data-scroll-offset="100%"
                 data-color="dark"
             >
                 <ScrollBanner>
@@ -182,21 +152,16 @@ export default function Home() {
                         我們相信設計就是一切
                     </p>
                 </ScrollBanner>
-            </div>
+            </section>
 
 
             {/*------------------------------ Services ------------------------------*/}
             <section 
                 class="home home--services" 
-                data-scroll-section
-                data-scroll
-                data-scroll-call="is-nav-darkmode"
-                data-scroll-repeat="true"
-                data-scroll-offset="100%"
                 data-color="dark"
             >
                 <div class="verticalText-container">
-                    <h1 class="vertical-text vertical-text--white" data-scroll data-scroll-speed="-4">Services</h1>
+                    <h1 class="vertical-text vertical-text--white">Services</h1>
                 </div>
 
                 <div class="container">
@@ -276,15 +241,10 @@ export default function Home() {
             {/*------------------------------ Portfolio ------------------------------*/}
             <section 
                 class="home home--portfolio" id="portfolio" 
-                data-scroll-section
-                data-scroll
-                data-scroll-call="is-nav-darkmode"
-                data-scroll-repeat="true"
-                data-scroll-offset="100%"
                 data-color="dark"
             >
                 <div class="verticalText-container">
-                    <h1 class="vertical-text vertical-text--white" data-scroll data-scroll-speed="-4">Protfolio</h1>
+                    <h1 class="vertical-text vertical-text--white">Protfolio</h1>
                 </div>
 
                 <div class="container">
@@ -306,18 +266,36 @@ export default function Home() {
                 </div>
             </section>
 
+            <section
+                style={{
+                    height: 'fit-content',
+                    backgroundColor: '#232323',
+                }}
+            >
+                <HScrollContainer transformElRef={transformElRef}>
+                    <Showcase ref={transformElRef}>
+                        {imgSrcs.map((_, i) => (
+                            <HScrollCard
+                                ref={(el) => {
+                                    cardRefs.current[i] = el;
+                                }}
+                                src={imgSrcs[i]}
+                                key={i}
+                            />
+                        ))}
+                    </Showcase>
+                    <CardInfoHinter cardRefs={cardRefs} cardInfos={cardInfos} />
+                    <CardIndexHinter cardRefs={cardRefs} />
+                </HScrollContainer>
+            </section>
+
             {/*------------------------------ Contact ------------------------------*/}
             <section 
                 class="home home--contact" id="contact" 
-                data-scroll-section
-                data-scroll
-                data-scroll-call="is-nav-darkmode"
-                data-scroll-repeat="true"
-                data-scroll-offset="100%"
                 data-color="dark"
             >
                 <div class="verticalText-container">
-                    <h1 class="vertical-text vertical-text--white" data-scroll data-scroll-speed="-4">Contact</h1>
+                    <h1 class="vertical-text vertical-text--white">Contact</h1>
                 </div>
 
 
@@ -389,7 +367,7 @@ export default function Home() {
                 <div className='TOC__line'></div>
                 <div className='TOC__dot'></div>
             </div>
-        </SmoothScroll>
+        </>
 
 
     );

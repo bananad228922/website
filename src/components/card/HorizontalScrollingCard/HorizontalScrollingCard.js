@@ -13,43 +13,8 @@ export function HScrollContainer({children, transformElRef}) {
     const containerRef = useRef(null);
 
     useEffect(() => {
-        // 綁定 Loco
-        const locoScroll = window.locoScroll;
-        const scrollEl = document.querySelector('[data-scroll-container]');
-        const container = containerRef.current;
-    
-        if (!locoScroll || !scrollEl || !container) {
-          console.warn("⚠️ locoScroll 尚未準備好或找不到元素");
-          return;
-        }
-    
-        // 💡 設定 scrollerProxy
-        ScrollTrigger.scrollerProxy(scrollEl, {
-          scrollTop(value) {
-            if(arguments.length) {
-                locoScroll.scrollTo(value, 0, 0);
-                // locoScroll.scroll.instance.scroll.y = value;
-                // locoScroll.scroll.instance.delta.y  = value;
-                // locoScroll.update();
-                // return value;
-            } else {
-                return locoScroll.scroll.instance.scroll.y;
-            }
-          },
-          getBoundingClientRect() {
-            return {
-              top: 0,
-              left: 0,
-              width: window.innerWidth,
-              height: window.innerHeight,
-            };
-          },
-          pinType: scrollEl.style.transform ? "transform" : "fixed",
-        });
-    
-        locoScroll.on("scroll", ScrollTrigger.update);
-
         // GSAP 邏輯
+        const container = containerRef.current;
         const scrollDistance = container.scrollWidth - window.innerWidth;
 
         const ctx = gsap.context(() => {
@@ -61,10 +26,9 @@ export function HScrollContainer({children, transformElRef}) {
                     end: () => `+=${scrollDistance}`,
                     scrub: true, 
                     pin: true,
-                    // snap: {
-                    //     snapTo: 1 / 5,
-                    // },
-                    scroller: scrollEl,
+                    snap: {
+                        snapTo: 1 / 9,
+                    },
                 }
             })
         })
@@ -72,14 +36,14 @@ export function HScrollContainer({children, transformElRef}) {
         return () => ctx.revert();
     }, [])
 
-
-
     return (
         <div className={styles['container']} ref={containerRef}>
             {children}
         </div>
     )
 };
+
+
 
 export const Showcase = forwardRef(function Showcase({children}, ref) {
     return (
@@ -89,15 +53,14 @@ export const Showcase = forwardRef(function Showcase({children}, ref) {
     )
 })
 
-
 export const HScrollCard = forwardRef(function HScrollCard({src}, ref) {
     const cardRef = useRef(null);
 
     useImperativeHandle(ref, () => cardRef.current, []);
     
     useEffect(() => {
-        const loco = window.locoScroll;
-        if(!loco || !cardRef.current) {
+        const lenis = window.lenis;
+        if(!lenis || !cardRef.current) {
             console.warn("無法綁定卡片透視");
             return;
         }
@@ -124,9 +87,9 @@ export const HScrollCard = forwardRef(function HScrollCard({src}, ref) {
             `;
         };
 
-        loco.on('scroll', perspective);
+        lenis.on('scroll', perspective);
 
-        return () => loco.off('scroll', perspective);
+        return () => lenis.off('scroll', perspective);
     }, [])
 
     return(
@@ -147,8 +110,8 @@ export function useCardIndexTracker(cardRefs) {
     const [nearestIndex, setNearestIndex] = useState(0);
     
     useEffect(() => {
-        const loco = window.locoScroll;
-        if(!loco || !cardRefs) {
+        const lenis = window.lenis;
+        if(!lenis || !cardRefs) {
             console.log("cardIndexTracker can't find loco or cardRefs");
             return;
         }
@@ -169,9 +132,9 @@ export function useCardIndexTracker(cardRefs) {
             setNearestIndex(nearestIndex);
         }
 
-        loco.on('scroll', getNearestCardIndex);
+        lenis.on('scroll', getNearestCardIndex);
         return () => {
-            loco.off('scroll', getNearestCardIndex);
+            lenis.off('scroll', getNearestCardIndex);
         }
     }, [])
 

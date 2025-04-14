@@ -48,7 +48,7 @@ function ComponentKit() {
                         </div>
                     </div>
 
-                    <div className="m-t-m m-l-l m-b-l" data-scroll>
+                    <div className="m-t-m m-l-l m-b-l" >
                         <MotionButtonTest>label</MotionButtonTest>
                     </div>
 
