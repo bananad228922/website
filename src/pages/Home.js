@@ -15,6 +15,7 @@ import IconButton from '../components/button/IconButton.js';
 import CardCollapseBase from '../components/card/CardCollapseBase.js';
 import ScrollBanner from '../components/text-animation/ScrollBanner.js';
 import Footer from '../components/Footer.js';
+import { CardIndexHinter, CardInfoHinter, HScrollCard, HScrollContainer, Showcase } from '../components/card/HorizontalScrollingCard/HorizontalScrollingCard.js';
 
 
 const aboutPara_1 = "創意不只是美學，而是解決問題的獨特方式，例如打造沉浸式的個人作品集網站，透過微互動、動畫、動態履歷讓訪客留下深刻印象，或開發一個 AI 生成 UI 設計工具，讓設計流程更自動化且高效。"
@@ -23,7 +24,9 @@ const aboutPara_3 = "與其做十個普通的設計，不如專注於一個高�
 
 
 
-function Home() {
+export default function Home() {
+    const transformElRef = useRef(null);
+    const cardRefs = useRef([]);
 
     return(
         <SmoothScroll>
@@ -64,7 +67,6 @@ function Home() {
                         </div>
                     </div>
                 </FadeInSection>
-
             </section>
 
 
@@ -272,7 +274,6 @@ function Home() {
 
 
             {/*------------------------------ Portfolio ------------------------------*/}
-
             <section 
                 class="home home--portfolio" id="portfolio" 
                 data-scroll-section
@@ -394,4 +395,29 @@ function Home() {
     );
 }
 
-export default Home;
+
+
+const imgSrcs = [
+    "https://res.cloudinary.com/dtoefi3cs/image/upload/v1742031089/%E6%89%8B_%E4%B8%89%E9%83%A8%E6%9B%B2_abvx63.png",
+    "https://res.cloudinary.com/dtoefi3cs/image/upload/v1742032926/Logo_Mockup_aagbng.png",
+    "https://res.cloudinary.com/dtoefi3cs/image/upload/v1742032515/Free_Book_Mockup_8_jy7wbm.png",
+    "https://res.cloudinary.com/dtoefi3cs/image/upload/v1742031089/%E6%89%8B_%E4%B8%89%E9%83%A8%E6%9B%B2_abvx63.png",
+    "https://res.cloudinary.com/dtoefi3cs/image/upload/v1742032926/Logo_Mockup_aagbng.png",
+    "https://res.cloudinary.com/dtoefi3cs/image/upload/v1742032515/Free_Book_Mockup_8_jy7wbm.png",
+    "https://res.cloudinary.com/dtoefi3cs/image/upload/v1742031089/%E6%89%8B_%E4%B8%89%E9%83%A8%E6%9B%B2_abvx63.png",
+    "https://res.cloudinary.com/dtoefi3cs/image/upload/v1742032926/Logo_Mockup_aagbng.png",
+    "https://res.cloudinary.com/dtoefi3cs/image/upload/v1742032515/Free_Book_Mockup_8_jy7wbm.png",
+];
+
+
+const cardInfos = [
+    'Hand Calender',
+    'Erratic Studio',
+    'Wiredcore',
+    'Hand Calender',
+    'Erratic Studio',
+    'Wiredcore',
+    'Hand Calender',
+    'Erratic Studio',
+    'Wiredcore',
+]
