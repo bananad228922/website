@@ -1,0 +1,26 @@
+.loadingBar {
+  height: 2px;
+  background-color: white;
+  transition: width 0.1 ease-in-out;
+}
+
+.loadingBarWrapper {
+  width: 30vw;
+}
+
+.BG {
+  background-color: #232323;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2rem;
+}/*# sourceMappingURL=LoadingPage.module.css.map */

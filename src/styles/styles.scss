@@ -78,7 +78,7 @@ ol, ul {
     background-color: black;
 }
 
-.hidden {
+.visibility-hidden {
     visibility: hidden;
 }
 
@@ -982,4 +982,24 @@ ol, ul {
     &__header {
         font-size: 50pt;
     }
+}
+
+
+.loading-page {
+    transition: transform 0.5s ease-in-out;
+    position: absolute;
+    transform: translateY(0);
+}
+
+.loading-page.hidden {
+    transform: translateY(-100vh);
+}
+
+.loading-main {
+    transform: translateY(100vh);
+    transition: transform 0.5s ease-in-out;
+}
+
+.loading-main.active {
+    transform: translateY(0)
 }
