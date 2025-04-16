@@ -1,0 +1,56 @@
+.TOC {
+  position: fixed;
+  right: 2vw;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.item {
+  flex: 1;
+}
+
+.dot {
+  height: 5px;
+  width: 5px;
+  background-color: rgb(200, 200, 200);
+  border-radius: 999px;
+  z-index: 100;
+  position: relative;
+  transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.dot.active {
+  background-color: white;
+  transform: scale(1.2);
+}
+
+.line-default {
+  width: 1px;
+  height: 100%;
+  background-color: rgb(128, 128, 128);
+}
+
+.line-progress {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  background-color: rgb(200, 200, 200);
+}
+
+.lines-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}/*# sourceMappingURL=TOC.module.css.map */

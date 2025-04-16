@@ -15,6 +15,7 @@ import CardCollapseBase from '../components/card/CardCollapseBase.js';
 import ScrollBanner from '../components/text-animation/ScrollBanner.js';
 import Footer from '../components/Footer.js';
 import { CardIndexHinter, CardInfoHinter, HScrollCard, HScrollContainer, Showcase } from '../components/card/HorizontalScrollingCard/HorizontalScrollingCard.js';
+import TOC from '../components/TOC/TOC.js';
 
 
 const aboutPara_1 = "創意不只是美學，而是解決問題的獨特方式，例如打造沉浸式的個人作品集網站，透過微互動、動畫、動態履歷讓訪客留下深刻印象，或開發一個 AI 生成 UI 設計工具，讓設計流程更自動化且高效。"
@@ -30,7 +31,7 @@ export default function Home() {
     return(
         <>
             {/*------------------------------ Hero ------------------------------*/}
-            <section className="home--hero" data-color="light">
+            <section className="home--hero" data-color="light" data-TOC-node>
                 <FadeInSection>
                     <div className="navBar-spacer"></div>
 
@@ -86,10 +87,7 @@ export default function Home() {
             {/*------------------------------ About ------------------------------*/}
             <section className='home--video__spacer' data-color='dark'></section>
 
-            <section 
-                class="home home--about"
-                id="about" 
-            >
+            <section class="home home--about" id="about" data-TOC-node>
                 <div class="verticalText-container">
                     <h1 class="vertical-text vertical-text--white">About us</h1>
                 </div>
@@ -115,7 +113,7 @@ export default function Home() {
                                     <p className='paragraph-l white--secondary'>{aboutPara_1}</p>
                                     <img className="image-s" src='real-image.jpg'/>
                                 </div>
-                            </CardCollapseBase>                            
+                            </CardCollapseBase>
                         </FadeInSection>
 
                         <FadeInSection>
@@ -156,10 +154,7 @@ export default function Home() {
 
 
             {/*------------------------------ Services ------------------------------*/}
-            <section 
-                class="home home--services" 
-                data-color="dark"
-            >
+            <section class="home home--services" data-color="dark" data-TOC-node>
                 <div class="verticalText-container">
                     <h1 class="vertical-text vertical-text--white">Services</h1>
                 </div>
@@ -239,10 +234,7 @@ export default function Home() {
 
 
             {/*------------------------------ Portfolio ------------------------------*/}
-            <section 
-                class="home home--portfolio" id="portfolio" 
-                data-color="dark"
-            >
+            <section class="home home--portfolio" id="portfolio" data-color="dark" data-TOC-node>
                 <div class="verticalText-container">
                     <h1 class="vertical-text vertical-text--white">Protfolio</h1>
                 </div>
@@ -266,12 +258,7 @@ export default function Home() {
                 </div>
             </section>
 
-            <section
-                style={{
-                    height: 'fit-content',
-                    backgroundColor: '#232323',
-                }}
-            >
+            <section style={{height: 'fit-content',backgroundColor: '#232323',}} data-TOC-node>
                 <HScrollContainer transformElRef={transformElRef}>
                     <Showcase ref={transformElRef}>
                         {imgSrcs.map((_, i) => (
@@ -290,10 +277,7 @@ export default function Home() {
             </section>
 
             {/*------------------------------ Contact ------------------------------*/}
-            <section 
-                class="home home--contact" id="contact" 
-                data-color="dark"
-            >
+            <section class="home home--contact" id="contact" data-color="dark" data-TOC-node>
                 <div class="verticalText-container">
                     <h1 class="vertical-text vertical-text--white">Contact</h1>
                 </div>
@@ -358,15 +342,7 @@ export default function Home() {
 
             <Footer />
 
-            <div className='TOC'>
-                <div className='TOC__dot'></div>
-                <div className='TOC__line'></div>
-                <div className='TOC__dot'></div>
-                <div className='TOC__line'></div>
-                <div className='TOC__dot'></div>
-                <div className='TOC__line'></div>
-                <div className='TOC__dot'></div>
-            </div>
+            <TOC sectionAmount={3} />
         </>
 
 
