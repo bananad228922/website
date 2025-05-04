@@ -1,0 +1,166 @@
+@import "../../styles/variables.scss";
+
+.navbar {
+    width: 100%;
+    height: 50px;
+
+    position: fixed;
+    z-index: 10;
+    backdrop-filter: blur(30px);
+
+    // Appearance
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    border-bottom-style: dashed;
+    border-width: 1px;
+
+    // layout
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    // motion
+    transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+
+
+    &.darkmode {
+        color: white;
+    }
+
+    &.hidden {
+        transform: translateY(-100%); /* 隱藏nav */
+    }
+
+    &:has(.trigger:checked) {
+        .sidebar_overlap {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    
+        .sidebar {
+            clip-path: inset(0 0 0 0);
+        }
+    }
+}
+
+.logo {
+    height: 30px;
+    width: 30px;
+
+    margin-left: $spacing-m;
+    margin-right: $spacing-xs;
+}
+
+.logo-text {
+
+}
+
+.menuBtnLine {
+    height: 5px;
+    width: 20px;
+    background-color: black;
+
+    transition: background-color 0.2s ease-in-out;
+}
+
+.menuBtnLine.darkmode {
+    background-color: white;
+}
+
+.menuBtn {
+    display: flex;
+    flex-direction: column;
+    grid-row-gap: 2px;
+
+    position: absolute;
+
+    top: 10px;
+    right: 10px;
+}
+
+
+
+.links {
+    display: flex;
+    flex-direction: row;
+    grid-column-gap: 1rem;
+    margin-right: $spacing-m;
+}
+
+.trigger {
+    display: none;
+}
+
+.sidebar {
+    background-color: $color-yellow;
+    width: 40vw;
+    height: 100vh;
+
+
+    // layout
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    // text
+    color: black;
+    font-size: 24pt;
+
+    // motion
+    clip-path: inset(0 0 0 100%);
+    transition: clip-path 0.2s ease-in-out;
+
+    &_list {
+        display: flex;
+        flex-direction: column;
+        grid-row-gap: $spacing-s;
+        padding-left: 40px;
+
+        & li a p:nth-child(1) {
+            font-size: 24pt;
+        }
+
+        & li a p:nth-child(2) {
+            font-size: 12pt;
+        }
+    }
+
+    &_header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+
+        margin-top: $spacing-s;
+    }
+
+    &_listWrap {
+        width: 100%;
+    }
+
+    &_footer {
+        height: 40vh;
+
+    }
+
+    &_overlap {
+        height: 100vh;
+        width: 100vw;
+        position: absolute;
+        background: rgba(0, 0, 0, 0.3);
+        
+        top: 0;
+        left: 0;
+
+        // motion
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+        pointer-events: none;
+    }
+}

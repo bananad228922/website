@@ -1,0 +1,86 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+}
+
+.container {
+  grid-row-gap: 1rem;
+  width: 100%;
+  align-items: start;
+  overflow: hidden;
+  max-height: 80px;
+  transition: max-height 0.5s ease-in-out;
+}
+.container:has(.trigger:checked) {
+  max-height: 999px;
+}
+
+.header {
+  color: black;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 4rem;
+  transition: transform 0.3s cubic-bezier(0, 0, 0.5, 1);
+}
+.header:hover {
+  transform: translateX(10px);
+}
+
+.headingDarkmode {
+  color: white;
+}
+
+.content {
+  margin-left: 5.5rem;
+  margin-bottom: 2rem;
+  color: #121212;
+}
+
+.contentDarkmode {
+  color: rgb(200, 200, 200);
+}
+
+.iconAdd {
+  height: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  transform: rotate(0deg);
+  transition: opacity 0.1s ease-in-out, transform 0.2s cubic-bezier(0, 0, 0.5, 1);
+}
+
+.iconSub {
+  height: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: rotate(0deg);
+  transition: opacity 0.1s ease-in-out, transform 0.2s cubic-bezier(0, 0, 0.5, 1);
+}
+
+.trigger {
+  display: none;
+}
+.trigger:checked ~ .header .iconAdd {
+  opacity: 0;
+  transform: rotate(180deg);
+}
+.trigger:checked ~ .header .iconSub {
+  opacity: 1;
+  transform: rotate(180deg);
+}
+
+.iconWrapper {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
+}/*# sourceMappingURL=cardCollapseBase.module.css.map */

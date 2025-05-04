@@ -1,0 +1,95 @@
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.Small {
+  padding: 0 15px;
+  height: 32px;
+  font-size: 10pt;
+}
+
+.Medium {
+  padding: 0 30px;
+  height: 40px;
+  font-size: 12pt;
+}
+
+.Large {
+  padding: 0 50px;
+  height: 60px;
+  font-size: 16pt;
+}
+
+.tabs {
+  width: 100%;
+}
+
+.labels {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+
+.label {
+  height: 50px;
+  border-radius: 999px;
+  font-weight: 600;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+}
+
+.NoStyle {
+  text-decoration: underline;
+  border-style: none;
+}
+
+.primary {
+  background-color: #65E898;
+  border-style: none;
+  transition: background-color 0.2s ease-in-out;
+  color: #232323;
+}
+.primary:hover {
+  background-color: #54cf83;
+}
+
+.secondary {
+  background-color: black;
+  border-style: none;
+  transition: background-color 0.2s ease-in-out;
+  color: white;
+}
+.secondary:hover {
+  background-color: #0A0A0A;
+}
+
+.outlinePrimary {
+  border: 2px solid;
+  border-color: #65E898;
+  color: #65E898;
+  transition: border-color 0.2s ease-in-out;
+}
+.outlinePrimary:hover {
+  border-color: #54cf83;
+}
+
+.outlineSecondary {
+  border: 2px solid;
+  border-color: #232323;
+  color: #232323;
+  transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+.outlineSecondary:hover {
+  background-color: #232323;
+  color: white;
+}
+
+.content {
+  width: 100%;
+  gap: 4rem;
+  font-size: 14px;
+}/*# sourceMappingURL=tab.module.css.map */

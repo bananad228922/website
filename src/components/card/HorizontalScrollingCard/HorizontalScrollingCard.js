@@ -1,10 +1,8 @@
-import { i, style, text } from 'framer-motion/client';
 import styles from './HorizontalSrollingCard.module.css';
 import classNames from 'classnames';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { forwardRef, useEffect, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react';
-import { array } from 'three/tsl';
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -155,6 +153,7 @@ export function CardIndexHinter({cardRefs}) {
                 return (
                     <div
                         className={classNames(styles.dot, styles[i === targetIndex ? 'active' : ''])}
+                        key={i}
                     >
                     </div>
                 )

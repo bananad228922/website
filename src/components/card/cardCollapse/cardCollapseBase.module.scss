@@ -1,0 +1,102 @@
+@import '../../../styles/variables.scss';
+
+.container {
+    @extend %flex-col;
+    grid-row-gap: $spacing-s;
+    width: 100%;
+    align-items: start;
+    overflow: hidden;
+    max-height: 80px;
+
+    transition: max-height 0.5s ease-in-out;
+
+    &:has(.trigger:checked) {
+        max-height: 999px;
+    }
+}
+
+// header
+.header {
+    // appearance
+    color: black;
+
+    // layout
+    @extend %flex-row;
+    align-items: center;
+    gap: $spacing-m;
+
+    // spacing
+    margin-bottom: $spacing-l;
+    
+
+    // motion
+    transition: transform 0.3s cubic-bezier(0, 0, 0.5, 1);
+
+
+    &:hover {
+        transform: translateX(10px)
+    }
+}
+
+// heading
+.headingDarkmode {
+    color: white;
+}
+
+
+// content
+.content {
+    margin-left: 5.5rem;
+    margin-bottom: $spacing-m;
+    color: $color-black;
+}
+
+.contentDarkmode {
+    color: $color-white--secondary;
+}
+
+
+// icon
+.iconAdd {
+    height: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    transform: rotate(0deg);
+    transition: opacity 0.1s ease-in-out, transform 0.2s cubic-bezier(0, 0, 0.5, 1);
+}
+
+.iconSub {
+    height: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transform: rotate(0deg);
+    transition: opacity 0.1s ease-in-out, transform 0.2s cubic-bezier(0, 0, 0.5, 1);
+}
+
+.trigger {
+    display: none;
+
+    &:checked ~ .header .iconAdd {
+        opacity: 0;
+
+        transform: rotate(180deg);
+    }
+
+    &:checked ~ .header .iconSub {
+        opacity: 1;
+
+        transform: rotate(180deg);
+    }
+}
+
+.iconWrapper {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 50px;
+}

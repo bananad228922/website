@@ -1,0 +1,113 @@
+@import '../../styles/variables.scss';
+
+.Small {
+    padding: 0 15px;
+    height: 32px;
+
+    font-size: 10pt;
+}
+
+.Medium {
+    padding: 0 30px;
+    height: 40px;
+
+    font-size: 12pt;
+}
+
+.Large {
+    padding: 0 50px;
+    height: 60px;
+
+    font-size: 16pt;
+}
+
+
+.tabs {
+    width: 100%;
+}
+
+// tabs labels
+.labels {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: $spacing-s;
+
+    margin-bottom: $spacing-l;
+}
+
+.label {
+    // appearance
+    height: 50px;
+    border-radius: 999px;
+    font-weight: 600;
+    // spacing
+    padding: 0 20px;
+    // layout
+    display: flex;
+    align-items: center;
+}
+
+.NoStyle {
+    text-decoration: underline;
+    border-style: none;
+}
+
+.primary {
+    background-color: $color-green;
+    border-style: none;
+    transition: background-color 0.2s ease-in-out;
+    color: $color-black;
+
+    &:hover {
+        background-color: $color-green-hover;
+    }
+}
+
+.secondary {
+    background-color: black;
+    border-style: none;
+    transition: background-color 0.2s ease-in-out;
+    color: white;
+
+    &:hover {
+        background-color: $color-black-hover;
+    }
+}
+
+.outlinePrimary {
+    border: 2px solid;
+    border-color: $color-green;
+    color: $color-green;
+
+    transition: border-color 0.2s ease-in-out;
+
+    &:hover {
+        border-color: $color-green-hover;
+    }
+}
+
+.outlineSecondary {
+    border: 2px solid;
+    border-color: $color-black;
+    color: $color-black;
+
+    transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+
+    &:hover {
+        background-color: $color-black;
+        color: white;
+    }
+}
+
+
+
+
+// tabs content
+.content {
+    width: 100%;
+
+    @extend %flex-col;
+    gap: $spacing-l;
+    font-size: 14px;
+}

@@ -2,13 +2,13 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 // import global component
-import Navigation from './components/navBar.js';
-import Footer from './components/Footer.js';
+import Navbar from './components/navbar/navbar.js';
+import Footer from './components/footer/Footer.js';
 
 // import pages
-import Home from './pages/Home.js';
+import Home from './pages/home/home.js';
 import Portfolio from './pages/Portfolio.js';
-import ComponentKit from './pages/componentKit.js';
+import ComponentKit from './pages/kit/kit.js';
 
 import Portfolio_handCalender from "./pages/portfolio/portfolio_handCalender.js";
 import Portfolio_weirdcore from "./pages/portfolio/portfolio_weirdcore.js";
@@ -27,6 +27,12 @@ import { useEffect, useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import Lenis from "lenis";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
+import { UiDesign } from "./components/3d/uiDesign.js";
+import { Icon3d, TestIcon3d } from "./components/3d/icon3d.js";
+import ScrollBanner, { TestScrollBanner } from "./components/text-animation/ScrollBanner.js";
+import { EntryLetters, TestFadein } from "./components/entryExitEffect.js";
+import { TestBackground3d } from "./components/3d/background3d.js";
+import { TestPortfolio3d } from "./components/3d/portfolio3d.js";
 
 gsap.registerPlugin(ScrollTrigger);
 function App() {
@@ -53,7 +59,7 @@ function App() {
 
   return (
         <Router>
-            <Navigation />
+            <Navbar />
 
             <ScrollToTop />
 
@@ -67,6 +73,12 @@ function App() {
                 <Route path='/portfolio_weirdcore' element={<Portfolio_weirdcore />} />
                 <Route path='/portfolio_erratic' element={<Portfolio_erratic />} />
                 <Route path='/testUse' element={<TestUse />} />
+                <Route path="/testUiDesign" element={<UiDesign />} />
+                <Route path="/test3dIcon" element={<testIcon3d />} />
+                <Route path="/testScrollBanner" element={<TestScrollBanner />} />
+                <Route path="/testFadein" element={<TestFadein />} />
+                <Route path="/test3dBackground" element={<TestBackground3d />} />
+                <Route path="/testPortfolio3d" element={<TestPortfolio3d />} />
             </Routes>
         </Router>
   );

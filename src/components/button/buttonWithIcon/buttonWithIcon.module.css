@@ -1,0 +1,114 @@
+.small {
+  height: 30px;
+  font-weight: 600;
+  font-size: 12pt;
+}
+
+.medium {
+  padding: 20px 0;
+  height: 40px;
+  font-weight: 600;
+  font-size: 14pt;
+}
+
+.large {
+  padding-left: 30px;
+  padding-right: 30px;
+  height: 50px;
+  font-weight: 600;
+  font-size: 16pt;
+}
+
+.buttonWithIcon {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.2s ease-in-out;
+}
+.buttonWithIcon:hover {
+  transform: scale(1.05);
+}
+.buttonWithIcon:hover .BG {
+  -webkit-clip-path: inset(0 0 0 100%);
+          clip-path: inset(0 0 0 100%);
+}
+.buttonWithIcon:hover .BG.outline {
+  -webkit-clip-path: inset(0 0 0 0);
+          clip-path: inset(0 0 0 0);
+}
+.buttonWithIcon:hover .label, .buttonWithIcon:hover .icon {
+  color: black;
+}
+.buttonWithIcon:hover .label.outline, .buttonWithIcon:hover .icon.outline {
+  color: white;
+}
+.buttonWithIcon:hover .wrapper svg:nth-child(1) {
+  transform: translateX(0);
+}
+.buttonWithIcon:hover .wrapper svg:nth-child(3) {
+  transform: translate(1000%);
+}
+.buttonWithIcon:hover .wrapper {
+  transform: translateX(10%);
+}
+
+.wrapper svg:nth-child(1) {
+  transform: translateX(-1000%);
+}
+
+.wrapper svg:nth-child(3) {
+  transform: translateX(0);
+}
+
+.icon {
+  color: white;
+  height: 20px;
+  width: 20px;
+  transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.icon.outline {
+  color: black;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transform: translateX(-10%);
+  transition: transform 0.2s ease-in-out;
+}
+
+.label {
+  color: white;
+  transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+  position: relative;
+}
+
+.label.outline {
+  color: black;
+}
+
+.BG {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  position: absolute;
+  background-color: black;
+  -webkit-clip-path: inset(0 0 0 0);
+          clip-path: inset(0 0 0 0);
+  transition: -webkit-clip-path 0.2s ease-in-out;
+  transition: clip-path 0.2s ease-in-out;
+  transition: clip-path 0.2s ease-in-out, -webkit-clip-path 0.2s ease-in-out;
+}
+
+.BG.outline {
+  -webkit-clip-path: inset(0 100% 0 0);
+          clip-path: inset(0 100% 0 0);
+}/*# sourceMappingURL=buttonWithIcon.module.css.map */

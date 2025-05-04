@@ -1,4 +1,4 @@
-import '../../styles/portfolio-item.css'
+import './portfolio-item.css'
 
 function Portfolio_handCalender() {
     return (

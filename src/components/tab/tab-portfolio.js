@@ -1,4 +1,4 @@
-import Tab from "./tab";
+import Tab from "./tab/tab";
 import Card_protfolio from "../card/Card-portfolio";
 
 const handCalender = <Card_protfolio 

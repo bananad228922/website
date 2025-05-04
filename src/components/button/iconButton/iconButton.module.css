@@ -1,0 +1,49 @@
+.small {
+  height: 30px;
+  width: 30px;
+}
+
+.medium {
+  width: 40px;
+  height: 40px;
+}
+
+.large {
+  width: 50px;
+  height: 50px;
+}
+
+.iconButton {
+  border: 1px solid;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+}
+.iconButton:hover {
+  transform: scale(1.1);
+}
+.iconButton svg:nth-child(1) {
+  transform: translate(-50%, -50%);
+}
+.iconButton svg:nth-child(2) {
+  transform: translate(-500%, -50%);
+}
+.iconButton:hover svg:nth-child(1) {
+  transform: translate(500%, -50%);
+}
+.iconButton:hover svg:nth-child(2) {
+  transform: translate(-50%, -50%);
+}
+
+.icon {
+  color: rgb(0, 0, 0);
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transition: transform 0.2s ease-in-out;
+}/*# sourceMappingURL=iconButton.module.css.map */

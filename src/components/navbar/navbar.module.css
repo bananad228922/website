@@ -1,0 +1,126 @@
+@charset "UTF-8";
+.navbar {
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  z-index: 10;
+  -webkit-backdrop-filter: blur(30px);
+          backdrop-filter: blur(30px);
+  border-top-style: none;
+  border-right-style: none;
+  border-left-style: none;
+  border-bottom-style: dashed;
+  border-width: 1px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+.navbar.darkmode {
+  color: white;
+}
+.navbar.hidden {
+  transform: translateY(-100%); /* 隱藏nav */
+}
+.navbar:has(.trigger:checked) .sidebar_overlap {
+  opacity: 1;
+  pointer-events: auto;
+}
+.navbar:has(.trigger:checked) .sidebar {
+  -webkit-clip-path: inset(0 0 0 0);
+          clip-path: inset(0 0 0 0);
+}
+
+.logo {
+  height: 30px;
+  width: 30px;
+  margin-left: 2rem;
+  margin-right: 0.5rem;
+}
+
+.menuBtnLine {
+  height: 5px;
+  width: 20px;
+  background-color: black;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.menuBtnLine.darkmode {
+  background-color: white;
+}
+
+.menuBtn {
+  display: flex;
+  flex-direction: column;
+  grid-row-gap: 2px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  grid-column-gap: 1rem;
+  margin-right: 2rem;
+}
+
+.trigger {
+  display: none;
+}
+
+.sidebar {
+  background-color: #d5cfa4;
+  width: 40vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: black;
+  font-size: 24pt;
+  -webkit-clip-path: inset(0 0 0 100%);
+          clip-path: inset(0 0 0 100%);
+  transition: -webkit-clip-path 0.2s ease-in-out;
+  transition: clip-path 0.2s ease-in-out;
+  transition: clip-path 0.2s ease-in-out, -webkit-clip-path 0.2s ease-in-out;
+}
+.sidebar_list {
+  display: flex;
+  flex-direction: column;
+  grid-row-gap: 1rem;
+  padding-left: 40px;
+}
+.sidebar_list li a p:nth-child(1) {
+  font-size: 24pt;
+}
+.sidebar_list li a p:nth-child(2) {
+  font-size: 12pt;
+}
+.sidebar_header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1rem;
+}
+.sidebar_listWrap {
+  width: 100%;
+}
+.sidebar_footer {
+  height: 40vh;
+}
+.sidebar_overlap {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.3);
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  pointer-events: none;
+}/*# sourceMappingURL=navbar.module.css.map */
