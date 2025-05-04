@@ -17,6 +17,7 @@ import { Background3d, Background3dLight } from '../../components/3d/background3
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { DraggableScene } from '../../components/3d/portfolio3d.js';
+import IconButton from '../../components/button/iconButton/iconButton.js';
 
 
 
@@ -91,12 +92,13 @@ export default function Home() {
             </div>
 
             {/*------------------------------ Hero ------------------------------*/}
-            <section className="home--hero" data-color="light" data-TOC-node ref={heroRef}>
+            <section className="hero" data-color="light" data-TOC-node ref={heroRef}>
                 <FadeInSection>
                     <div className="navBar-spacer"></div>
 
                     <div className="container">
-                        <div className="home--hero__contents">
+                        <p>關於我們</p>
+                        <div className="hero__contents">
                             <h1 className="display-1">
                                 <span>你也同樣</span>
                                 <span className='orange'>飄忽不定</span>
@@ -104,7 +106,7 @@ export default function Home() {
                                 <br />給同樣飄忽不定<br />的你.
                             </h1>
 
-                            <div className="home--hero__buttons">
+                            <div className="hero__buttons">
                                 <ButtonWithIcon size='large'>聯絡我們</ButtonWithIcon>
                                 <ButtonWithIcon size='large'>作品集</ButtonWithIcon>
                             </div>
@@ -113,7 +115,7 @@ export default function Home() {
                             <img style={{position: "absolute", transform: "scale(0.5) translate(0, 230px)"}} src='/pointer-white.svg'/>
 
                             {/* 3d model */}
-                            <div className='home--hero__three-scene'>
+                            <div className='hero__three-scene'>
                                 {/* <ThreeScene /> */}
                                 <Paralax paralax={200} start='center center'>
                                     <DefaultIcon />
@@ -127,7 +129,7 @@ export default function Home() {
 
 
             {/*------------------------------ Video ------------------------------*/}
-            <section class="home--video">
+            <section class="video">
                 <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
                     <iframe
                         src="https://player.vimeo.com/video/1066106873?badge=0&autopause=0&player_id=0&app_id=58479"
@@ -149,9 +151,9 @@ export default function Home() {
 
 
             {/*------------------------------ About ------------------------------*/}
-            <section className='home--video__spacer' data-color='dark'></section>
+            <section className='video__spacer' data-color='dark'></section>
 
-            <section class="home home--about" id="about" data-TOC-node>
+            <section class="home about" id="about" data-TOC-node>
                 <div class="verticalText-container">
                     <Paralax paralax={verticalTextParalaxSpeed}>
                         <h1 class="vertical-text vertical-text--white">About us</h1>
@@ -160,22 +162,29 @@ export default function Home() {
                 </div>
 
                 <div class="container">
-                    <div class="home--about__content">
-                        <Paralax>
-                            <FadeInSection>
-                                <h1 className='display-1 m-b-xl'>
-                                    <span>我們一直</span>
-                                    <span className='orange'>相信.</span>
-                                    <br/>
-                                    給您最好
-                                    <br/>
-                                    不怕困難
-                                </h1>
-                            </FadeInSection>                            
-                        </Paralax>
+                    <div class="about__content">
+                        <FadeInSection>
+                            <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "end"}} className='m-b-xl'>
+                                <div>
+                                    <p className='m-b-m paragraph-m'>關於我們</p>
+                                    <h1 className='display-1'>
+                                        <span>我們一直</span>
+                                        <span className='orange'>相信.</span>
+                                        <br/>
+                                        給您最好
+                                        <br/>
+                                        不怕困難
+                                    </h1>
+                                </div>
+                                <ButtonWithIcon>
+                                    <p>觀看我們的設計哲學</p>
+                                </ButtonWithIcon>
+                            </div>
+
+                        </FadeInSection>
 
 
-                        <div className='p-l-xl p-r-xl flex-col gap-m'>
+                        <div className='  flex-col gap-m'>
                         <FadeInSection>
                             <CardCollapse title="發揮創意" darkmode={true}>
                                 <div className='flex-row gap-l'>
@@ -213,18 +222,18 @@ export default function Home() {
             {/* ------------------------------ scroll banner ------------------------------ */}
 
             <section 
-                className='home--scroll-banner p-b-xxl p-t-xxl' 
+                className='scroll-banner p-b-xxl p-t-xxl' 
                 data-color="dark"
                 style={{position: 'relative', zIndex: 1}}
             >
                 <ScrollBanner>
-                    <span className='home--scroll-banner__para'>我們相信設計就是一切</span>
+                    <span className='scroll-banner__para display-0'>我們相信設計就是一切</span>
                 </ScrollBanner>
             </section>
 
 
             {/*------------------------------ Services ------------------------------*/}
-            <section class="home home--services" data-color="dark" data-TOC-node>
+            <section class="home services" data-color="dark" data-TOC-node>
                 <div class="verticalText-container">
                     <Paralax paralax={verticalTextParalaxSpeed}>
                         <h1 class="vertical-text vertical-text--white">Services</h1>
@@ -232,16 +241,26 @@ export default function Home() {
                 </div>
 
                 <div class="container">
-                    <div class="home--services__content">
-                        <FadeInSection>
-                            <h1 className='display-1 m-b-xl'>
-                                <span>我們一直</span>
-                                <span className='orange'>相信.</span>
-                                <br/>
-                                給您最好
-                                <br/>
-                                不怕困難
-                            </h1>
+                    <div class="services__content">
+                    <FadeInSection>
+                            <div className='line--white m-l-m' style={{position: "absolute", top: 10, left: -1150}}></div>
+                            <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "end"}} className='m-b-xl'>
+                                <div>
+                                    <p className='m-b-m paragraph-m m-l-m'>關於我們</p>
+                                    <h1 className='display-1'>
+                                        <span>我們一直</span>
+                                        <span className='orange'>相信.</span>
+                                        <br/>
+                                        給您最好
+                                        <br/>
+                                        不怕困難
+                                    </h1>
+                                </div>
+                                <ButtonWithIcon>
+                                    <p>觀看我們的設計哲學</p>
+                                </ButtonWithIcon>
+                            </div>
+
                         </FadeInSection>
 
 
@@ -305,7 +324,7 @@ export default function Home() {
             </section>
 
             {/*------------------------------ Portfolio ------------------------------*/}
-            {/* <section class="home home--portfolio" id="portfolio" data-color="dark" data-TOC-node>
+            {/* <section class="home portfolio" id="portfolio" data-color="dark" data-TOC-node>
                 
                 <div class="verticalText-container">
                     <Paralax paralax={verticalTextParalaxSpeed}>
@@ -314,7 +333,7 @@ export default function Home() {
                 </div>
 
                 <div class="container">
-                    <div class="home--portfolio__content">
+                    <div class="portfolio__content">
                         <FadeInSection>
                             <h1 className='display-1 m-b-xl'>
                                 <span>我們一直</span>
@@ -354,7 +373,7 @@ export default function Home() {
             
 
             {/*------------------------------ Contact ------------------------------*/}
-            <section class="home home--contact" id="contact" data-color="dark" data-TOC-node>
+            <section class="home contact" id="contact" data-color="dark" data-TOC-node>
                 <div class="verticalText-container">
                     <Paralax paralax={verticalTextParalaxSpeed}>
                         <h1 class="vertical-text vertical-text--white">Contact</h1>
@@ -363,10 +382,10 @@ export default function Home() {
 
 
                 <div class="container">
-                    <div class="home--contact__content">
-                        <form class="home--contact__form">
+                    <div class="contact__content">
+                        <form class="contact__form">
                             <FadeInSection>
-                                <h6 class="home--contact__header">
+                                <h6 class="contact__header">
                                     <span>請填上這些資訊，</span>
                                     <span className='orange'>聯絡我們</span>
                                 </h6>
@@ -374,35 +393,35 @@ export default function Home() {
 
                             <FadeInSection>
                                 <div>
-                                    <label class="home--contact__label" for="input-name">姓名</label>
+                                    <label class="contact__label" for="input-name">姓名</label>
                                     <input class="input input--outLine input--outLine--white" type="text" id="input-name"></input>
                                 </div>
                             </FadeInSection>
 
                             <FadeInSection>
                                 <div>
-                                    <label class="home--contact__label" for="input-gmail">電子郵件</label>
+                                    <label class="contact__label" for="input-gmail">電子郵件</label>
                                     <input class="input input--outLine input--outLine--white" type="text" id="input-gmail"></input>
                                 </div>                                
                             </FadeInSection>
 
                             <FadeInSection>
                                 <div>
-                                    <label class="home--contact__label" for="input-company">公司名稱</label>
+                                    <label class="contact__label" for="input-company">公司名稱</label>
                                     <input class="input input--outLine input--outLine--white" type="text" id="input-company"></input>
                                 </div>                                
                             </FadeInSection>
 
                             <FadeInSection>
                                 <div>
-                                    <label class="home--contact__label" for="input-class">需求項目</label>
+                                    <label class="contact__label" for="input-class">需求項目</label>
                                     <input class="input input--outLine input--outLine--white" type="text" id="input-class"></input>
                                 </div>                                
                             </FadeInSection>
 
                             <FadeInSection>
                                 <div>
-                                    <label class="home--contact__label" for="input-money">預算</label>
+                                    <label class="contact__label" for="input-money">預算</label>
                                     <input class="input input--outLine input--outLine--white" type="text" id="input-money"></input>
                                 </div>                                
                             </FadeInSection>
@@ -421,13 +440,13 @@ export default function Home() {
 
             <Footer />
 
-            <TOC sectionAmount={3} />
-            {/* <div style={{position: "fixed", top: 0, left: 0, opacity: 0.2}}><Background3d /></div> */}
-            <div style={{position: "fixed", top: 0, left: 0}}><Background3dLight /></div>
+            <TOC />
             
+            <div style={{position: "fixed", top: 0, left: 0}}><Background3dLight /></div>
+            <div style={{position: "fixed", right: 20, bottom: 20, zIndex: 1 , transform: "rotate(-90deg)"}}>
+                <IconButton size='large' roundness={true}/>
+            </div> 
         </>
-
-
     );
 }
 

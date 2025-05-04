@@ -31,157 +31,151 @@
     z-index: 1;
 }
 
-/* ------------------------------ page ------------------------------ */
 .home {
     width: 100%;
-
     @extend %flex-col;
+}
+.hero {
+    background-color: $color-green;
+    height: 100vh;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 
-    /* ------------------------------ Hero ------------------------------ */
-    &--hero {
-        background-color: $color-green;
-        height: 100vh;
-        border-bottom-right-radius: 10px;
-        border-bottom-left-radius: 10px;
+    position: relative;
+    z-index: 1;
+
+    &__three-scene {
+        position: absolute;
+        // left: 5vw;
+        right: -10vw;
+        top: -20vh;
+        z-index: -1;
+    }
+
+    &__buttons {
+        @extend %flex-row;
+
+        grid-column-gap: $spacing-s;
+    }
+
+    &__contents {
+        @extend %flex-row;
+
+        justify-content: space-between;
+        align-items: end;
+        width: 80%;
+
+        // spacing
+        margin-top: $spacing-xl;
 
         position: relative;
         z-index: 1;
-
-        &__three-scene {
-            position: absolute;
-            // left: 5vw;
-            right: -10vw;
-            top: -20vh;
-            z-index: -1;
-        }
-
-        &__buttons {
-            @extend %flex-row;
-
-            grid-column-gap: $spacing-s;
-        }
-
-        &__contents {
-            @extend %flex-row;
-
-            justify-content: space-between;
-            align-items: end;
-            width: 80%;
-
-            // spacing
-            margin-top: $spacing-xl;
-
-            position: relative;
-            z-index: 1;
-        }
     }
+}
 
     /* ------------------------------ Video ------------------------------ */
-    &--video {
-        width: 75vw;
-        background-color: rgb(0, 0, 0);
-        position: absolute;
+.video {
+    width: 75vw;
+    background-color: rgb(0, 0, 0);
+    position: absolute;
 
-        margin-left: auto;
-        margin-right: auto;
-        left: 0;
-        right: 0;
-        top: 75vh;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 75vh;
 
-        z-index: 1;
+    z-index: 1;
 
-        border-radius: 5px;
-        overflow: hidden;
+    border-radius: 5px;
+    overflow: hidden;
 
-        &__spacer {
-            width: 100%;
-            height: 500px;
-            background-color: $color-black;
-        }
+    &__spacer {
+        width: 100%;
+        height: 500px;
+        background-color: $color-black;
+    }
+}
+
+/* ------------------------------ About ------------------------------ */
+.about {
+    @extend %section-black;
+
+    &__wrapper {
+        @extend %flex-row;
+        justify-content: space-between;
+        width: 100%;
     }
 
-    /* ------------------------------ About ------------------------------ */
-    &--about {
-        @extend %section-black;
+    &__content {
+        @extend %content-layout;
+    }
+}
 
-        &__wrapper {
-            @extend %flex-row;
-            justify-content: space-between;
-            width: 100%;
-        }
+/* ------------------------------ Scroll Banner ------------------------------ */
+.scroll-banner {
+    &__para {
+        color: $color-black;
+        text-shadow:
+            1px 1px 0 white,
+            -1px 1px 0 white,
+            1px -1px 0 white,
+            -1px -1px 0 white;
+    }
+}
+
+/* ------------------------------ Servieces ------------------------------ */
+.services {
+    @extend %section-black;
+
+    &__content {
+        @extend %content-layout;
+    }
+
+    &__block {
+        @extend %flex-row;
+
+        justify-content: space-between;
 
         &__content {
-            @extend %content-layout;
-        }
-    }
-
-    /* ------------------------------ Scroll Banner ------------------------------ */
-    &--scroll-banner {
-
-        &__para {
-            font-size: 128px;
-            color: $color-black;
-            text-shadow:
-              1px 1px 0 white,
-             -1px 1px 0 white,
-              1px -1px 0 white,
-             -1px -1px 0 white;
-        }
-    }
-
-    /* ------------------------------ Servieces ------------------------------ */
-    &--services {
-        @extend %section-black;
-
-        &__content {
-            @extend %content-layout;
-        }
-
-        &__block {
-            @extend %flex-row;
-
-            justify-content: space-between;
-
-            &__content {
-                @extend %flex-col;
-                justify-content: space-between;
-            }
-        }
-    }
-
-    /* ------------------------------ Portfolio------------------------------ */
-    &--portfolio {
-        @extend %section-black;
-        
-        &__content {
-            @extend %content-layout;
-        }
-    }
-
-    /* ------------------------------ Contact ------------------------------ */
-    &--contact {
-        @extend %section-black;
-
-        &__content {
-            @extend %content-layout;
-        }
-
-        &__label {
-            font-size: medium;
-            color: white;
-        }
-
-        &__form {
             @extend %flex-col;
-
-            grid-row-gap: $spacing-m;
+            justify-content: space-between;
         }
+    }
+}
 
-        &__header {
-            font-size: 30pt;
-            color: white;
-            margin-bottom: $spacing-l;
-        }
+/* ------------------------------ Portfolio------------------------------ */
+.portfolio {
+    @extend %section-black;
+    
+    &__content {
+        @extend %content-layout;
+    }
+}
+
+/* ------------------------------ Contact ------------------------------ */
+.contact {
+    @extend %section-black;
+
+    &__content {
+        @extend %content-layout;
+    }
+
+    &__label {
+        font-size: medium;
+        color: white;
+    }
+
+    &__form {
+        @extend %flex-col;
+
+        grid-row-gap: $spacing-m;
+    }
+
+    &__header {
+        font-size: 30pt;
+        color: white;
+        margin-bottom: $spacing-l;
     }
 }
 

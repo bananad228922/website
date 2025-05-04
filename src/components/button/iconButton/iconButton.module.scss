@@ -32,7 +32,7 @@ $radius: 10px;
     overflow: hidden;
 
     // motion
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-out;
 
     &:hover {
         transform: scale(1.1);
@@ -56,7 +56,6 @@ $radius: 10px;
 }
 
 .icon {
-    color: rgb(0, 0, 0);
     height: 20px;
     width: 20px;
 
@@ -64,5 +63,13 @@ $radius: 10px;
     top: 50%;
     left: 50%;
     
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-out;
+}
+
+.darkmode {
+    color: white;
+}
+
+.roundness {
+    border-radius: 999px;
 }

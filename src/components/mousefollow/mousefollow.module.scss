@@ -1,0 +1,30 @@
+.container {
+    height: 70px;
+    width: 70px;
+    border-radius: 999px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    transform: translate(-50%, -50%) scale(0);
+    pointer-events: none;
+    transition: transform 0.2s ease-in-out;
+}
+
+.container.isHover {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.content {
+    color: black;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.box
+ {
+    height: 100px;
+    width: 300px;
+    background-color: red;
+ }

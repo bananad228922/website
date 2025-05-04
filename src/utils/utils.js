@@ -18,6 +18,6 @@ export function getLenis() {
     if (window.lenis) {
         return window.lenis;
     } else {
-        console.log("lenis not defined");
+        console.error("lenis not defined");
     }
 }

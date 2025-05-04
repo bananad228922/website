@@ -1,18 +1,11 @@
 .TOC {
   position: fixed;
-  right: 2vw;
+  right: 3vw;
   top: 0;
   height: 100%;
   display: flex;
   align-items: center;
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
+  z-index: 1;
 }
 
 .item {
@@ -20,37 +13,37 @@
 }
 
 .dot {
-  height: 5px;
-  width: 5px;
-  background-color: rgb(200, 200, 200);
+  height: 8px;
+  width: 8px;
   border-radius: 999px;
-  z-index: 100;
-  position: relative;
-  transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out;
-}
-
-.dot.active {
-  background-color: white;
-  transform: scale(1.2);
-}
-
-.line-default {
-  width: 1px;
-  height: 100%;
-  background-color: rgb(128, 128, 128);
-}
-
-.line-progress {
   position: absolute;
-  top: 0;
-  width: 1px;
-  background-color: rgb(200, 200, 200);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.lines-wrapper {
+.dot.default {
+  box-sizing: border-box;
+  border: 0.1px solid white;
+}
+
+.dotScaleControlor {
+  transform: scale(0);
+}
+
+.dot.progress {
+  background-color: white;
+}
+
+.dotWrapper {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
+}
+
+.dotsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }/*# sourceMappingURL=TOC.module.css.map */

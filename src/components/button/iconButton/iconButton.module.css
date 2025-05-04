@@ -20,7 +20,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-out;
 }
 .iconButton:hover {
   transform: scale(1.1);
@@ -39,11 +39,18 @@
 }
 
 .icon {
-  color: rgb(0, 0, 0);
   height: 20px;
   width: 20px;
   position: absolute;
   top: 50%;
   left: 50%;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-out;
+}
+
+.darkmode {
+  color: white;
+}
+
+.roundness {
+  border-radius: 999px;
 }/*# sourceMappingURL=iconButton.module.css.map */

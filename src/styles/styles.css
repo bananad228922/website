@@ -77,6 +77,33 @@ ol, ul {
   visibility: hidden;
 }
 
+.paragraph-s {
+  font-size: 12px;
+}
+
+.paragraph-m {
+  font-size: 16px;
+}
+
+.paragraph-l {
+  font-size: 24px;
+}
+
+.heading-3 {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.heading-2 {
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.heading-1 {
+  font-size: 64px;
+  font-weight: 700;
+}
+
 .display-1 {
   font-size: 96px;
   font-weight: 800;
@@ -87,33 +114,6 @@ ol, ul {
   font-size: 128px;
   font-weight: 800;
   letter-spacing: 1px;
-}
-
-.heading-1 {
-  font-size: 64px;
-  font-weight: 700;
-}
-
-.heading-2 {
-  font-size: 48px;
-  font-weight: 700;
-}
-
-.heading-3 {
-  font-size: 32px;
-  font-weight: 700;
-}
-
-.paragraph-s {
-  font-size: 12px;
-}
-
-.paragraph-m {
-  font-size: 16px;
-}
-
-.paragraph-m {
-  font-size: 16px;
 }
 
 .white--primary {

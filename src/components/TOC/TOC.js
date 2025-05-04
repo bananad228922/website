@@ -3,71 +3,46 @@ import styles from './TOC.module.css'
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { style } from 'framer-motion/client';
 import classNames from 'classnames';
+import gsap from 'gsap';
 
 
 export default function TOC() {
     const [sectionAmount, setSectionAmount] = useState(null);
-    const dotRefs = useRef([]);
-    const lineRefs = useRef([]);
+    const dotProgressRef = useRef([]);
+
 
     useEffect(() => {
         const TOCNode = document.querySelectorAll("[data-TOC-node]");
-        console.log("tocnode", TOCNode);
         setSectionAmount(TOCNode.length);
-    }, [])
 
-    useEffect(() => {
-        if (!sectionAmount) return;
+        if (TOCNode.length === 0) return;
+        gsap.context(() => {
+            TOCNode.forEach((sec, i) => {
+                ScrollTrigger.create({
+                    trigger: sec,
+                    start: "top bottom",
+                    end: "bottom top",
+                    onUpdate: (scrollTrigger) => {
         
-        const dots = dotRefs.current;
-        const lines = lineRefs.current;
-        const TOCNode = document.querySelectorAll("[data-TOC-node]");
-        const lineHeight = document.querySelector(`.${styles["line-default"]}`).getBoundingClientRect().height;
-        
-        TOCNode.forEach((sec, i) => {
-            ScrollTrigger.create({
-                trigger: sec,
-                start: "top top",
-                end: "bottom top",
-                onUpdate: (scrollTrigger) => {
-                    const progress = scrollTrigger.progress;
-
-                    // console.log("current progress: ", progress);
-
-                    const result = lineHeight * progress;
-
-                    lines[i].style.height = `${result}px`;
-                    if (progress === 1) {
-                        dots[i].classList.add(styles["active"]);
-                    }
-
-                    if (i-1 !== -1) {
-                        if (progress === 0) {
-                            dots[i-1].classList.remove(styles["active"]);
-                        }
-                    }
-
-                },
-            })
+                        const progress = scrollTrigger.progress;
+                        dotProgressRef.current[i].style.transform = `scale(${progress})`;
+                    },
+                })
+            })            
         })
+
     }, [sectionAmount])
 
-
-
     return (
-        <div className={styles['TOC']}>
-            <div className={styles["wrapper"]}>
-                <div className={classNames(styles['dot'], styles["active"])} style={{margin: itemSpace}}></div>
-
+        <div className={styles.TOC}>
+            <div className={styles.dotsWrapper}>
                 {Array.from({length: sectionAmount}).map((_, i) => {
                     return (
-                        <div className={styles["item"]} key={i}>
-                            <div className={styles['lines-wrapper']}  style={{marginBottom: itemSpace}}>
-                                <div className={styles['line-default']}></div>
-                                <div className={styles['line-progress']} ref={(el) => (lineRefs.current[i] = el)}></div>
+                        <div className={styles.dotWrapper}>
+                            <div className={classNames(styles.dot, styles.default)}></div>
+                            <div className={styles.dotScaleControlor} ref={(self) => {dotProgressRef.current[i] = self}}>
+                                <div className={classNames(styles.dot, styles.progress)}></div>
                             </div>
-
-                            <div className={styles['dot']} ref={(el) => (dotRefs.current[i] = el)}  style={{marginBottom: itemSpace}}></div>
                         </div>
                     )
                 })}                
