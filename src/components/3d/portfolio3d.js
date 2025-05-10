@@ -213,10 +213,10 @@ function useImg3dProvider(imgSrcs, width, height, currentInd) {
                 loader.load(imgSrcs[i], (texture) => {
                     const planeGeometry = new THREE.PlaneGeometry(width, height);
                     const planeMaterial = new THREE.MeshStandardMaterial({map: texture,})
-            
+
                     const plane = new THREE.Mesh(planeGeometry, planeMaterial);
                     object3dsRef.current.push(plane);
-    
+
                     console.log(`object${i} loaded`);
 
                     setIsLoaded(object3dsRef.current.length === imgSrcs.length);
@@ -369,11 +369,6 @@ export function Portfolio3d() {
     )
 }
 
-const imgSrcs = [
-    "https://res.cloudinary.com/dtoefi3cs/image/upload/v1742031089/%E6%89%8B_%E4%B8%89%E9%83%A8%E6%9B%B2_abvx63.png",
-    "https://res.cloudinary.com/dtoefi3cs/image/upload/v1742031089/%E6%89%8B_%E4%B8%89%E9%83%A8%E6%9B%B2_abvx63.png",
-    "https://res.cloudinary.com/dtoefi3cs/image/upload/v1742031089/%E6%89%8B_%E4%B8%89%E9%83%A8%E6%9B%B2_abvx63.png",
-]
 
 const imgSrcs_ = [
     [
@@ -397,6 +392,15 @@ const imgSrcs_ = [
         img1,
     ],
 ]
+
+
+const imgSrcs = [
+    "https://res.cloudinary.com/dtoefi3cs/image/upload/v1742031089/%E6%89%8B_%E4%B8%89%E9%83%A8%E6%9B%B2_abvx63.png",
+    "https://res.cloudinary.com/dtoefi3cs/image/upload/v1742031089/%E6%89%8B_%E4%B8%89%E9%83%A8%E6%9B%B2_abvx63.png",
+    "https://res.cloudinary.com/dtoefi3cs/image/upload/v1742031089/%E6%89%8B_%E4%B8%89%E9%83%A8%E6%9B%B2_abvx63.png",
+]
+
+
 
 
 
