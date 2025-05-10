@@ -17,7 +17,6 @@ import TestUse from "./pages/testUse.js";
 
 // CSS
 import './styles/styles.css';
-import './App.css';
 
 // hooks
 import ScrollToTop from './script/scrollToTop.js';
@@ -40,10 +39,6 @@ function App() {
     useLayoutEffect(() => {
         const lenis = new Lenis();
         window.lenis = lenis;
-
-        // lenis.on("scroll", () => {
-        //     console.log(lenis)
-        // })
 
         lenis.on("scroll", ScrollTrigger.update());
 

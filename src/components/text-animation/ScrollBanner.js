@@ -42,12 +42,14 @@ export default function ScrollBanner({ children, origSpeed=5, scrollSpeed=1 }) {
     }, [])
 
     return (
-        <div className={styles.wrapper} ref={containerRef}>
-            <div className={styles.content}>
-                {Array.from({length: 5}).map((_, i) => children)}
+        <div className={styles.wrapper}>
+            <div className={styles.container} ref={containerRef}>
+                <div className={styles.content}>
+                    {Array.from({length: 5}).map((_, i) => children)}
+                </div>
             </div>
-
         </div>
+
     )
 }
 

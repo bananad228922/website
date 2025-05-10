@@ -18,6 +18,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { DraggableScene } from '../../components/3d/portfolio3d.js';
 import IconButton from '../../components/button/iconButton/iconButton.js';
+import { EntryLine } from '../../components/entryExitEffect.js';
 
 
 
@@ -243,10 +244,16 @@ export default function Home() {
                 <div class="container">
                     <div class="services__content">
                     <FadeInSection>
-                            <div className='line--white m-l-m' style={{position: "absolute", top: 10, left: -1150}}></div>
+                            
                             <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "end"}} className='m-b-xl'>
                                 <div>
-                                    <p className='m-b-m paragraph-m m-l-m'>關於我們</p>
+                                    <div style={{position: "relative", display: "flex", alignItems: "center"}}>
+                                        <div style={{position: "absolute", top: 10, left: -1000}}>
+                                            <EntryLine width={1000} ease='power1-out'/>
+                                        </div>
+                                        <p className='paragraph-m m-l-m'>關於我們</p>
+                                    </div>
+                                    
                                     <h1 className='display-1'>
                                         <span>我們一直</span>
                                         <span className='orange'>相信.</span>
