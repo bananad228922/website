@@ -2,7 +2,7 @@ import { useEffect, useId, useRef } from "react";
 import styles from "./cardCollapseBase.module.css";
 import { useUpdateLenis } from "../../../hook/utils";
 import '../../../styles/styles.css';
-import { SubIcon, AddIcon } from "../../icon/icon";
+import { iconAdd, iconSub } from "../../icon/icon";
 import classNames from "classnames";
 
 
@@ -25,13 +25,13 @@ export default function CardCollapse({ title, children, darkmode=false }) {
                     className={styles.header}
                     htmlFor={id}
                 >
-                    <div className={styles.iconWrapper}>
+                    <div className={classNames(styles.iconWrapper, styles.darkmode)}>
                         <div className={styles.iconAdd}>
-                            <AddIcon darkmode={darkmode}/>
+                            {iconAdd}
                         </div>
 
                         <div className={styles.iconSub}>
-                            <SubIcon darkmode={darkmode}/>
+                            {iconSub}
                         </div>
                     </div>
 

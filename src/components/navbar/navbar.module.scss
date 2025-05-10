@@ -88,6 +88,12 @@
     margin-right: $spacing-m;
 }
 
+@media (max-width: 767px) {
+    .links {
+        display: none;
+    }
+}
+
 .trigger {
     display: none;
 }
@@ -129,6 +135,9 @@
         & li a p:nth-child(2) {
             font-size: 12pt;
         }
+    }
+    @media (max-width: 767px) {
+        width: 100vw;
     }
 
     &_header {

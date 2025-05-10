@@ -54,6 +54,18 @@
   position: relative;
   z-index: 1;
 }
+@media (max-width: 767px) {
+  .hero__contents {
+    flex-direction: column;
+    align-items: start;
+    gap: 2rem;
+  }
+}
+.hero__pointer {
+  position: absolute;
+  color: white;
+  width: 40vw;
+}
 
 /* ------------------------------ Video ------------------------------ */
 .video {
@@ -93,6 +105,19 @@
 .services__block__content {
   justify-content: space-between;
 }
+.services__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: end;
+}
+@media (max-width: 767px) {
+  .services__header {
+    flex-direction: column;
+    align-items: start;
+    gap: 2rem;
+  }
+}
 
 /* ------------------------------ Portfolio------------------------------ */
 /* ------------------------------ Contact ------------------------------ */
@@ -122,4 +147,29 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.verticalText-container {
+  padding: 4rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 767px) {
+  .verticalText-container {
+    display: none;
+  }
+}
+.vertical-text {
+  font-size: 100pt;
+  writing-mode: vertical-rl;
+  position: sticky;
+  top: 20vh;
+  color: rgba(0, 0, 0, 0.7);
+}
+.vertical-text--white {
+  color: rgba(255, 255, 255, 0.5);
 }/*# sourceMappingURL=home.css.map */

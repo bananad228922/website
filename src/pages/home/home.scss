@@ -35,6 +35,7 @@
     width: 100%;
     @extend %flex-col;
 }
+
 .hero {
     background-color: $color-green;
     height: 100vh;
@@ -70,6 +71,20 @@
 
         position: relative;
         z-index: 1;
+    }
+
+    @media (max-width: 767px) {
+        &__contents {
+            flex-direction: column;
+            align-items: start;
+            gap: $spacing-m;
+        }
+    }
+
+    &__pointer {
+        position: absolute;
+        color: white;
+        width: 40vw;
     }
 }
 
@@ -142,6 +157,21 @@
             justify-content: space-between;
         }
     }
+
+    &__header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: end;
+    }
+
+    @media (max-width: 767px) {
+        &__header {
+            flex-direction: column;
+            align-items: start;
+            gap: $spacing-m
+        }
+    }
 }
 
 /* ------------------------------ Portfolio------------------------------ */
@@ -199,3 +229,35 @@
 
     }    
 }
+
+.verticalText-container {
+    padding: $spacing-l 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 767px) {
+    .verticalText-container {
+        display: none;
+    }
+}
+
+.vertical-text {
+    font-size: 100pt;
+    writing-mode: vertical-rl;
+    position: sticky;
+    top: 20vh;
+    color: rgba(0, 0, 0, 0.7);
+
+    &--white {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    &--black {
+
+    }
+}
+

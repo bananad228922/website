@@ -65,6 +65,11 @@
   margin-right: 2rem;
 }
 
+@media (max-width: 767px) {
+  .links {
+    display: none;
+  }
+}
 .trigger {
   display: none;
 }
@@ -99,6 +104,11 @@
 }
 .sidebar_list li a p:nth-child(2) {
   font-size: 12pt;
+}
+@media (max-width: 767px) {
+  .sidebar {
+    width: 100vw;
+  }
 }
 .sidebar_header {
   display: flex;

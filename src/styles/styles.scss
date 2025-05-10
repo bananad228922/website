@@ -6,6 +6,7 @@ body {
     padding: 0 !important;
     background-color: $color-black;
     // overflow: hidden;
+    overflow-x: hidden;
     width: 100vw;
 }
 
@@ -84,40 +85,40 @@ ol, ul {
 
 // text
 .paragraph-s {
-    font-size: 12px;
+    font-size: clamp(12px/1.2, 2vw, 12px);
 }
 
 .paragraph-m {
-    font-size: 16px;
+    font-size: clamp(16px/1.2, 2vw, 16px);
 }
 
 .paragraph-l {
-    font-size: 24px;
+    font-size: clamp(24px/1.2, 2vw, 24px);
 }
 
 .heading-3 {
-    font-size: 32px;
+    font-size: clamp(32px/1.5, 4vw, 32px);
     font-weight: 700;
 }
 
 .heading-2 {
-    font-size: 48px;
+    font-size: clamp(48px/1.5, 6vw, 48px);
     font-weight: 700;
 }
 
 .heading-1 {
-    font-size: 64px;
+    font-size: clamp(64px/1.5, 8vw, 64px);
     font-weight: 700;
 }
 
 .display-1 {
-    font-size: 96px;
+    font-size: clamp(96px/2, 10vw, 96px);
     font-weight: 800;
     letter-spacing: 1px;
 }
 
 .display-0 {
-    font-size: 128px;
+    font-size: clamp(128px/2, 12vw, 128px);
     font-weight: 800;
     letter-spacing: 1px;
 }
@@ -151,31 +152,6 @@ ol, ul {
     height: 500px;
     width: 500px;
     background-color: black;
-}
-
-.verticalText-container {
-    padding: $spacing-l 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
-}
-
-.vertical-text {
-    font-size: 100pt;
-    writing-mode: vertical-rl;
-    position: sticky;
-    top: 20vh;
-    color: rgba(0, 0, 0, 0.7);
-
-    &--white {
-        color: rgba(255, 255, 255, 0.5);
-    }
-
-    &--black {
-
-    }
 }
 
 .icon {

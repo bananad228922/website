@@ -1,10 +1,11 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import "./icon3d.css";
 
 
 
-export function Icon3d({object3d, height=300, width=300}) {
+export function Icon3d({object3d}) {
     const containerRef = useRef(null);
     const canvaRef = useRef(null);
 
@@ -15,13 +16,16 @@ export function Icon3d({object3d, height=300, width=300}) {
         }
 
         const renderer = new THREE.WebGLRenderer({alpha: true});
+        const width = containerRef.current.getBoundingClientRect().width;
+        const height = containerRef.current.getBoundingClientRect().height;
+        console.log(width, height);
         renderer.setSize(width, height);
         canvaRef.current = renderer.domElement;
         containerRef.current.appendChild(canvaRef.current);
         
         const scene = new THREE.Scene();
         
-        const camera = new THREE.PerspectiveCamera(75, width/height, 0.1, 1000);
+        const camera = new THREE.PerspectiveCamera(75, height/width, 0.1, 1000);
         camera.position.set(0, 0, 10);
         scene.add(camera);
 
@@ -95,7 +99,7 @@ export function Icon3d({object3d, height=300, width=300}) {
     }, []);
 
     return (
-        <div ref={containerRef}>
+        <div ref={containerRef} className="three-container">
         </div>
     )
 }

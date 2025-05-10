@@ -1,7 +1,7 @@
 import { animate } from "framer-motion";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { object } from "prop-types";
+import { object as object3d } from "prop-types";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { FontLoader, GLTFLoader, OrbitControls, TextGeometry } from "three/examples/jsm/Addons";
@@ -9,6 +9,7 @@ import { DefaultIconOctahedron, Icon3d } from "./icon3d";
 import { Paralax } from "../../pages/home/home";
 import { useGetMouseCoordinate } from "../../hook/utils";
 import { getLenis } from "../../utils/utils";
+import { img1, img2, img3 } from "../../variable";
 
 
 
@@ -199,7 +200,7 @@ export function DraggableScene () {
 
 
 
-function useImg3dProvider(imgSrcs, width, height) {
+function useImg3dProvider(imgSrcs, width, height, currentInd) {
     const object3dsRef = useRef([]);
     const runOnceRef = useRef(false);
     const [isLoaded, setIsLoaded] = useState(false)
@@ -223,7 +224,7 @@ function useImg3dProvider(imgSrcs, width, height) {
             }
         }
         runOnceRef.current = true;
-    }, []);
+    }, [currentInd]);
 
     return object3dsRef;
 }
@@ -232,9 +233,9 @@ function useImg3dProvider(imgSrcs, width, height) {
 
 export function Portfolio3d() {
     const containerRef = useRef(null);
-
-    const object3dsRef = useImg3dProvider(imgSrcs, 16/2, 9/2);  // 在完成後會自動觸發re-render
-    const isLoaded = object3dsRef.current.length === imgSrcs.length;
+    const [currentInd, setCurrentInd] = useState(0);
+    const object3dsRef = useImg3dProvider(imgSrcs_[currentInd], 16/1.7, 9/1.7, currentInd);  // 在完成後會自動觸發re-render
+    const isLoaded = object3dsRef.current.length === imgSrcs_[currentInd].length;
 
     useLayoutEffect(() => {
         console.log("Entry effect");
@@ -252,7 +253,7 @@ export function Portfolio3d() {
     
 
             const light = new THREE.PointLight("#ffffff",1000);
-            light.position.set(0, 10, 1);
+            light.position.set(0, 10, 5);
             scene.add(light);
     
 
@@ -261,39 +262,46 @@ export function Portfolio3d() {
             scene.add(camera);
 
 
-            // add img
+            // init portfolio
+            const spacing = 12;
             object3dsRef.current.forEach((object3d, i) => {
-                object3d.position.set(-10+i*10, -3+i*3, 0)
+                object3d.position.set(i*spacing, 0, 0)
                 scene.add(object3d);
+                object3d.userData.originPos = object3d.position.clone();
+                object3d.userData.originRot = object3d.rotation.clone();
             })
 
 
-            // gsap
-            ctx = gsap.context(() => {
-                object3dsRef.current.forEach((object3d) => {  // 一個負責控制位移
-                    gsap.to(object3d.position, {
-                        x: "-=5", 
-                        y: "-=5",
-                        scrollTrigger: {
-                            trigger: containerRef.current,
-                            scrub: true,
-                            start: "top top",
-                            end: "+=1000px",
-                        },
-                    })
-                })
-                ScrollTrigger.create({   // 一個負責綁定
-                    trigger: containerRef.current, 
-                    pin: true,
-                    start: "top top",
-                })
-            })
-            console.log("content create");
-
-
+            // 計算pin時的位移
+            let canvasTop;
             const lenis = getLenis();
-            lenis.on("scroll", () => {
+            let diff;
+            const scrollY = 1000;
 
+            ctx = gsap.context(() => {
+                ScrollTrigger.create({
+                    trigger: containerRef.current,
+                    start: "top top",
+                    end: `+=${scrollY}px`,
+                    pin: true,
+                    onEnter: () => {
+                        canvasTop = lenis.scroll;
+                    }
+                })
+            })
+
+            lenis.on("scroll", () => {
+                    diff = lenis.scroll - canvasTop;
+
+                    if(diff) {
+                        const progress = diff / scrollY;
+                        const totalTranslateX = (object3dsRef.current.length-1) * spacing;
+                        
+                        object3dsRef.current.forEach((object3d) => {
+                                const translateX = object3d.userData.originPos.x - totalTranslateX * progress
+                                object3d.position.x = translateX;
+                        })
+                    }
             })
             
             let count = 0;
@@ -303,13 +311,30 @@ export function Portfolio3d() {
                 count%1000===0 && console.log(scene.children);
                 count++;
 
-                object3dsRef.current.forEach((object3d) => {
-                    const pos = object3d.position.clone().project(camera);
-                    const offset = Math.sqrt(pos.x ** 2 + pos.y ** 2) - 0
+                const translateZs = [];
+                if (diff) {
+                    object3dsRef.current.forEach((object3d, i) => {
+                        // 控制y和縮放
+                        const pos = object3d.position.clone().project(camera);
+                        const offset = Math.sqrt(pos.x ** 2 + pos.y ** 2);
 
-                    const scale = Math.min(1, 10 + offset * -10);
-                    object3d.scale.set(scale, scale, scale);
-                })
+                        const translateY  =  offset ** 2 * 3;
+                        object3d.position.y = object3d.userData.originPos.y + (camera.position.x > object3d.position.x ? -translateY : translateY);
+                        
+                        const translateZ = -(offset ** 2 * 5);
+                        translateZs[i] = translateZ;
+                        object3d.position.z = object3d.userData.originPos.z + translateZ;
+
+
+                        const rotateY = offset ** 2 * 0.3;
+                        object3d.rotation.y = object3d.userData.originRot.y + (camera.position.x > object3d.position.x ? -rotateY : rotateY);
+
+
+                        const rotateZ = offset ** 2 * 0.1;
+                        object3d.rotation.z = object3d.userData.originRot.z + (camera.position.x > object3d.position.x ? -rotateZ : rotateZ);
+                    })
+                }
+                count%1000===0 && console.log(translateZs);
                 
 
                 renderer.render(scene, camera);
@@ -328,14 +353,50 @@ export function Portfolio3d() {
             }
             cancelAnimationFrame(rafId);
         }
-    }, [isLoaded]);
+    }, [isLoaded, currentInd]);
 
     return (
-        <div ref={containerRef}></div>
+        <>
+            <div style={{display: "flex", color: "white"}}>
+                <button onClick={() => {setCurrentInd(0)}}>平面設計</button>
+                <button onClick={() => {setCurrentInd(1)}}>動態設計</button>
+                <button onClick={() => {setCurrentInd(2)}}>網站設計</button>
+                <button onClick={() => {setCurrentInd(3)}}>3d建模</button>
+            </div>
+            <div ref={containerRef}></div>
+        </>
+        
     )
 }
 
+const imgSrcs = [
+    "https://res.cloudinary.com/dtoefi3cs/image/upload/v1742031089/%E6%89%8B_%E4%B8%89%E9%83%A8%E6%9B%B2_abvx63.png",
+    "https://res.cloudinary.com/dtoefi3cs/image/upload/v1742031089/%E6%89%8B_%E4%B8%89%E9%83%A8%E6%9B%B2_abvx63.png",
+    "https://res.cloudinary.com/dtoefi3cs/image/upload/v1742031089/%E6%89%8B_%E4%B8%89%E9%83%A8%E6%9B%B2_abvx63.png",
+]
 
+const imgSrcs_ = [
+    [
+        img1,
+        img1,
+        img1,
+    ],
+    [
+        img2,
+        img2,
+        img2,
+    ],
+    [
+        img3,
+        img3,
+        img3,
+    ],
+    [
+        img1,
+        img1,
+        img1,
+    ],
+]
 
 
 
@@ -396,12 +457,6 @@ export function Portfolio3dTransition({children}) {
     )
 }
 
-const imgSrcs = [
-    "https://res.cloudinary.com/dtoefi3cs/image/upload/v1742031089/%E6%89%8B_%E4%B8%89%E9%83%A8%E6%9B%B2_abvx63.png",
-    "https://res.cloudinary.com/dtoefi3cs/image/upload/v1742032926/Logo_Mockup_aagbng.png",
-    "https://res.cloudinary.com/dtoefi3cs/image/upload/v1742032515/Free_Book_Mockup_8_jy7wbm.png",
-];
-
 
 
 function Start() {
@@ -417,15 +472,11 @@ function Start() {
                 </Paralax>
             </div>
         </Portfolio3dTransition>
-
     )
 }
 
 
 export function TestPortfolio3d() {
-    const section1Ref = useRef(null);
-    const section2Ref = useRef(null);
-
 
     return (
         <>

@@ -88,7 +88,7 @@ export default function Home() {
         <>
             <div style={{position: "absolute", top: 2000 ,right: 0, zIndex: 1}}>
                 <Paralax paralax={2000}>
-                    <DefaultIconCapsule width={700} height={700} />
+                    <DefaultIconCapsule width="70vw" height="70vw" />
                 </Paralax>
             </div>
 
@@ -98,22 +98,31 @@ export default function Home() {
                     <div className="navBar-spacer"></div>
 
                     <div className="container">
-                        <p>關於我們</p>
                         <div className="hero__contents">
                             <h1 className="display-1">
                                 <span>你也同樣</span>
                                 <span className='orange'>飄忽不定</span>
                                 <span>嗎？</span>
                                 <br />給同樣飄忽不定<br />的你.
+                                {/* pointer */}
+                                <span className='hero__pointer'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1141.736 331.415">
+                                        <g id="Group_59" data-name="Group 59" transform="translate(-516.6 -2696.561)">
+                                            <path id="Path_25" data-name="Path 25" d="M21392.023,2707.168l155.1,155.1-155.1,155.1" transform="translate(-19910)" fill="none" stroke="currentColor" stroke-width="30"/>
+                                            <path id="Path_26" data-name="Path 26" d="M22316.977,2862.268H21196.453" transform="translate(-20679.854)" fill="none" stroke="currentColor" stroke-width="30"/>
+                                        </g>
+                                    </svg>
+                                </span>
                             </h1>
 
                             <div className="hero__buttons">
-                                <ButtonWithIcon size='large'>聯絡我們</ButtonWithIcon>
-                                <ButtonWithIcon size='large'>作品集</ButtonWithIcon>
+                                <ButtonWithIcon size='medium'>聯絡我們</ButtonWithIcon>
+                                <ButtonWithIcon size='medium'>作品集</ButtonWithIcon>
                             </div>
 
-                            {/* pointer */}
-                            <img style={{position: "absolute", transform: "scale(0.5) translate(0, 230px)"}} src='/pointer-white.svg'/>
+
+
+
 
                             {/* 3d model */}
                             <div className='hero__three-scene'>
@@ -212,7 +221,7 @@ export default function Home() {
                                     <p className='paragraph-l white--secondary'>{aboutPara_3}</p>
                                     <DefaultIconTorusKnot/>
                                 </div>
-                            </CardCollapse>                            
+                            </CardCollapse>
                         </FadeInSection>
                         </div>
                     </div>
@@ -244,8 +253,7 @@ export default function Home() {
                 <div class="container">
                     <div class="services__content">
                     <FadeInSection>
-                            
-                            <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "end"}} className='m-b-xl'>
+                            <div className='m-b-xl services__header'>
                                 <div>
                                     <div style={{position: "relative", display: "flex", alignItems: "center"}}>
                                         <div style={{position: "absolute", top: 10, left: -1000}}>
@@ -331,7 +339,7 @@ export default function Home() {
             </section>
 
             {/*------------------------------ Portfolio ------------------------------*/}
-            {/* <section class="home portfolio" id="portfolio" data-color="dark" data-TOC-node>
+            <section class="home portfolio" id="portfolio" data-color="dark" data-TOC-node>
                 
                 <div class="verticalText-container">
                     <Paralax paralax={verticalTextParalaxSpeed}>
@@ -354,7 +362,7 @@ export default function Home() {
                         </FadeInSection>
 
 
-                        <Tab_portfolio />
+                        {/* <Tab_portfolio /> */}
                     </div>
                 </div>
             </section>
@@ -375,7 +383,7 @@ export default function Home() {
                     <CardInfoHinter cardRefs={cardRefs} cardInfos={cardInfos} />
                     <CardIndexHinter cardRefs={cardRefs} />
                 </HScrollContainer>
-            </section> */}
+            </section>
 
             
 
