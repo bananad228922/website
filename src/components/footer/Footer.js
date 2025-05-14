@@ -8,7 +8,7 @@ function Footer() {
                 <div className="footer__content">
                     <div style={{position: "absolute", bottom: "100vh"}}>
                         <Paralax paralax={500} end="top top">
-                            <DefaultIconOctahedron width={1000} height={500} />
+                            <DefaultIconOctahedron width={500} height={500} />
                         </Paralax>                        
                     </div>
 

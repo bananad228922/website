@@ -5,7 +5,7 @@ import "./icon3d.css";
 
 
 
-export function Icon3d({object3d}) {
+export function Icon3d({object3d, width, height}) {
     const containerRef = useRef(null);
     const canvaRef = useRef(null);
 
@@ -16,8 +16,12 @@ export function Icon3d({object3d}) {
         }
 
         const renderer = new THREE.WebGLRenderer({alpha: true});
-        const width = containerRef.current.getBoundingClientRect().width;
-        const height = containerRef.current.getBoundingClientRect().height;
+        if (!width || !height) {
+            console.log("width or height is undefined");
+            width = containerRef.current.getBoundingClientRect().width;
+            height = containerRef.current.getBoundingClientRect().height;            
+        }
+
         console.log(width, height);
         renderer.setSize(width, height);
         canvaRef.current = renderer.domElement;
@@ -151,7 +155,7 @@ export function DefaultIconCapsule({width, height}) {
 }
 
 
-export function DefaultIcon() {
+export function DefaultIcon({width, height}) {
     const [model, setModel] = useState(null);
 
     useEffect(() => {
@@ -164,7 +168,7 @@ export function DefaultIcon() {
     }, [])
 
 
-    return model && (<Icon3d object3d={model} height={1000} width={1000}/>)
+    return model && (<Icon3d object3d={model} width={width} height={height}/>)
 }
 
 

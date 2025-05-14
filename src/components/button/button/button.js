@@ -45,6 +45,15 @@ const kindStyled = {
             color: ${colors.white};
         }
     `,
+    "tab": css`
+        border: 1px solid RGB(128, 128, 128);
+        color: ${colors.white};
+
+        &:hover {
+            background-color: ${colors.white};);
+            color: ${colors.black};
+        }
+    `,
 }
 
 const sizeStyled = {
@@ -70,7 +79,7 @@ const sizeStyled = {
 
 const StyledButton = styled.button`
     border-style: none;
-    border-radius: 10px;
+    border-radius: 999px;
     display: flex;
     align-items: center;
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;

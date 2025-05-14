@@ -33,6 +33,8 @@ import { EntryLetters, TestFadein } from "./components/entryExitEffect.js";
 import { TestBackground3d } from "./components/3d/background3d.js";
 import { TestPortfolio3d } from "./components/3d/portfolio3d.js";
 import { TestMousefollow } from "./components/mousefollow/mousefollow.js";
+import { TestEventLoop } from "./test/testAsyncRecycle.js";
+import { TestLoadingPage } from "./components/loadingPage/LoadingPage.js";
 
 gsap.registerPlugin(ScrollTrigger);
 function App() {
@@ -76,6 +78,9 @@ function App() {
                 <Route path="/test3dBackground" element={<TestBackground3d />} />
                 <Route path="/testPortfolio3d" element={<TestPortfolio3d />} />
                 <Route path="/testMousefollow" element={<TestMousefollow />} />
+                <Route path="/testEventLoop" element={<TestEventLoop />} />
+                <Route path="/testLoadingPage" element={<TestLoadingPage />} />
+                
             </Routes>
         </Router>
   );

@@ -3,7 +3,8 @@ import classNames from "classnames";
 
 export default function ButtonWithIcon({children, size="medium", outline=false, onClick}) {
     return (  
-        <button className={classNames(styles.buttonWithIcon, styles[size])} onClick={onClick}>
+        <button className={classNames(styles.buttonWithIcon, styles[size], styles[outline && "outline"])} onClick={onClick}>
+            <span className={classNames(styles.BG_, styles[outline && "outline"])}></span>
             <span className={classNames(styles.BG, styles[outline && "outline"])}></span>
 
             <div className={styles.wrapper}>

@@ -28,6 +28,8 @@
   justify-content: center;
   border: 1px solid;
   overflow: hidden;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
   position: relative;
   transition: transform 0.2s ease-in-out;
 }
@@ -111,4 +113,16 @@
 .BG.outline {
   -webkit-clip-path: inset(0 100% 0 0);
           clip-path: inset(0 100% 0 0);
+}
+
+.BG_ {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  position: absolute;
+  filter: blur(100px);
+}
+
+.BG_.outline {
+  background-color: black;
 }/*# sourceMappingURL=buttonWithIcon.module.css.map */

@@ -164,7 +164,7 @@ export function EntryLine({width, ease="power1.inOut"}) {
 
                 scrollTrigger: {
                     trigger: lineRef.current,
-                    start: "top center",
+                    start: "top bottom",
                 }
             })
         });
@@ -175,7 +175,7 @@ export function EntryLine({width, ease="power1.inOut"}) {
     }, [])
 
     return(
-        <div style={{width: width, height: 0.1, backgroundColor: "#ffffff"}} ref={lineRef}></div>
+        <div style={{width: width, height: 1, backgroundColor: "RGB(128, 128, 128)"}} ref={lineRef}></div>
     )
 }
 

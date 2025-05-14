@@ -16,9 +16,12 @@ import './home.css'
 import { Background3d, Background3dLight } from '../../components/3d/background3d.js';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { DraggableScene } from '../../components/3d/portfolio3d.js';
+import { DraggableScene, Portfolio3d } from '../../components/3d/portfolio3d.js';
 import IconButton from '../../components/button/iconButton/iconButton.js';
 import { EntryLine } from '../../components/entryExitEffect.js';
+import { LoadingPage, useLoadingImage } from '../../components/loadingPage/LoadingPage.js';
+import { Mousefollow } from '../../components/mousefollow/mousefollow.js';
+import stylesCard from '../../components/card/cardCollapse/cardCollapseBase.module.css';
 
 
 
@@ -27,7 +30,7 @@ const aboutPara_1 = "創意不只是美學，而是解決問題的獨特方式�
 const aboutPara_2 = "在設計專案時，別只是執行，更要主動提供解決方案，如建議使用 AB 測試來優化 UI，分析競品 UX 並提出改進方向，或開發針對特定產業的設計系統，提高設計決策的價值。"
 const aboutPara_3 = "與其做十個普通的設計，不如專注於一個高品質的作品，確保每個專案都有明確的設計目標、用戶數據支持，以及可驗證的成效，讓你的作品不只是好看，而是真正提升使用者體驗與商業價值。"
 
-let st;
+
 
 gsap.registerPlugin(ScrollTrigger);
 export default function Home() {
@@ -36,7 +39,9 @@ export default function Home() {
     const heroRef = useRef(null);
     const ctxRef = useRef(null);
     const verticalTextParalaxSpeed = 300;
-    
+    const loadingPageRef = useRef(null);
+    const loadingMainRef = useRef(null);
+    let progress = useLoadingImage(imgSrcs, loadingPageRef, loadingMainRef);
 
     useEffect(() => {
         ctxRef.current = gsap.context(() => {
@@ -86,6 +91,10 @@ export default function Home() {
 
     return(
         <>
+            <div ref={loadingPageRef} className='loadingPage'>
+                <LoadingPage progress={progress}/>
+            </div>
+
             <div style={{position: "absolute", top: 2000 ,right: 0, zIndex: 1}}>
                 <Paralax paralax={2000}>
                     <DefaultIconCapsule width="70vw" height="70vw" />
@@ -103,16 +112,20 @@ export default function Home() {
                                 <span>你也同樣</span>
                                 <span className='orange'>飄忽不定</span>
                                 <span>嗎？</span>
-                                <br />給同樣飄忽不定<br />的你.
-                                {/* pointer */}
-                                <span className='hero__pointer'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1141.736 331.415">
-                                        <g id="Group_59" data-name="Group 59" transform="translate(-516.6 -2696.561)">
-                                            <path id="Path_25" data-name="Path 25" d="M21392.023,2707.168l155.1,155.1-155.1,155.1" transform="translate(-19910)" fill="none" stroke="currentColor" stroke-width="30"/>
-                                            <path id="Path_26" data-name="Path 26" d="M22316.977,2862.268H21196.453" transform="translate(-20679.854)" fill="none" stroke="currentColor" stroke-width="30"/>
-                                        </g>
-                                    </svg>
+                                <br />給同樣飄忽不定<br />
+                                <span style={{position: "relative", display: "flex", alignItems: "center"}}>
+                                    <span>的你.</span>
+                                    {/* pointer */}
+                                    {/* <span className='hero__pointer'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1141.736 331.415">
+                                            <g id="Group_59" data-name="Group 59" transform="translate(-516.6 -2696.561)">
+                                                <path id="Path_25" data-name="Path 25" d="M21392.023,2707.168l155.1,155.1-155.1,155.1" transform="translate(-19910)" fill="none" stroke="currentColor" stroke-width="30"/>
+                                                <path id="Path_26" data-name="Path 26" d="M22316.977,2862.268H21196.453" transform="translate(-20679.854)" fill="none" stroke="currentColor" stroke-width="30"/>
+                                            </g>
+                                        </svg>
+                                    </span> */}
                                 </span>
+
                             </h1>
 
                             <div className="hero__buttons">
@@ -128,7 +141,7 @@ export default function Home() {
                             <div className='hero__three-scene'>
                                 {/* <ThreeScene /> */}
                                 <Paralax paralax={200} start='center center'>
-                                    <DefaultIcon />
+                                    <DefaultIcon width={window.innerWidth * 0.9} height={window.innerWidth * 0.9}/>
                                 </Paralax>
                             </div>
                         </div>
@@ -174,9 +187,15 @@ export default function Home() {
                 <div class="container">
                     <div class="about__content">
                         <FadeInSection>
-                            <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "end"}} className='m-b-xl'>
+                            <div className='m-b-xl services__header'>
                                 <div>
-                                    <p className='m-b-m paragraph-m'>關於我們</p>
+                                    <div style={{position: "relative", display: "flex", alignItems: "center"}}>
+                                        <div style={{position: "absolute", top: 10, left:-1000}}>
+                                            <EntryLine width={1000} ease='power1-out'/>
+                                        </div>
+                                        <p className='paragraph-m m-l-m m-b-m'>關於我們</p>
+                                    </div>
+
                                     <h1 className='display-1'>
                                         <span>我們一直</span>
                                         <span className='orange'>相信.</span>
@@ -187,7 +206,7 @@ export default function Home() {
                                     </h1>
                                 </div>
                                 <ButtonWithIcon>
-                                    <p>觀看我們的設計哲學</p>
+                                    <p>觀看我的設計哲學</p>
                                 </ButtonWithIcon>
                             </div>
 
@@ -197,9 +216,9 @@ export default function Home() {
                         <div className='  flex-col gap-m'>
                         <FadeInSection>
                             <CardCollapse title="發揮創意" darkmode={true}>
-                                <div className='flex-row gap-l'>
+                                <div className='hero__cardLayout'>
                                     <p className='paragraph-l white--secondary'>{aboutPara_1}</p>
-                                    <DefaultIconOctahedron/>
+                                    <DefaultIconOctahedron width={300} height={300}/>
                                 </div>
                             </CardCollapse>
                         </FadeInSection>
@@ -207,9 +226,9 @@ export default function Home() {
                         <FadeInSection>
                             <CardCollapse title="提供想法" darkmode={true
                             }>
-                                <div className='flex-row gap-l'>
+                                <div className='hero__cardLayout'>
                                     <p className='paragraph-l white--secondary'>{aboutPara_2}</p>
-                                    <DefaultIconTorus/>
+                                    <DefaultIconTorus  width={300} height={300}/>
                                 </div>
                             </CardCollapse>                            
                         </FadeInSection>
@@ -217,9 +236,9 @@ export default function Home() {
                         <FadeInSection>
                             <CardCollapse title="以質勝量" darkmode={true
                             }>
-                                <div className='flex-row gap-l'>
+                                <div className='hero__cardLayout'>
                                     <p className='paragraph-l white--secondary'>{aboutPara_3}</p>
-                                    <DefaultIconTorusKnot/>
+                                    <DefaultIconTorusKnot width={300} height={300}/>
                                 </div>
                             </CardCollapse>
                         </FadeInSection>
@@ -232,9 +251,9 @@ export default function Home() {
             {/* ------------------------------ scroll banner ------------------------------ */}
 
             <section 
-                className='scroll-banner p-b-xxl p-t-xxl' 
+                className='scroll-banner' 
                 data-color="dark"
-                style={{position: 'relative', zIndex: 1}}
+                style={{position: 'relative', zIndex: 1, padding: "50px 0"}}
             >
                 <ScrollBanner>
                     <span className='scroll-banner__para display-0'>我們相信設計就是一切</span>
@@ -259,20 +278,17 @@ export default function Home() {
                                         <div style={{position: "absolute", top: 10, left: -1000}}>
                                             <EntryLine width={1000} ease='power1-out'/>
                                         </div>
-                                        <p className='paragraph-m m-l-m'>關於我們</p>
+                                        <p className='paragraph-m m-l-m m-b-m'>服務項目</p>
                                     </div>
                                     
                                     <h1 className='display-1'>
-                                        <span>我們一直</span>
-                                        <span className='orange'>相信.</span>
-                                        <br/>
-                                        給您最好
-                                        <br/>
-                                        不怕困難
+                                        讓我們<br />
+                                        同時幫你搞定<br />
+                                        <span className='orange'>設計</span>與<span  className='orange'>技術</span>
                                     </h1>
                                 </div>
                                 <ButtonWithIcon>
-                                    <p>觀看我們的設計哲學</p>
+                                    <p>了解我們的服務</p>
                                 </ButtonWithIcon>
                             </div>
 
@@ -281,58 +297,42 @@ export default function Home() {
 
                         <FadeInSection>
                             <CardCollapse title="網站設計" darkmode={true}>
-                                <div className='flex-row'>
+                                <div className='flex-row paragraph-l'>
                                     <ul>
-                                        <li>E-commerc</li>
-                                        <li>ELanding</li>
-                                        <li>EPromo-site</li>
-                                        <li>Corporate website</li>
+                                        <li>- ECommerc</li>
+                                        <li>- ELanding</li>
+                                        <li>- EPromo-site</li>
+                                        <li>- Corporate Website</li>
+                                        <li>- UI Design</li>
                                     </ul>
-                                    <img src='real-image.jpg'/>
                                 </div>
                             </CardCollapse>                            
                         </FadeInSection>
 
                         <FadeInSection>
                             <CardCollapse title="平面設計" darkmode={true}>
-                                <div className='flex-row'>
+                                <div className='flex-row paragraph-l'>
                                     <ul>
-                                        <li>E-commerc</li>
-                                        <li>ELanding</li>
-                                        <li>EPromo-site</li>
-                                        <li>Corporate website</li>
+                                        <li>- Branding</li>
+                                        <li>- Logo Design</li>
+                                        <li>- Poster Design</li>
+                                        <li>- DM Design</li>
                                     </ul>
-                                    <img src='real-image.jpg'/>
-                                </div>
-                            </CardCollapse>                            
-                        </FadeInSection>
-
-                        <FadeInSection>
-                            <CardCollapse title="動態設計" darkmode={true}>
-                                <div className='flex-row'>
-                                    <ul>
-                                        <li>E-commerc</li>
-                                        <li>ELanding</li>
-                                        <li>EPromo-site</li>
-                                        <li>Corporate website</li>
-                                    </ul>
-                                    <img src='real-image.jpg'/>
                                 </div>
                             </CardCollapse>
                         </FadeInSection>
 
                         <FadeInSection>
-                            <CardCollapse title="3D建模" darkmode={true}>
-                                <div className='flex-row'>
+                            <CardCollapse title="動態設計" darkmode={true}>
+                                <div className='flex-row paragraph-l'>
                                     <ul>
-                                        <li>E-commerc</li>
-                                        <li>ELanding</li>
-                                        <li>EPromo-site</li>
-                                        <li>Corporate website</li>
+                                        <li>- Logo Animation</li>
+                                        <li>- Opening / Ending</li>
+                                        <li>- Promo Video</li>
+                                        <li>- 3D Animation</li>
                                     </ul>
-                                    <img src='real-image.jpg'/>
                                 </div>
-                            </CardCollapse>                            
+                            </CardCollapse>
                         </FadeInSection>
                     </div>
                 </div>
@@ -350,15 +350,27 @@ export default function Home() {
                 <div class="container">
                     <div class="portfolio__content">
                         <FadeInSection>
-                            <h1 className='display-1 m-b-xl'>
-                                <span>我們一直</span>
-                                <span className='orange'>相信.</span><br/>
-                                <span>給您最好</span><br/>
-                                <span>不怕困難</span>
-                                <Icon3dInline>
-                                    <DefaultIconOctahedron width={100} height={100} />
-                                </Icon3dInline>
-                            </h1>
+                            <div className='m-b-xl services__header'>
+                                <div>
+                                    <div style={{position: "relative", display: "flex", alignItems: "center"}}>
+                                        <div style={{position: "absolute", top: 10, left: -1000}}>
+                                            <EntryLine width={1000} ease='power1-out'/>
+                                        </div>
+                                        <p className='paragraph-m m-l-m m-b-m'>作品集</p>
+                                    </div>
+                                    
+                                    <h1 className='display-1'>
+                                        在這裏
+                                        <br />
+                                        觀看我所有的
+                                        <br />
+                                        <span className='orange'>作品集</span>
+                                    </h1>
+                                </div>
+                                <ButtonWithIcon>
+                                    <p>觀看更完整的作品集</p>
+                                </ButtonWithIcon>
+                            </div>
                         </FadeInSection>
 
 
@@ -367,7 +379,12 @@ export default function Home() {
                 </div>
             </section>
 
-            <section style={{height: 'fit-content', zIndex:1, position: "relative"}} data-TOC-node>
+            <div style={{zIndex: 1, position: "relative", marginTop: -500}}>
+                <Portfolio3d />
+            </div>
+            
+
+            {/* <section style={{height: 'fit-content', zIndex:1, position: "relative"}} data-TOC-node>
                 <HScrollContainer transformElRef={transformElRef}>
                     <Showcase ref={transformElRef}>
                         {imgSrcs.map((_, i) => (
@@ -383,7 +400,7 @@ export default function Home() {
                     <CardInfoHinter cardRefs={cardRefs} cardInfos={cardInfos} />
                     <CardIndexHinter cardRefs={cardRefs} />
                 </HScrollContainer>
-            </section>
+            </section> */}
 
             
 
@@ -456,11 +473,14 @@ export default function Home() {
             <Footer />
 
             <TOC />
+            <Mousefollow triggers= {`.${stylesCard.header}`}>
+                Click
+            </Mousefollow>
             
             <div style={{position: "fixed", top: 0, left: 0}}><Background3dLight /></div>
             <div style={{position: "fixed", right: 20, bottom: 20, zIndex: 1 , transform: "rotate(-90deg)"}}>
-                <IconButton size='large' roundness={true}/>
-            </div> 
+                <IconButton size='large' roundness={true} onClick={() => {window.lenis.scrollTo(0)}}/>
+            </div>                
         </>
     );
 }

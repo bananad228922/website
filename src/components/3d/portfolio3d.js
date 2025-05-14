@@ -1,7 +1,7 @@
 import { animate } from "framer-motion";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { object as object3d } from "prop-types";
+import { object, object as object3d } from "prop-types";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { FontLoader, GLTFLoader, OrbitControls, TextGeometry } from "three/examples/jsm/Addons";
@@ -10,6 +10,7 @@ import { Paralax } from "../../pages/home/home";
 import { useGetMouseCoordinate } from "../../hook/utils";
 import { getLenis } from "../../utils/utils";
 import { img1, img2, img3 } from "../../variable";
+import { Button } from "../button/button/button";
 
 
 
@@ -200,51 +201,57 @@ export function DraggableScene () {
 
 
 
-function useImg3dProvider(imgSrcs, width, height, currentInd) {
-    const object3dsRef = useRef([]);
-    const runOnceRef = useRef(false);
-    const [isLoaded, setIsLoaded] = useState(false)
-
-    useEffect(() => {
-        if (!runOnceRef.current) {
-            const loader = new THREE.TextureLoader();
-
-            for(let i = 0; i < imgSrcs.length; i++) {
-                loader.load(imgSrcs[i], (texture) => {
-                    const planeGeometry = new THREE.PlaneGeometry(width, height);
-                    const planeMaterial = new THREE.MeshStandardMaterial({map: texture,})
-
-                    const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-                    object3dsRef.current.push(plane);
-
-                    console.log(`object${i} loaded`);
-
-                    setIsLoaded(object3dsRef.current.length === imgSrcs.length);
-                })
-            }
-        }
-        runOnceRef.current = true;
-    }, [currentInd]);
-
-    return object3dsRef;
-}
 
 
-
+// 函式(函式（非同步）(load texture) -> 操作物件) -> 清理（使用旗幟）
 export function Portfolio3d() {
     const containerRef = useRef(null);
+    const object3dsRef = useRef([]);
+    const pinContainerRef = useRef(null);
+    const isLoadedRef = useRef(false);
+
     const [currentInd, setCurrentInd] = useState(0);
-    const object3dsRef = useImg3dProvider(imgSrcs_[currentInd], 16/1.7, 9/1.7, currentInd);  // 在完成後會自動觸發re-render
-    const isLoaded = object3dsRef.current.length === imgSrcs_[currentInd].length;
+    const size = window.matchMedia("(max-width: 768px)").matches ? "small" : "medium";
 
     useLayoutEffect(() => {
         console.log("Entry effect");
 
+        let isCancelled = false;
+
+        function loadTexture() {
+            const loader = new THREE.TextureLoader();
+            object3dsRef.current = [];
+            const promises = imgSrcs_[currentInd].map((src, i) => {
+                return new Promise((resolve) => {
+                    loader.load(src, (texture) => {
+                        const planeGeometry = new THREE.PlaneGeometry(16/1.7, 9/1.7);
+                        const planeMaterial = new THREE.MeshStandardMaterial({map: texture,})
+                        const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+
+                        if (isCancelled) return;
+                        
+                        object3dsRef.current.push(plane);
+                        isLoadedRef.current = true;
+                        console.log(`object${i} loaded`);
+
+                        resolve("resolved");
+                    })
+                })
+            })
+            return Promise.all(promises);
+        }
+
+
         let ctx;
         let rafId;
         let renderer;
-        if (isLoaded) {
-            renderer = new THREE.WebGLRenderer();
+
+        main();
+
+        async function main() {
+            console.log(await loadTexture());
+
+            renderer = new THREE.WebGLRenderer({alpha: true});
             renderer.setSize(window.innerWidth, window.innerHeight);
             containerRef.current.appendChild(renderer.domElement);
     
@@ -280,7 +287,7 @@ export function Portfolio3d() {
 
             ctx = gsap.context(() => {
                 ScrollTrigger.create({
-                    trigger: containerRef.current,
+                    trigger: pinContainerRef.current,
                     start: "top top",
                     end: `+=${scrollY}px`,
                     pin: true,
@@ -291,17 +298,17 @@ export function Portfolio3d() {
             })
 
             lenis.on("scroll", () => {
-                    diff = lenis.scroll - canvasTop;
+                diff = lenis.scroll - canvasTop;
 
-                    if(diff) {
-                        const progress = diff / scrollY;
-                        const totalTranslateX = (object3dsRef.current.length-1) * spacing;
-                        
-                        object3dsRef.current.forEach((object3d) => {
-                                const translateX = object3d.userData.originPos.x - totalTranslateX * progress
-                                object3d.position.x = translateX;
-                        })
-                    }
+                if(diff) {
+                    const progress = diff / scrollY;
+                    const totalTranslateX = (object3dsRef.current.length-1) * spacing;
+                    
+                    object3dsRef.current.forEach((object3d) => {
+                            const translateX = object3d.userData.originPos.x - totalTranslateX * progress
+                            object3d.position.x = translateX;
+                    })
+                }
             })
             
             let count = 0;
@@ -342,29 +349,31 @@ export function Portfolio3d() {
     
             animate();
         }
+        
 
         return () => {
-            if (renderer) {
-                containerRef.current.removeChild(renderer.domElement);                
+            if (isLoadedRef.current) {
+                containerRef.current.removeChild(renderer?.domElement);                
+                ctx?.revert();
+                cancelAnimationFrame(rafId);
             }
-
-            if (ctx) {
-                ctx.revert();
-            }
-            cancelAnimationFrame(rafId);
-        }
-    }, [isLoaded, currentInd]);
+            isCancelled = true;
+        };
+    }, [currentInd]);
 
     return (
-        <>
-            <div style={{display: "flex", color: "white"}}>
-                <button onClick={() => {setCurrentInd(0)}}>平面設計</button>
-                <button onClick={() => {setCurrentInd(1)}}>動態設計</button>
-                <button onClick={() => {setCurrentInd(2)}}>網站設計</button>
-                <button onClick={() => {setCurrentInd(3)}}>3d建模</button>
-            </div>
+        <div style={{position: "relative"}} ref={pinContainerRef}>
             <div ref={containerRef}></div>
-        </>
+            <div style={{position: "absolute", bottom: "50px", display: "flex", gap: "0vw", justifyContent: "center", width: "100vw"}}>
+                <div style={{display: "flex", gap: "1vw", color: "white"}}>
+                    <Button kind="tab"size={size}onClick={() => {setCurrentInd(0)}}>平面設計</Button>
+                    <Button kind="tab"size={size}onClick={() => {setCurrentInd(1)}}>動態設計</Button>
+                    <Button kind="tab"size={size}onClick={() => {setCurrentInd(2)}}>網站設計</Button>
+                    <Button kind="tab"size={size}onClick={() => {setCurrentInd(3)}}>3d建模</Button>                    
+                </div>
+
+            </div>
+        </div>
         
     )
 }
@@ -380,13 +389,19 @@ const imgSrcs_ = [
         img2,
         img2,
         img2,
+        img2,
     ],
     [
         img3,
         img3,
         img3,
+        img3,
+        img3,
     ],
     [
+        img1,
+        img1,
+        img1,
         img1,
         img1,
         img1,

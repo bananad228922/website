@@ -37,13 +37,19 @@ export default function Navbar({darkmode=false}) {
             <Sidebar />
 
             {/* Menu button */}
-            <input className={styles.trigger} type="checkbox" id="navBar__checkbox" />
+            <div style={{height: 50, display: "flex", alignItems: "center", position: "absolute", top: 0, right: 10}}>
+                <div>
+                    <input className={styles.trigger} type="checkbox" id="navBar__checkbox" />
 
-            <label className={classNames(styles.menuBtn)} htmlFor="navBar__checkbox">
-                <div className={classNames(styles.menuBtnLine, darkmode_ && styles.darkmode)}></div>
-                <div className={classNames(styles.menuBtnLine, darkmode_ && styles.darkmode)}></div>
-                <div className={classNames(styles.menuBtnLine, darkmode_ && styles.darkmode)}></div>
-            </label>
+                    <label className={classNames(styles.menuBtn)} htmlFor="navBar__checkbox">
+                        <div className={classNames(styles.menuBtnLine, darkmode_ && styles.darkmode)}></div>
+                        <div className={classNames(styles.menuBtnLine, darkmode_ && styles.darkmode)}></div>
+                        <div className={classNames(styles.menuBtnLine, darkmode_ && styles.darkmode)}></div>
+                    </label>                       
+                </div>
+             
+            </div>
+
         </nav>
     )
 }

@@ -1,23 +1,23 @@
 import { progress } from "framer-motion";
 import styles from "./LoadingPage.module.css"
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { img1, img2, img3 } from "../../variable";
 
 export function LoadingPage({progress}) {
     return (
         <div className={styles.BG}>
             <div className={styles.textWrapper}>
                 <h1>It loading...</h1>
-                <p>{progress}</p>
             </div>
+
             <div className={styles.loadingBarWrapper}>
                 <div className={styles.loadingBar} style={{width: `${progress}%`}}></div>
             </div>
-
         </div>
     )
 }
 
-export function useLoadingImage(srcs, loadingPageRef, loadingMainRef) {
+export function useLoadingImage(srcs, loadingPageRef) {
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
@@ -35,7 +35,6 @@ export function useLoadingImage(srcs, loadingPageRef, loadingMainRef) {
     
                 if (loadedCounter === srcs.length) {
                     setTimeout(() => {
-                        loadingMainRef.current.classList.add("active");
                         loadingPageRef.current.classList.add("hidden");
 
                         console.log("load complete");
@@ -56,3 +55,27 @@ export function useLoadingImage(srcs, loadingPageRef, loadingMainRef) {
 
     return progress;
 }
+
+
+export function TestLoadingPage() {
+    const loadingPageRef = useRef(null);
+    const loadingMainRef = useRef(null);
+    let progress = useLoadingImage(srcs, loadingPageRef, loadingMainRef);
+
+    return (
+        <>
+            <div ref={loadingPageRef}>
+                <LoadingPage progress={progress}/>
+            </div>        
+            <div ref={loadingMainRef}>
+                <div style={{backgroundColor: "black", height: "100vh", width: "100vw"}}></div>
+            </div>
+        </>
+    )
+}
+
+const srcs = [
+    img1,
+    img2,
+    img3,
+]

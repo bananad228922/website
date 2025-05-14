@@ -43,6 +43,7 @@ $radius: 10px;
 
     border: 1px solid;
     overflow: hidden;
+    backdrop-filter: blur(10px);
 
 
 
@@ -152,4 +153,16 @@ $radius: 10px;
 
 .BG.outline {
     clip-path: inset(0 100% 0 0);
+}
+
+.BG_ {
+    height: 100%;
+    width: 100%;
+    border-radius: $radius;
+    position: absolute;
+    filter: blur(100px);
+}
+
+.BG_.outline {
+    background-color: black;
 }

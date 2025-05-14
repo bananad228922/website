@@ -22,7 +22,7 @@
 %content-layout {
     width: 80%;
     @extend %flex-col;
-    grid-row-gap: $spacing-m;
+    gap: $spacing-m;
 
     margin-top: $spacing-xxl;
     margin-bottom: $spacing-xxl;
@@ -48,15 +48,24 @@
     &__three-scene {
         position: absolute;
         // left: 5vw;
-        right: -10vw;
-        top: -20vh;
+        right: 15vw;
+        bottom: -10vh;
         z-index: -1;
     }
 
     &__buttons {
         @extend %flex-row;
+        position: absolute;
+        bottom: 0;
+        right: 0;
 
         grid-column-gap: $spacing-s;
+    }
+
+    @media (max-width: 767px) {
+        &__buttons {
+            position: static;
+        }
     }
 
     &__contents {
@@ -85,6 +94,20 @@
         position: absolute;
         color: white;
         width: 40vw;
+        left: 20vw;
+    }
+
+    &__cardLayout {
+
+        display: flex;
+        flex-direction: row;
+        gap: $spacing-l;
+    }
+
+    @media (max-width: 767px) {
+        &__cardLayout {
+            flex-direction: column;
+        }
     }
 }
 
@@ -107,7 +130,7 @@
 
     &__spacer {
         width: 100%;
-        height: 500px;
+        height: 50vh;
         background-color: $color-black;
     }
 }

@@ -1,9 +1,9 @@
 import styles from "./iconButton.module.css";
 import classNames from "classnames";
 
-function IconButton({size="medium", darkmode=true, roundness=false}) {
+function IconButton({size="medium", darkmode=true, roundness=false, onClick}) {
     return (  
-        <button className={classNames(styles.iconButton, styles[size], darkmode && styles.darkmode, roundness && styles.roundness)}>
+        <button className={classNames(styles.iconButton, styles[size], darkmode && styles.darkmode, roundness && styles.roundness)} onClick={onClick}>
             <Icon/>
             <Icon/>
         </button>

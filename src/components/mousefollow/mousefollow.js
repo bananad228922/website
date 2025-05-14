@@ -2,13 +2,15 @@ import { use, useEffect, useRef, useState } from "react"
 import styles from "./mousefollow.module.css"
 import CardCollapse from "../card/cardCollapse/cardCollapse";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import classNames from "classnames";
+import styles_ from "../card/cardCollapse/cardCollapseBase.module.css";
 
 
 
-export function Mousefollow({children, isHover}) {
+export function Mousefollow({children, triggers}) {
     const containerRef = useRef(null)
+    const [isHover, setIsHover] = useState(false);
+    
     useEffect(() => {
         const mouse = {x: 0, y: 0};
 
@@ -37,6 +39,29 @@ export function Mousefollow({children, isHover}) {
         }
     }, [])
 
+    useEffect(() => {
+        const mouseentryHandle = () => {
+            console.log("mouseenter");
+            setIsHover(true);
+        }
+        const mouseleaveHandle = () => {
+            setIsHover(false);
+        }
+        
+        const triggers_ = document.querySelectorAll(triggers);
+
+        triggers_.forEach((trigger) => {
+            trigger.addEventListener("mouseenter", mouseentryHandle);
+            trigger.addEventListener("mouseleave", mouseleaveHandle);
+        })
+
+        return () => {
+            triggers_.forEach((trigger) => {
+                trigger.removeEventListener("mouseenter", mouseentryHandle);
+                trigger.removeEventListener("mouseleave", mouseleaveHandle);
+            })
+        }
+    }, [])
     return (
         <div className={classNames(styles.container, isHover && styles.isHover)} ref={containerRef}>
             <div className={styles.content}>
@@ -44,45 +69,30 @@ export function Mousefollow({children, isHover}) {
             </div>
         </div>
     )
+    
 }
 
-function TriggerBox() {
-    const containerRef = useRef(null);
-    const [isHover, setIsHover] = useState(false);
-    console.log("component re-render");
-    useEffect(() => {
-        containerRef.current.addEventListener("mouseenter", () => {
-            setIsHover(true);
-        })
-        containerRef.current.addEventListener("mouseleave", () => {
-            setIsHover(false);
-        })
-    }, [])
 
-    return (
-        <div className={styles.box} ref={containerRef}>
-            <Mousefollow isHover={isHover}>
-                Click
-            </Mousefollow>
-        </div>
-    )
-}
 
 export function TestMousefollow() {
-    const containerRef = useRef(null);
-
-    useEffect(() => {
-
-    }, [])
-
     return (
         <>
             <div className="navBar-spacer"></div>
 
-            <TriggerBox />
+
             <CardCollapse title="fuck you title" darkmode={true} data-hover="Click">
-                <p>hihihhihiihih</p>
-            </CardCollapse>
+                    <p>hihihhihiihih</p>
+            </CardCollapse>   
+
+            <CardCollapse title="fuck you title" darkmode={true} data-hover="Click">
+                    <p>hihihhihiihih</p>
+            </CardCollapse>  
+
+            <Mousefollow triggers= {`.${styles_.header}`}>
+                Click
+            </Mousefollow>
+            
+                  
 
             {/* <div ref={containerRef}>
                 <Mousefollow>text</Mousefollow>
