@@ -39,8 +39,8 @@
 }
 .hero__three-scene {
   position: absolute;
-  right: 15vw;
-  bottom: -10vh;
+  top: -10vh;
+  left: 10vw;
   z-index: -1;
 }
 .hero__buttons {

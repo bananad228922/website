@@ -5,7 +5,7 @@ import "./icon3d.css";
 
 
 
-export function Icon3d({object3d, width, height}) {
+export function Icon3d({object3d, width=1000, height=1000}) {
     const containerRef = useRef(null);
     const canvaRef = useRef(null);
 
@@ -16,11 +16,6 @@ export function Icon3d({object3d, width, height}) {
         }
 
         const renderer = new THREE.WebGLRenderer({alpha: true});
-        if (!width || !height) {
-            console.log("width or height is undefined");
-            width = containerRef.current.getBoundingClientRect().width;
-            height = containerRef.current.getBoundingClientRect().height;            
-        }
 
         console.log(width, height);
         renderer.setSize(width, height);
@@ -38,6 +33,7 @@ export function Icon3d({object3d, width, height}) {
         scene.add(light);
 
         object3d.position.set(0, 0, 0);
+        object3d.rotation.set(0, 0, 0);
         scene.add(object3d);
 
         const raycaster = new THREE.Raycaster();
@@ -45,7 +41,7 @@ export function Icon3d({object3d, width, height}) {
 
         // 轉動邏輯
         const lastMouse = {x: 0, y: 0};
-        const currMouse = new THREE.Vector2();
+        const currMouse = new THREE.Vector2(null, null);
 
         const initSpeed = {x: 0.001, y: 0.005};
         const currSpeed = {x: 0, y: 0};
@@ -82,11 +78,8 @@ export function Icon3d({object3d, width, height}) {
             nextSpeed.x = currSpeed.x + (initSpeed.x - currSpeed.x) * damping;
             nextSpeed.y = currSpeed.y + (initSpeed.y - currSpeed.y) * damping;
             
-            object3d.rotateX(nextSpeed.x);
-            object3d.rotateY(nextSpeed.y);
-
-            object3d.rotateY(initSpeed.y);
-            object3d.rotateX(initSpeed.x);
+            object3d.rotateX(initSpeed.x + nextSpeed.x);
+            object3d.rotateY(initSpeed.y + nextSpeed.y);
 
             
             // 重設變數
@@ -103,7 +96,7 @@ export function Icon3d({object3d, width, height}) {
     }, []);
 
     return (
-        <div ref={containerRef} className="three-container">
+        <div ref={containerRef}>
         </div>
     )
 }

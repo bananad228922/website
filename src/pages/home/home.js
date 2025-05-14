@@ -90,7 +90,7 @@ export default function Home() {
 
 
     return(
-        <>
+        <div className='overflow-x'>
             <div ref={loadingPageRef} className='loadingPage'>
                 <LoadingPage progress={progress}/>
             </div>
@@ -141,7 +141,14 @@ export default function Home() {
                             <div className='hero__three-scene'>
                                 {/* <ThreeScene /> */}
                                 <Paralax paralax={200} start='center center'>
-                                    <DefaultIcon width={window.innerWidth * 0.9} height={window.innerWidth * 0.9}/>
+                                    {(() => {
+                                        const size = Math.min(Math.max(window.innerWidth * 0.9, 400), 1100);
+                                        console.log("size", size);
+                                        return (
+                                            <DefaultIcon width={size} height={size}/>
+                                        )
+                                    })()}
+                                    
                                 </Paralax>
                             </div>
                         </div>
@@ -481,7 +488,7 @@ export default function Home() {
             <div style={{position: "fixed", right: 20, bottom: 20, zIndex: 1 , transform: "rotate(-90deg)"}}>
                 <IconButton size='large' roundness={true} onClick={() => {window.lenis.scrollTo(0)}}/>
             </div>                
-        </>
+        </div>
     );
 }
 
